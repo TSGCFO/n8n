@@ -1,5 +1,9 @@
 {
   "dependencies": {
     "n8n": "1.109.2"
+  },
+  "scripts": {
+    "build": "echo 'No build step required for n8n'",
+    "start": "bash main.sh"
   }
 }

@@ -38,7 +38,6 @@ outputType = "webview"
 [deployment]
 deploymentTarget = "vm"
 run = ["npm", "start"]
-build = ["npm", "run", "build"]
 
 [nix]
 channel = "stable-25_05"
