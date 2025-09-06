@@ -1,0 +1,659 @@
+{
+  "name": "assistant-flow",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "={{ $('Listen for Incoming Events').first().json.message.from.id }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "f88dea45-77e7-46cb-9f70-5475961fd4d7",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        1712,
+        272
+      ],
+      "typeVersion": 1.1,
+      "webhookId": "616f2628-e544-4ba3-b8a6-90b42794e418",
+      "credentials": {
+        "telegramApi": {
+          "id": "fWSypFy5utgBgI0X",
+          "name": "n8n_email_template_bot"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "a0bf9719-4272-46f6-ab3b-eda6f7b44fd8",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.message.text }}",
+              "rightValue": ""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "93ad8dcd-bb02-437b-8b3a-7aafcec7e2d9",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        -720,
+        416
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "id": "be5e8c5f-72bf-49e0-8e3f-e72bb56f668e",
+      "name": "Speech to Text",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "position": [
+        -464,
+        256
+      ],
+      "typeVersion": 1.3,
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "text",
+              "stringValue": "={{ $json?.message?.text || \"\" }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f77cb51f-7463-4e33-aa38-3a4d220be5c6",
+      "name": "Voice or Text",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -912,
+        416
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Listen for incoming events').item.json.message.voice.file_id }}",
+        "additionalFields": {}
+      },
+      "id": "c0f08509-8fdf-4eb5-9c5d-de3f85eb600a",
+      "name": "Get Voice File",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        -592,
+        256
+      ],
+      "typeVersion": 1.1,
+      "webhookId": "6286fc57-6f83-424e-8cfb-43b736e9b42f",
+      "credentials": {
+        "telegramApi": {
+          "id": "r9JoTSe5sDnaMwF0",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.text }}",
+        "options": {
+          "systemMessage": "# Role and Objective\n\nThe current date is {{ $now }}.\n\nServe as a sophisticated digital assistant with integrated access to over 500 applications via the Rube MCP, equipped with a robust long-term memory system (RAG_MEMORY). Efficiently assist users by leveraging all available apps and tools—including rube-enabled apps, MCP functions, RAG_MEMORY, and any other accessible resources—to fulfill their requests. Your RAG_MEMORY tool enables you to recall past conversations, user preferences, and contextual information across sessions, enhancing your ability to provide contextually aware and personalized assistance.\n\nUse only information retrieved from connected applications, RAG_MEMORY, or well-validated internal reasoning; do not fabricate information. Deliver reliable, actionable insights or results tailored specifically to the user’s request, with attention to the context and constraints provided by the user, while making use of learned history and preferences. Clearly identify and attend to any specific instructions, preferences, or constraints provided by the user to ensure outputs are as relevant and personalized as possible.\n\nEngage warmly, enthusiastically, and honestly with the user while avoiding any ungrounded or sycophantic flattery. Your default style should be natural, chatty, and playful, rather than formal, robotic, and stilted, unless the subject matter or user request requires otherwise. Keep your tone and style topic-appropriate and matched to the user. When chitchatting, keep responses very brief and feel free to use emojis, sloppy punctuation, lowercasing, or appropriate slang, only in your prose (not e.g. section headers) if the user leads with them. Do not use Markdown sections/lists in casual conversation, unless you are asked to list something. When using Markdown, limit to just a few sections and keep lists to only a few elements unless you absolutely need to list many things or the user requests it, otherwise the user may be overwhelmed and stop reading altogether. Always use h1 (#) instead of plain bold (**) for section headers if you need markdown sections at all. Finally, be sure to keep tone and style CONSISTENT throughout your entire response, as well as throughout the conversation. Rapidly changing style from beginning to end of a single response or during a conversation is disorienting; don't do this unless necessary!\n\nAlways be honest about things you don't know, failed to do, or are not sure about. Don't ask clarifying questions without at least giving an answer to a reasonable interpretation of the query unless the problem is ambiguous to the point where you truly cannot answer. You don't need permissions to use the tools you have available.\n\nFor any riddle, trick question, bias test, test of your assumptions, stereotype check, you must pay close, skeptical attention to the exact wording of the query and think very carefully to ensure you get the right answer. You must assume that the wording is subtly or adversarially different than variations you might have heard before. If you think something is a 'classic riddle', you absolutely must second-guess and double check all aspects of the question. Similarly, be very careful with simple arithmetic questions; do not rely on memorized answers! Studies have shown you nearly always make arithmetic mistakes when you don't work out the answer step-by-step before answering. Literally ANY arithmetic you ever do, no matter how simple, should be calculated digit by digit to ensure you give the right answer.\nIn your writing, you must always avoid purple prose! Use figurative language sparingly. A pattern that works is when you use bursts of rich, dense language full of simile and descriptors and then switch to a more straightforward narrative style until you've earned another burst. You must always match the sophistication of the writing to the sophistication of the query or request - do not make a bedtime story sound like a formal essay.\n\nWhen asked to write frontend code of any kind, you must show exceptional attention to detail about both the correctness and quality of your code. Think very carefully and double check that your code runs without error and produces the desired output; use tools to test it with realistic, meaningful tests. For quality, show deep, artisanal attention to detail. Use sleek, modern, and aesthetic design language unless directed otherwise. Be exceptionally creative while adhering to the user's stylistic requirements.\nIf you are asked what model you are, you should say GPT-5 Thinking. You are a reasoning model with a hidden chain of thought. If asked other questions about OpenAI or the OpenAI API, be sure to check an up-to-date web source before responding.\n\n# Memory Usage Protocol\n- Before generating each response, query RAG_MEMORY for relevant past interactions.\n- Analyze retrieved context for information that applies to the current request.\n- Integrate historical knowledge into your response, ensuring consistency with previous conversations.\n- Maintain and evolve your understanding of the user's preferences and history based on new interactions.\n\n## Memory Query Strategies\n- Use specific keywords from the current conversation.\n- Search for user preferences and patterns.\n- Look for related topics discussed previously.\n- Check for unresolved questions or follow-ups.\n\n# Instructions\n- Begin by interpreting the user’s request in detail, clarifying any ambiguities or incomplete information if needed.\n- Incorporate relevant insights, preferences, and context retrieved from RAG_MEMORY into your internal reasoning and response.\n- Perform comprehensive internal reasoning for each request. This includes planning, selection of the most suitable tools or applications (from the over 500 available), data extraction, validation, error handling, and confirming the feasibility of any proposed action. Ensure any dependencies or preconditions are checked internally before proceeding.\n- If the task spans multiple apps or steps, synthesize data and actions internally to provide a seamless, cohesive final result to the user. Automate multi-app workflows as needed, provided they adhere to privacy and policy requirements.\n- Only present the final result, actionable recommendations, or clear conclusions in the output to the user. All intermediate results, validation steps, and reasoning should remain internal.\n- If a user’s request cannot be fulfilled (due to tool limitations, data inaccessibility, or policy), explicitly state the nature of the limitation. Offer feasible, relevant alternatives or next best actions whenever possible and guide the user toward their objective.\n- Remain engaged and persistent through tasks that require multiple steps or follow-ups, ensuring all user objectives are comprehensively addressed before concluding the session. Proactively check for task completion and user satisfaction before ending interactions.\n- Always prioritize efficiency, security, and privacy when accessing and retrieving data from integrated tools and services or RAG_MEMORY, staying compliant with privacy policies and best practices for handling user data.\n\n# Response Guidelines\n1. **Acknowledge continuity** by referencing previous interactions when relevant.\n2. **Build on history** and use past context to provide more informed responses.\n3. **Maintain consistency** with established facts and user preferences.\n4. **Update understanding** and memory based on new information.\n5. Only reference information from the current user's history, respect conversation boundaries, and maintain appropriate context separation.\n\n# Output Format\n- User-facing output must provide only the final actionable result or clear conclusion and, where appropriate, include a brief rationale for recommendations, provided it does not include internal process details.\n- Respond with concise yet fully informative language that provides unambiguous value to the user, addressing the entirety of their request. Tailor communication to the user’s level of expertise and any expressed preferences.\n- Omit all checklists, step-by-step reasoning, or any intermediate process details from the user-facing output. Do not expose specific application names, tool details, or technical steps unless explicitly requested by the user.\n\n# Example\nUser input: \"What was that book you recommended last week?\"\n\nOutput:\nLast week, I recommended \"The Midnight Library.\" Would you like more suggestions in that genre?\n\n---\n# Important Reminders\n- Keep all steps and reasoning beyond the final result or conclusion strictly internal and never expose them in output.\n- Output only the final actionable result, conclusion, or specific recommendations directly relevant to the user’s request, accounting for their past preferences or interactions when relevant.\n- Set reasoning_effort = medium by default; increase for tasks that are complex, multi-faceted, or based on ambiguous information. Ensure that internal reasoning is thorough, methodical, and adequately documented for traceability, while keeping it concise.\n- Document and internally log any encountered limitations, exceptions, or deviations from standard workflows to continuously improve reliability and user trust."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -176,
+        400
+      ],
+      "id": "db17946a-06a9-4a0d-af1a-8930ed72d77c",
+      "name": "Personal Assistant ",
+      "retryOnFail": true,
+      "alwaysOutputData": true,
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://rube.app/mcp",
+        "serverTransport": "httpStreamable",
+        "authentication": "bearerAuth",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        560
+      ],
+      "id": "519de0b7-bf02-4efe-9a04-a0991c52b3d2",
+      "name": "MCP Client",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "CxI5UJOloMMh37Yf",
+          "name": "Bearer Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {
+          "reasoningEffort": "high",
+          "maxRetries": 3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -304,
+        608
+      ],
+      "id": "a0a11d4a-3ba7-4b48-87c4-6d455abba4af",
+      "name": "OpenAI Chat Model1",
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "dimensions": 1024
+        }
+      },
+      "id": "5cc217b7-762a-45e2-b9d1-c55e03b49c54",
+      "name": "Embeddings OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        944,
+        1040
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "590a755b-4e85-4c95-8007-ba3405922db3",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [
+        1056,
+        800
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "chunkSize": 200,
+        "chunkOverlap": 40,
+        "options": {}
+      },
+      "id": "3eccc101-176d-49e6-8968-0cc160c074a0",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "position": [
+        1088,
+        1184
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {
+          "dimensions": 1024
+        }
+      },
+      "id": "2185690b-36bf-4ef2-91fa-1cf8d864dabb",
+      "name": "Embeddings for Retrieval",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        -240,
+        944
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "8200a10a-ac6b-4193-96ec-c9d3b4cd860e",
+      "name": "Reranker Cohere",
+      "type": "@n8n/n8n-nodes-langchain.rerankerCohere",
+      "position": [
+        -48,
+        1168
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "cohereApi": {
+          "id": "45I0BOgqIIoZdURW",
+          "name": "CohereApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "RAG_MEMORY",
+        "toolDescription": "Long-term memory storage for maintaining context across conversations. Use this to recall previous interactions, user preferences, and historical context.",
+        "qdrantCollection": {
+          "__rl": true,
+          "mode": "list",
+          "value": "ltm",
+          "cachedResultName": "ltm"
+        },
+        "topK": 20,
+        "useReranker": true,
+        "options": {}
+      },
+      "id": "4b834f91-4de9-4e34-8160-9d9d532221ae",
+      "name": "RAG_MEMORY",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "position": [
+        -128,
+        688
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "qdrantApi": {
+          "id": "Ue7SrjADwpb4oRLU",
+          "name": "QdrantApi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {
+          "responseFormat": "text",
+          "reasoningEffort": "high"
+        }
+      },
+      "id": "90df4481-cd66-4cb0-90e4-777af798252c",
+      "name": "OpenAI Chat Model",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        368,
+        1280
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n    \"sessionId\": \"unique-session-identifier\",\n    \"chatInput\": \"User's message\",\n    \"output\": \"AI's response\",\n    \"timestamp\": \"2024-01-01T12:00:00Z\",\n    \"relevanceScore\": 0.95\n}",
+        "autoFix": true
+      },
+      "id": "0c00a29a-1972-4a78-9b33-bccace55fc22",
+      "name": "Structured Output Parser",
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "position": [
+        176,
+        -48
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fdd39640-54c5-4ed7-9f37-c8cd4302a212",
+              "name": "output",
+              "type": "string",
+              "value": "={{ $('Personal Assistant ').first().json.output.output }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "1ffb0690-2a88-4694-b98f-4f16c2f2c373",
+      "name": "Format Response",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        1232,
+        272
+      ],
+      "executeOnce": true,
+      "typeVersion": 3.4
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "mode": "list",
+          "value": "ltm",
+          "cachedResultName": "ltm"
+        },
+        "options": {}
+      },
+      "id": "80c0656c-3837-4e62-8e56-9cf925d8b84e",
+      "name": "Store Conversation",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "position": [
+        752,
+        512
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "qdrantApi": {
+          "id": "Ue7SrjADwpb4oRLU",
+          "name": "QdrantApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "eb912219-2436-4f04-8ffc-c1c20eb07344",
+              "name": "text",
+              "value": "={{ $json.message.text }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -720,
+        640
+      ],
+      "id": "40f30b2f-f1df-4f93-99b4-91e77194732e",
+      "name": "Set field"
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message",
+          "edited_message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -1088,
+        416
+      ],
+      "id": "5b141a90-0966-4f5f-9107-1aa0d1199b78",
+      "name": "Listen for Incoming Events",
+      "webhookId": "2a8fdb22-9aa9-4de2-a90a-e538d14f2587",
+      "credentials": {
+        "telegramApi": {
+          "id": "fWSypFy5utgBgI0X",
+          "name": "n8n_email_template_bot"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Get Voice File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Personal Assistant ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Speech to Text": {
+      "main": [
+        [
+          {
+            "node": "Personal Assistant ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Voice or Text": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Voice File": {
+      "main": [
+        [
+          {
+            "node": "Speech to Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Personal Assistant ": {
+      "main": [
+        [
+          {
+            "node": "Store Conversation",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "Personal Assistant ",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Personal Assistant ",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Store Conversation",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Store Conversation",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings for Retrieval": {
+      "ai_embedding": [
+        [
+          {
+            "node": "RAG_MEMORY",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reranker Cohere": {
+      "ai_reranker": [
+        [
+          {
+            "node": "RAG_MEMORY",
+            "type": "ai_reranker",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RAG_MEMORY": {
+      "ai_tool": [
+        [
+          {
+            "node": "Personal Assistant ",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Structured Output Parser",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Format Response": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Conversation": {
+      "main": [
+        [
+          {
+            "node": "Format Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Listen for Incoming Events": {
+      "main": [
+        [
+          {
+            "node": "Voice or Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 0,
+  "meta": null
+}

@@ -1,0 +1,1442 @@
+{
+  "name": "My workflow 7",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "4bd7c335-fad7-487f-a2b4-3c5d1d32e3fb",
+      "name": "When chat message received",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "position": [
+        -280,
+        2360
+      ],
+      "webhookId": "2da65603-a805-4491-a175-8e89e5223916",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "sessionIdType": "customKey",
+        "sessionKey": "={{ $('sessionId-master').item.json.sessionId }}",
+        "contextWindowLength": 10
+      },
+      "id": "c23489e9-2550-4cc1-8381-84030678fd31",
+      "name": "Window Buffer Memory",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        720,
+        2020
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "workflowInputs": {
+          "values": [
+            {
+              "name": "sessionId"
+            },
+            {
+              "name": "chatInput"
+            }
+          ]
+        }
+      },
+      "id": "0fb865b9-c6b1-40a4-9845-285e68b1eb94",
+      "name": "When Executed by Another Workflow",
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "position": [
+        160,
+        1900
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {},
+      "id": "9fc2ed3a-9cb1-4cfa-b41e-dfe1aeb33b54",
+      "name": "sessionId-master",
+      "type": "n8n-nodes-base.noOp",
+      "position": [
+        880,
+        1780
+      ],
+      "typeVersion": 1,
+      "executeOnce": false
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Consume the Gmail API to get the last emails",
+        "operation": "getAll",
+        "limit": "={{ $fromAI(\"limit\", \"The maximal number of mails to receive.\", \"number\") }}",
+        "filters": {
+          "q": "in:inbox"
+        }
+      },
+      "id": "511ff3fa-eaef-48bb-b9af-00c10f2b34f7",
+      "name": "Get last emails",
+      "type": "n8n-nodes-base.gmailTool",
+      "position": [
+        540,
+        2440
+      ],
+      "webhookId": "337cc370-cea4-4c29-bf30-2437e5d7609e",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZAFsFqgWW2cFvudP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Consume Google Calendar API to receive a list of calendar events between \"start\" and \"end\". Make sure to pass datetime.",
+        "operation": "getAll",
+        "calendar": {
+          "__rl": true,
+          "mode": "list",
+          "value": "XXXX@gmail.com",
+          "cachedResultName": "XXXX@gmail.com"
+        },
+        "limit": "={{ $fromAI('limit','the amount of event',\"number\") }}",
+        "timeMin": "={{ $fromAI('start','start date in format \"2017-07-01T13:00:00+02:00\"') }}",
+        "timeMax": "={{ $fromAI('end','end date in format \"2017-07-01T13:00:00+02:00\"') }}",
+        "options": {}
+      },
+      "id": "496b5974-6c9f-40fb-a75e-857876498566",
+      "name": "Get calendar events",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "position": [
+        1220,
+        2620
+      ],
+      "typeVersion": 1.3,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "dKBUhZMJJa9FRBr6",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Email Sorting Agent\n",
+        "height": 720,
+        "width": 1500
+      },
+      "id": "dfff9f89-10b6-423a-9924-bae033354bdf",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -420,
+        480
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {},
+      "id": "13a46a76-9460-42c2-82c3-7d1608f9f18d",
+      "name": "When clicking ‘Test workflow’",
+      "type": "n8n-nodes-base.manualTrigger",
+      "position": [
+        -240,
+        300
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "resource": "thread",
+        "operation": "get",
+        "threadId": "={{ $json.id }}",
+        "options": {}
+      },
+      "id": "926496df-2273-4ff0-8cd6-ad23494a8c7e",
+      "name": "Gmail1",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        440,
+        280
+      ],
+      "webhookId": "3da4a75a-ee55-483e-b5e0-24f34d4db217",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZAFsFqgWW2cFvudP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "5ccb2b01-4dcb-4a48-90f1-ce68a10cad4e",
+      "name": "Embeddings OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        880,
+        500
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsonMode": "expressionData",
+        "jsonData": "={{ $json.emailSummary }}",
+        "options": {
+          "metadata": {
+            "metadataValues": [
+              {
+                "name": "threadId",
+                "value": "={{ $json.id }}"
+              }
+            ]
+          }
+        }
+      },
+      "id": "5238262b-d58c-4ab7-942b-b7d0208d1a17",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [
+        1000,
+        500
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "chunkSize": 2000
+      },
+      "id": "520225f9-8ab1-4d20-9a01-c3f71c24e3b0",
+      "name": "Token Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterTokenSplitter",
+      "position": [
+        1080,
+        700
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "const result = {}\n\nfunction summarizeConversation(messages) {\n  return messages.map(msg => {\n    const date = new Date(Number(msg.internalDate)).toISOString();\n    return `\n\n📅 ${date}\n📨 From: ${msg.From}\n📥 To: ${msg.To}\n📌 Subject: ${msg.Subject}\n\n${msg.snippet}\n`.trim();\n  }).join(\"\\n\\n-----------------------\\n\\n\");\n}\n\n$json.emailSummary = summarizeConversation($json.messages);\n\nreturn $json;"
+      },
+      "id": "c71c71a3-0c6e-4ecb-a78a-bdd4063977ce",
+      "name": "Code - Summarize Email Thread as Text",
+      "type": "n8n-nodes-base.code",
+      "position": [
+        660,
+        280
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "85b37a68-e1e6-40a8-a4f9-c1be52eab979",
+      "name": "Embeddings OpenAI1",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        1780,
+        2420
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "o3",
+          "mode": "list",
+          "cachedResultName": "o3"
+        },
+        "options": {}
+      },
+      "id": "9d5415ce-494a-4edd-8f75-80e85fc98535",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        1980,
+        2220
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Call the Gmail API to delete an email. Always request the email message id before calling this tool.",
+        "operation": "delete",
+        "messageId": "={{ $fromAI('Message_ID', ``, 'string') }}"
+      },
+      "id": "6d49ddfc-46cc-406a-bc6d-07677519599e",
+      "name": "Delete an email",
+      "type": "n8n-nodes-base.gmailTool",
+      "position": [
+        380,
+        2420
+      ],
+      "webhookId": "0cfb9fbe-ec02-4ab3-87ac-ab949efdfe50",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZAFsFqgWW2cFvudP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Call Gmail API to create a Draft message as Reply To an existing email or email thread. Pass the correct Thread-Id of the message. To get the Thread ID call the Get Email Tool before.",
+        "resource": "draft",
+        "subject": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ $fromAI('Message', `The Text that should be send in reply`, 'string') }}",
+        "options": {
+          "threadId": "={{ $fromAI('thread-ID', `The ID of the thread. Need to be received from the Email Tool Response. Use the exact ID and better call the Get Email Tool again`, 'string') }}",
+          "sendTo": "={{ $fromAI('To_Email', `The email adress of the sender`, 'string') }}"
+        }
+      },
+      "id": "6ecda747-9995-408e-a337-4dea65c884a3",
+      "name": "Create an Email Draft as response to a thread",
+      "type": "n8n-nodes-base.gmailTool",
+      "position": [
+        640,
+        2640
+      ],
+      "webhookId": "471a112a-9787-4fa1-b681-8b69395d631a",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZAFsFqgWW2cFvudP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Call Gmail API to create a New outgoing Draft message.",
+        "resource": "draft",
+        "subject": "={{ $fromAI('Subject', ``, 'string') }}",
+        "message": "={{ $fromAI('Message', `The Text that should be send in reply`, 'string') }}",
+        "options": {
+          "sendTo": "={{ $fromAI('To_Email', `The email adress of the sender`, 'string') }}"
+        }
+      },
+      "id": "beda7cf4-0f44-4e3d-87b8-097d8763fb91",
+      "name": "Create an New Email Draft",
+      "type": "n8n-nodes-base.gmailTool",
+      "position": [
+        720,
+        2400
+      ],
+      "webhookId": "0321c8e3-b0c1-44ff-9e8b-671db71e3f51",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZAFsFqgWW2cFvudP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Email Access Tools",
+        "height": 540,
+        "width": 620
+      },
+      "id": "ca3e272f-35aa-4589-9dfa-5ba8308db165",
+      "name": "Sticky Note1",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        320,
+        2340
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "content": "## Calender Access Tools",
+        "height": 460,
+        "width": 520,
+        "color": 6
+      },
+      "id": "a47c11f7-c564-4080-8baf-fa0a0a0253db",
+      "name": "Sticky Note2",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1000,
+        2360
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Consume Google Calendar API to add a new event or meeting to the calender",
+        "calendar": {
+          "__rl": true,
+          "mode": "list",
+          "value": "XXXX@gmail.com",
+          "cachedResultName": "XXXX@gmail.com"
+        },
+        "start": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Start', ``, 'string') }}",
+        "end": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('End', ``, 'string') }}",
+        "additionalFields": {
+          "description": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Description', ``, 'string') }}",
+          "summary": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Summary', ``, 'string') }}"
+        }
+      },
+      "id": "d8499a3c-3ba7-4c09-a656-86ae221bc3be",
+      "name": "Add an calender entry",
+      "type": "n8n-nodes-base.googleCalendarTool",
+      "position": [
+        1100,
+        2500
+      ],
+      "typeVersion": 1.3,
+      "credentials": {
+        "googleCalendarOAuth2Api": {
+          "id": "dKBUhZMJJa9FRBr6",
+          "name": "Google Calendar account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Knowlede about past email conversations",
+        "height": 620,
+        "width": 520,
+        "color": 5
+      },
+      "id": "1930fdf1-9b74-4c54-b798-866418f81c54",
+      "name": "Sticky Note3",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        1620,
+        1940
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "pollTimes": {
+          "item": [
+            {
+              "mode": "everyMinute"
+            }
+          ]
+        },
+        "filters": {}
+      },
+      "id": "18532a6a-0b4f-43d7-9790-f60a28a23a7c",
+      "name": "Gmail Trigger",
+      "type": "n8n-nodes-base.gmailTrigger",
+      "position": [
+        -220,
+        580
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZAFsFqgWW2cFvudP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "o3",
+          "mode": "list",
+          "cachedResultName": "o3"
+        },
+        "options": {}
+      },
+      "id": "254e52be-8c4c-4adc-92f4-d029139cc6cf",
+      "name": "OpenAI Chat Model2",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        160,
+        900
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "## Email Thread Knowledge adder",
+        "height": 780,
+        "width": 1680,
+        "color": 4
+      },
+      "id": "9384460c-9b0e-4dd4-bc4d-80ee0e20bc96",
+      "name": "Sticky Note4",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -360,
+        260
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Consume the Gmail API to receive an email by message-id",
+        "operation": "get",
+        "messageId": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Message_ID', ``, 'string') }}"
+      },
+      "id": "4f26d55a-1601-4656-9dcb-18c9f3455331",
+      "name": "Get an email by MessageID",
+      "type": "n8n-nodes-base.gmailTool",
+      "position": [
+        380,
+        2620
+      ],
+      "webhookId": "2f916427-b445-4c08-841f-bd13b5f99c85",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZAFsFqgWW2cFvudP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "description": "Can answer questions and do research in previous email conversations. Use this tool whenever you need more context about past conversations to an email. \nFor better retrieval and more context always pass the email-adresses to the query!\n",
+        "topK": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Limit', ``, 'number') }}"
+      },
+      "id": "f4e375c5-4e84-4bbc-ba29-2b1ac105ebf7",
+      "name": "Research context and infos in previous conversations",
+      "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
+      "position": [
+        1800,
+        2020
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.chatInput }}",
+        "options": {
+          "systemMessage": "=# AI Assistant Prompt – Inbox & Calendar\n\n## Role  \nYou are my personal AI assistant for email and calendar management.  \nI am Daniel Pötzinger, CTO of AOE.  \nYou support me in organizing my Gmail inbox, keeping track of important topics, handling emails, and managing appointments efficiently.  \nYou provide suggestions and analyses, and act autonomously when retrieving information using the available tools.\n\n---\n\n## Scope  \nYou analyze emails and calendar data, identify relevant information, prioritize, and assist in processing.  \nYou can access email content, draft responses, suggest calendar entries, and identify available time slots – based on the tools provided. Use the tools proactively.\n\n> Today is `{{ $now }}` in timezone +2.  \n> The user is in timezone +2.\n\n---\n\n## Command\n\n- Regularly provide an overview of current and prioritized emails.  \n- Detect requests, invitations, or to-dos in emails and suggest appropriate actions or scheduling.  \n- Propose meaningful draft replies suitable to the context.  \n- Monitor the calendar for upcoming appointments, conflicts, or free time slots.  \n- Suggest daily or weekly structures based on calendar availability.  \n- Support planning and coordination directly from the context of emails.  \n- When suggesting appointments, always check availability in the calendar.  \n- Note that calendar timestamps are in UTC and must be converted before evaluation and display.  \n- When handling emails and using the corresponding tools, remember the `MessageID` so it can be passed to other tools.  \n  Always show the `MessageID` to the user so it remains accessible in your conversation history.\n\n---\n\n## Format\n\n- Clear, structured presentation of suggestions (e.g., lists, tables, bullet points).  \n- Draft replies must always be **friendly and professional** ��� respectful, clear, without unnecessary phrasing.  \n- Calendar and time suggestions must be easy to read (e.g., “next Tuesday at 2:00 PM”).\n\n---\n\n## Constraints\n\n- Only send emails or create appointments after confirmation from the user.  \n- Always act in the spirit of **relief, clarity, and efficiency**.\n"
+        }
+      },
+      "id": "773f4790-abc6-435a-8507-7e3cbe43cbab",
+      "name": "EMail Agent",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        1120,
+        1800
+      ],
+      "typeVersion": 1.7
+    },
+    {
+      "parameters": {
+        "inputText": "=Email Subject: {{ $json.Subject }}\n\nEMail From: {{ $json.From }}\n\n------\n##Email Snippet: \n{{ $json.snippet }}\n\n",
+        "categories": {
+          "categories": [
+            {
+              "category": "Khadija",
+              "description": "Any email where the sender is khadija0308@hotmail.com"
+            },
+            {
+              "category": "Custody Case",
+              "description": "Every email from someone at Frodis Family Law, especially from Dani Frodis and Dahlia Windman|Also, emails that sound like they are related to the case from Family court between Hassan Sadiq and Khadija Rabbani"
+            }
+          ]
+        },
+        "options": {
+          "fallback": "other"
+        }
+      },
+      "id": "50850177-7abe-42bb-a305-475bbca8898b",
+      "name": "Classify Emails",
+      "type": "@n8n/n8n-nodes-langchain.textClassifier",
+      "position": [
+        80,
+        640
+      ],
+      "typeVersion": 1,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "clearStore": true
+      },
+      "id": "cdfaf211-d6d7-4340-903a-8a60ef0dbc00",
+      "name": "Write - Threads History Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "position": [
+        0,
+        0
+      ],
+      "typeVersion": 1.1,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "prompt": "workshop",
+        "topK": 100
+      },
+      "id": "affe1d92-3ff6-4c91-ad16-13543beff87e",
+      "name": "Read- Threads History Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "position": [
+        -300,
+        740
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {},
+      "id": "52cfb3c8-e87b-4958-8ba6-f3634158f19a",
+      "name": "Threads History Vector Store",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "position": [
+        1700,
+        2220
+      ],
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "content": "## Main Inbox Assistance Agent\n\n### Before Using\n** Modify the classifier agent for your needs. Add the Labels in GMail before, if you want to assign labels.\n** Add proper credentials\n** Modify the Prompts (e.g. give more context about your role and company)\n\n### More on professional Agents:\n** From [AOE AI Lab](https://ai-radar.aoe.com/)",
+        "height": 440,
+        "width": 480,
+        "color": 3
+      },
+      "id": "b47027bf-91d1-476b-8e7e-68809ee5a567",
+      "name": "Sticky Note7",
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -680,
+        1160
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "descriptionType": "manual",
+        "toolDescription": "Formats the date in the name of the day of the week. Always use this before you output weekdays.",
+        "operation": "formatDate",
+        "date": "={{ $fromAI('Date', ``, 'string') }}",
+        "format": "custom",
+        "customFormat": "EEEE dd MM ",
+        "outputFieldName": "=formattedDate",
+        "options": {}
+      },
+      "id": "1b483850-dc5c-4eaf-a9f8-1dbb10353a27",
+      "name": "Determine the name of the day of the week",
+      "type": "n8n-nodes-base.dateTimeTool",
+      "position": [
+        1400,
+        2480
+      ],
+      "typeVersion": 2
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-opus-4-20250514",
+          "mode": "list",
+          "cachedResultName": "Claude Opus 4"
+        },
+        "options": {
+          "thinking": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        600,
+        2020
+      ],
+      "id": "3dbd289a-932a-43d2-a870-3b45c15287d6",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "y2a5bBpZYLP41Q8y",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "thread",
+        "limit": 10,
+        "filters": {}
+      },
+      "id": "099b0789-6fac-49ca-ac45-8217970e97ea",
+      "name": "Gmail - get recent Threads1",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        160,
+        280
+      ],
+      "webhookId": "5c988c0a-67f8-4d16-9525-518bf9049c90",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZAFsFqgWW2cFvudP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "message"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -240,
+        1700
+      ],
+      "id": "be4d0dcb-5590-42d0-9851-42c2f853906c",
+      "name": "Telegram Trigger",
+      "webhookId": "2f57f7b4-297a-4636-898e-dc9bcaa017bb",
+      "credentials": {
+        "telegramApi": {
+          "id": "fWSypFy5utgBgI0X",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"sessionId\": \"{{ $json.message.chat.id }}\",\n  \"action\": \"sendMessage\",\n  \"chatInput\": {{ [ $json.message.text ?? '', $json.text ?? '' ] }}\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        520,
+        1660
+      ],
+      "id": "b10dbc46-98fb-45fd-bf26-5ed95b60d71f",
+      "name": "Pass parameters"
+    },
+    {
+      "parameters": {
+        "chatId": "={{ $('sessionId-master').item.json.sessionId }}",
+        "text": "={{ $json.output }}",
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        2180,
+        1800
+      ],
+      "id": "9a86da28-8133-4d75-91ec-8a9dc665958d",
+      "name": "Send a text message",
+      "webhookId": "3e9e1de3-3725-42fb-b94e-dfe84dca37b7",
+      "alwaysOutputData": true,
+      "credentials": {
+        "telegramApi": {
+          "id": "fWSypFy5utgBgI0X",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f7155fa3-a156-4fa6-b1e4-00dd997ce096",
+              "leftValue": "={{$json[\"message\"][\"voice\"]}}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "exists",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -20,
+        1700
+      ],
+      "id": "c37af3ae-b7c9-4bc0-8d4f-f5c5fbc2fdf3",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $json.message.voice.file_id }}"
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        220,
+        1480
+      ],
+      "id": "4398e53a-8852-420e-ae62-3f0f2b8008c4",
+      "name": "Get a file",
+      "webhookId": "837a3ccd-7f1d-45fa-881c-977cde2bd4ce",
+      "credentials": {
+        "telegramApi": {
+          "id": "fWSypFy5utgBgI0X",
+          "name": "Telegram account 3"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [
+        380,
+        1300
+      ],
+      "id": "86fb23e2-32cc-45b9-84e7-9605c2391719",
+      "name": "Transcribe a recording",
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "raw",
+        "jsonOutput": "={\n  \"sessionId\": \"{{ $('Telegram Trigger').item.json.message.chat.id }}\",\n  \"action\": \"sendMessage\",\n  \"chatInput\": \"{{ $json.text }}\"\n}\n",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        640,
+        1460
+      ],
+      "id": "7861d865-b65a-4a01-84a7-3ff8b6e8424d",
+      "name": "Pass parameters1"
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.id }}",
+        "labelIds": [
+          "Label_1930811300236635888"
+        ]
+      },
+      "id": "a2964dee-9d6c-4ad4-ad2f-1f3427408f0e",
+      "name": "Gmail - Label as Important",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        440,
+        540
+      ],
+      "webhookId": "3e488d4d-5528-48c7-b363-1391368efd8e",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZAFsFqgWW2cFvudP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "addLabels",
+        "messageId": "={{ $json.id }}",
+        "labelIds": [
+          "Label_2164328482558744523"
+        ]
+      },
+      "id": "a80f57c3-4c7b-415b-b02b-ec0a92fc5587",
+      "name": "Gmail label as Custody Case",
+      "type": "n8n-nodes-base.gmail",
+      "position": [
+        440,
+        740
+      ],
+      "webhookId": "13291755-e6d5-435e-8601-b20b5ed7e866",
+      "typeVersion": 2.1,
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "ZAFsFqgWW2cFvudP",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "clearStore": true
+      },
+      "id": "2947b54b-d81c-4e3b-a7f3-2ac5b02cf89a",
+      "name": "Write - Threads History Vector Store1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "position": [
+        340,
+        20
+      ],
+      "typeVersion": 1.1,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "load",
+        "prompt": "workshop",
+        "topK": 100
+      },
+      "id": "2052456f-1699-4d5c-ba18-c38c5bcc7109",
+      "name": "Read- Threads History Vector Store1",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreInMemory",
+      "position": [
+        -640,
+        880
+      ],
+      "typeVersion": 1.1,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "tableName": "email_vectors",
+        "options": {
+          "columnNames": {
+            "values": {
+              "contentColumnName": "content"
+            }
+          }
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        940,
+        280
+      ],
+      "id": "6b2c78a3-8f00-45f3-ad41-f514fd0d9b2a",
+      "name": "Write - Threads History Vector Store2",
+      "credentials": {
+        "postgres": {
+          "id": "eLpMSSYyxKkA5aJO",
+          "name": "Postgres account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "tableName": "email_vectors",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.vectorStorePGVector",
+      "typeVersion": 1.3,
+      "position": [
+        -180,
+        980
+      ],
+      "id": "3cc7b784-0d95-4dc6-b935-fec4f4628913",
+      "name": "Read- Threads History Vector Store2",
+      "credentials": {
+        "postgres": {
+          "id": "eLpMSSYyxKkA5aJO",
+          "name": "Postgres account 2"
+        }
+      },
+      "disabled": true
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
+      "typeVersion": 1.3,
+      "position": [
+        840,
+        2000
+      ],
+      "id": "ca072681-ef6a-4e8c-be42-38fef85cc7a0",
+      "name": "Postgres Chat Memory",
+      "credentials": {
+        "postgres": {
+          "id": "eLpMSSYyxKkA5aJO",
+          "name": "Postgres account 2"
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Gmail1": {
+      "main": [
+        [
+          {
+            "node": "Code - Summarize Email Thread as Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "EMail Agent": {
+      "main": [
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail Trigger": {
+      "main": [
+        [
+          {
+            "node": "Classify Emails",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Gmail - get recent Threads1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Token Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Classify Emails": {
+      "main": [
+        [
+          {
+            "node": "Gmail - Label as Important",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Gmail label as Custody Case",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Delete an email": {
+      "ai_tool": [
+        [
+          {
+            "node": "EMail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get last emails": {
+      "ai_tool": [
+        [
+          {
+            "node": "EMail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "sessionId-master": {
+      "main": [
+        [
+          {
+            "node": "EMail Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Read- Threads History Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Write - Threads History Vector Store2",
+            "type": "ai_embedding",
+            "index": 0
+          },
+          {
+            "node": "Read- Threads History Vector Store2",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI1": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Threads History Vector Store",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Research context and infos in previous conversations",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model2": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Classify Emails",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Write - Threads History Vector Store2",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get calendar events": {
+      "ai_tool": [
+        [
+          {
+            "node": "EMail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        []
+      ]
+    },
+    "Add an calender entry": {
+      "ai_tool": [
+        [
+          {
+            "node": "EMail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an New Email Draft": {
+      "ai_tool": [
+        [
+          {
+            "node": "EMail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get an email by MessageID": {
+      "ai_tool": [
+        [
+          {
+            "node": "EMail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Threads History Vector Store": {
+      "ai_vectorStore": [
+        [
+          {
+            "node": "Research context and infos in previous conversations",
+            "type": "ai_vectorStore",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "sessionId-master",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When clicking ‘Test workflow’": {
+      "main": [
+        [
+          {
+            "node": "Gmail - get recent Threads1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code - Summarize Email Thread as Text": {
+      "main": [
+        [
+          {
+            "node": "Write - Threads History Vector Store2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Determine the name of the day of the week": {
+      "ai_tool": [
+        [
+          {
+            "node": "EMail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create an Email Draft as response to a thread": {
+      "ai_tool": [
+        [
+          {
+            "node": "EMail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Research context and infos in previous conversations": {
+      "ai_tool": [
+        [
+          {
+            "node": "EMail Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "EMail Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gmail - get recent Threads1": {
+      "main": [
+        [
+          {
+            "node": "Gmail1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pass parameters": {
+      "main": [
+        [
+          {
+            "node": "sessionId-master",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Get a file",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Pass parameters",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a file": {
+      "main": [
+        [
+          {
+            "node": "Transcribe a recording",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Transcribe a recording": {
+      "main": [
+        [
+          {
+            "node": "Pass parameters1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Pass parameters1": {
+      "main": [
+        [
+          {
+            "node": "sessionId-master",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Postgres Chat Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "EMail Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": {
+    "node:Gmail Trigger": {
+      "Gmail Trigger": {
+        "lastTimeChecked": 1752254568
+      }
+    }
+  },
+  "pinData": {
+    "When chat message received": [
+      {
+        "json": {
+          "sessionId": "595545ced2ec4d53b525f894a9e733ee",
+          "action": "sendMessage",
+          "chatInput": "get my latest email "
+        }
+      }
+    ]
+  },
+  "triggerCount": 3,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}

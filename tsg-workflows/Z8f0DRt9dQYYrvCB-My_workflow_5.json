@@ -1,0 +1,481 @@
+{
+  "name": "My workflow 5",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "whatsapp-webhook",
+        "responseMode": "responseNode",
+        "options": {
+          "responseHeaders": {
+            "entries": [
+              {
+                "name": "Content-Type",
+                "value": "application/json"
+              }
+            ]
+          }
+        }
+      },
+      "id": "8841ffd1-cbdc-4af2-899b-634f4abfe153",
+      "name": "WhatsApp Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 1,
+      "position": [
+        -160,
+        160
+      ],
+      "webhookId": "d2f18b40-1da8-4bb2-9c9a-971d2d048381"
+    },
+    {
+      "parameters": {
+        "dataType": "string",
+        "value1": "={{$json.body.entry[0].changes[0].value.messages[0].type}}",
+        "rules": {
+          "rules": [
+            {
+              "value2": "text"
+            },
+            {
+              "value2": "audio"
+            },
+            {
+              "value2": "image"
+            }
+          ]
+        }
+      },
+      "id": "2d09b604-462d-4078-9f13-ea47e71bff7d",
+      "name": "Message Type",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 1,
+      "position": [
+        40,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Extract message details\nconst data = $input.item.json.body;\nconst message = data.entry[0].changes[0].value.messages[0];\nconst sender = data.entry[0].changes[0].value.contacts[0].wa_id;\nconst text = message.text.body;\n\n// Simple NLP to detect transaction type\nlet transactionType = '';\nlet amount = 0;\n\nif (text.toLowerCase().includes('deposit')) {\n  transactionType = 'deposit';\n  // Extract amount using regex\n  const match = text.match(/\\d+(\\.\\d+)?/);\n  amount = match ? parseFloat(match[0]) : 0;\n} else if (text.toLowerCase().includes('withdraw') || text.toLowerCase().includes('withdrawal')) {\n  transactionType = 'withdrawal';\n  const match = text.match(/\\d+(\\.\\d+)?/);\n  amount = match ? parseFloat(match[0]) : 0;\n} else if (text.toLowerCase().includes('balance')) {\n  transactionType = 'balance';\n} else {\n  transactionType = 'unknown';\n}\n\nreturn {\n  sender,\n  message: text,\n  transactionType,\n  amount,\n  timestamp: new Date().toISOString()\n};"
+      },
+      "id": "bb88fd2a-3ab0-40db-8380-b6a3fc2cb504",
+      "name": "Process Text Message",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        240,
+        60
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Extract message details\nconst data = $input.item.json.body;\nconst message = data.entry[0].changes[0].value.messages[0];\nconst sender = data.entry[0].changes[0].value.contacts[0].wa_id;\nconst audioId = message.audio.id;\n\nreturn {\n  sender,\n  audioId,\n  requiresTranscription: true,\n  timestamp: new Date().toISOString()\n};"
+      },
+      "id": "d367933d-565a-4b67-bea7-0a6640755313",
+      "name": "Process Audio Message",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        240,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Extract sender information\nconst data = $input.item.json.body;\nconst sender = data.entry[0].changes[0].value.contacts[0].wa_id;\n\nreturn {\n  sender,\n  message: \"I can only process text or audio messages. Please send your transaction in text format or as a voice message.\",\n  timestamp: new Date().toISOString()\n};"
+      },
+      "id": "5e15ee9d-4b49-4e3a-a89e-fdb75531ea0a",
+      "name": "Handle Unrecognized Format",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        240,
+        260
+      ]
+    },
+    {
+      "parameters": {
+        "url": "=https://graph.facebook.com/v16.0/{{$json.audioId}}",
+        "authentication": "headerAuth",
+        "options": {}
+      },
+      "id": "aa2c6e92-be21-4812-8efb-293bd28e3a0c",
+      "name": "Download Audio File",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        440,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Get the audio data and sender info\nconst fileData = $input.item.json;\nconst audioData = $input.item.binary.data;\nconst sender = $input.item.json.sender;\n\n// Return data for transcription\nreturn {\n  sender,\n  audioFile: audioData,\n  timestamp: new Date().toISOString()\n};"
+      },
+      "id": "992e0c0c-fca4-4738-ad19-b2c447f30fa7",
+      "name": "Prepare Audio Data",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        640,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://api.openai.com/v1/audio/transcriptions",
+        "authentication": "headerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "file",
+              "value": "={{$json.audioFile}}"
+            },
+            {
+              "name": "model",
+              "value": "whisper-1"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2a8f54ab-418a-43c9-b6e1-d5cdf7b5afce",
+      "name": "Speech to Text",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        840,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Process the transcription\nconst transcription = $input.item.json.text;\nconst sender = $input.item.json.sender;\n\n// Simple NLP to detect transaction type\nlet transactionType = '';\nlet amount = 0;\n\nif (transcription.toLowerCase().includes('deposit')) {\n  transactionType = 'deposit';\n  // Extract amount using regex\n  const match = transcription.match(/\\d+(\\.\\d+)?/);\n  amount = match ? parseFloat(match[0]) : 0;\n} else if (transcription.toLowerCase().includes('withdraw') || transcription.toLowerCase().includes('withdrawal')) {\n  transactionType = 'withdrawal';\n  const match = transcription.match(/\\d+(\\.\\d+)?/);\n  amount = match ? parseFloat(match[0]) : 0;\n} else if (transcription.toLowerCase().includes('balance')) {\n  transactionType = 'balance';\n} else {\n  transactionType = 'unknown';\n}\n\nreturn {\n  sender,\n  message: transcription,\n  transactionType,\n  amount,\n  timestamp: new Date().toISOString()\n};"
+      },
+      "id": "3fc68636-31d2-47c5-bfac-46b9604f54d0",
+      "name": "Process Transcription",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1040,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "insert",
+        "collection": "transactions",
+        "options": {}
+      },
+      "id": "55185799-299c-4d12-8f99-a0446d20dc15",
+      "name": "Store Transaction",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1,
+      "position": [
+        1240,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "collection": "users",
+        "fields": {
+          "values": {
+            "properties": [
+              {
+                "name": "lastTransaction",
+                "value": "={{$json.transactionType}}"
+              },
+              {
+                "name": "lastAmount",
+                "value": "={{$json.amount}}"
+              },
+              {
+                "name": "lastActivity",
+                "value": "={{$json.timestamp}}"
+              }
+            ]
+          }
+        },
+        "options": {}
+      },
+      "id": "7a9511e4-88d9-49af-97d0-dbbdd9b55888",
+      "name": "Store User Context",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1,
+      "position": [
+        1440,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "collection": "transactions",
+        "options": {
+          "sort": {
+            "values": {
+              "properties": [
+                {
+                  "name": "timestamp",
+                  "value": -1
+                }
+              ]
+            }
+          }
+        }
+      },
+      "id": "bce32827-2601-499b-bc6f-ce1801d410fc",
+      "name": "Get User Transactions",
+      "type": "n8n-nodes-base.mongoDb",
+      "typeVersion": 1,
+      "position": [
+        1640,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "functionCode": "// Get input data\nconst transactionData = $input.item.json;\nconst transactions = $input.item.json.items;\n\n// Calculate balance\nlet balance = 0;\nfor (const transaction of transactions) {\n  if (transaction.type === 'deposit') {\n    balance += transaction.amount;\n  } else if (transaction.type === 'withdrawal') {\n    balance -= transaction.amount;\n  }\n}\n\n// Generate response based on transaction type\nlet response = '';\n\nif (transactionData.transactionType === 'deposit') {\n  response = `✅ Deposit of $${transactionData.amount.toFixed(2)} recorded successfully.\\n\\nYour current balance is $${balance.toFixed(2)}\\n\\nType 'balance' to see your transaction history.`;\n} else if (transactionData.transactionType === 'withdrawal') {\n  response = `🔄 Withdrawal of $${transactionData.amount.toFixed(2)} processed.\\n\\nYour current balance is $${balance.toFixed(2)}\\n\\nType 'balance' to see your transaction history.`;\n} else if (transactionData.transactionType === 'balance') {\n  // Create a transaction summary\n  response = `💰 Your current balance is $${balance.toFixed(2)}\\n\\nRecent transactions:\\n`;\n  \n  // Show last 5 transactions\n  const recentTransactions = transactions.slice(0, 5);\n  for (const tx of recentTransactions) {\n    const date = new Date(tx.timestamp).toLocaleDateString();\n    if (tx.type === 'deposit') {\n      response += `${date}: Deposit +$${tx.amount.toFixed(2)}\\n`;\n    } else if (tx.type === 'withdrawal') {\n      response += `${date}: Withdrawal -$${tx.amount.toFixed(2)}\\n`;\n    }\n  }\n} else {\n  response = \"I couldn't identify a transaction request. Please use phrases like 'deposit $50', 'withdraw $20', or 'check balance'.\"\n}\n\nreturn {\n  sender: transactionData.sender,\n  response: response\n};"
+      },
+      "id": "62d355cf-a9b8-4e6b-ba60-9b7163ff19a1",
+      "name": "Generate Response",
+      "type": "n8n-nodes-base.function",
+      "typeVersion": 1,
+      "position": [
+        1840,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "=https://graph.facebook.com/v16.0/{{$env.WHATSAPP_PHONE_NUMBER_ID}}/messages",
+        "authentication": "headerAuth",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "messaging_product",
+              "value": "whatsapp"
+            },
+            {
+              "name": "to",
+              "value": "={{$json.sender}}"
+            },
+            {
+              "name": "type",
+              "value": "text"
+            },
+            {
+              "name": "text",
+              "value": "={\"preview_url\":false,\"body\":\"{{$json.response}}\"}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "cee662e6-b2ab-476a-b7e3-50f309174785",
+      "name": "Send WhatsApp Response",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.1,
+      "position": [
+        2040,
+        120
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"status\": \"success\" }",
+        "options": {}
+      },
+      "id": "e94b792f-c9d7-4a71-88e2-7154fbde8712",
+      "name": "Webhook Response",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        2240,
+        120
+      ]
+    }
+  ],
+  "connections": {
+    "WhatsApp Webhook": {
+      "main": [
+        [
+          {
+            "node": "Message Type",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message Type": {
+      "main": [
+        [
+          {
+            "node": "Process Text Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Process Audio Message",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Handle Unrecognized Format",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Text Message": {
+      "main": [
+        [
+          {
+            "node": "Store Transaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Audio Message": {
+      "main": [
+        [
+          {
+            "node": "Download Audio File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Handle Unrecognized Format": {
+      "main": [
+        [
+          {
+            "node": "Generate Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Audio File": {
+      "main": [
+        [
+          {
+            "node": "Prepare Audio Data",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Prepare Audio Data": {
+      "main": [
+        [
+          {
+            "node": "Speech to Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Speech to Text": {
+      "main": [
+        [
+          {
+            "node": "Process Transcription",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Transcription": {
+      "main": [
+        [
+          {
+            "node": "Store Transaction",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store Transaction": {
+      "main": [
+        [
+          {
+            "node": "Store User Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Store User Context": {
+      "main": [
+        [
+          {
+            "node": "Get User Transactions",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get User Transactions": {
+      "main": [
+        [
+          {
+            "node": "Generate Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Response": {
+      "main": [
+        [
+          {
+            "node": "Send WhatsApp Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send WhatsApp Response": {
+      "main": [
+        [
+          {
+            "node": "Webhook Response",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 0,
+  "meta": null
+}

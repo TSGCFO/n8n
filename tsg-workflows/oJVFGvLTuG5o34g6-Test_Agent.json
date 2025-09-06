@@ -1,0 +1,558 @@
+{
+  "name": "Test Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        -920,
+        100
+      ],
+      "id": "974de570-6a27-4cd2-9510-466b948c3a3e",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "y2a5bBpZYLP41Q8y",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=# Overview\nYou are a testing specialist with advanced capabilities in test creation, execution, and quality assurance.\n\n## Core Capabilities\n\n1. Test Development\n   - Unit testing\n   - Integration testing\n   - E2E testing\n   - Performance testing\n\n2. Test Management\n   - Test organization\n   - Test suites\n   - Test environments\n   - Test data\n\n3. Quality Assurance\n   - Code coverage\n   - Test reports\n   - Quality metrics\n   - Performance analysis\n\n## Available Tools\n\n### Test Creation\n- UnitTest: Create unit tests\n- IntegrationTest: Setup integration tests\n- E2ETest: End-to-end testing\n- PerformanceTest: Performance testing\n\n### Test Execution\n- TestRunner: Run test suites\n- TestWatch: Continuous testing\n- TestDebug: Debug test failures\n- TestParallel: Parallel testing\n\n### Test Analysis\n- Coverage: Code coverage analysis\n- Report: Generate test reports\n- Benchmark: Performance benchmarks\n- Metrics: Quality metrics\n\n## Common Scenarios\n\n1. Unit Testing\n   - Test individual components\n   - Mock dependencies\n   - Assert behaviors\n   - Handle edge cases\n\n2. Integration Testing\n   - Test component interactions\n   - API testing\n   - Database testing\n   - Service integration\n\n3. E2E Testing\n   - User flow testing\n   - UI testing\n   - Cross-browser testing\n   - Mobile testing\n\n4. Performance Testing\n   - Load testing\n   - Stress testing\n   - Scalability testing\n   - Benchmark testing\n\n## Best Practices\n1. Write comprehensive tests\n2. Maintain test independence\n3. Use clear test names\n4. Handle test data properly\n5. Monitor test coverage\n\n## Guidelines\n1. Plan test strategy\n2. Write maintainable tests\n3. Handle failures properly\n4. Document test cases\n5. Review test results"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -700,
+        -120
+      ],
+      "id": "76ae0a17-c7e0-43ab-be1c-6a207f3db96c",
+      "name": "Test Agent",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Create unit tests",
+        "method": "POST",
+        "url": "http://localhost:3000/test/unit",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"source\": \"{source}\",\n    \"framework\": \"{framework}\",\n    \"mocks\": \"{mocks}\",\n    \"assertions\": \"{assertions}\",\n    \"coverage\": \"{coverage}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "source",
+              "description": "Source file to test",
+              "type": "string"
+            },
+            {
+              "name": "framework",
+              "description": "Test framework",
+              "type": "string"
+            },
+            {
+              "name": "mocks",
+              "description": "Mock configurations",
+              "type": "object"
+            },
+            {
+              "name": "assertions",
+              "description": "Test assertions",
+              "type": "array"
+            },
+            {
+              "name": "coverage",
+              "description": "Coverage requirements",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        740,
+        880
+      ],
+      "id": "312a0c44-069f-425e-aabe-5ba250106e66",
+      "name": "UnitTest"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Create integration tests",
+        "method": "POST",
+        "url": "http://localhost:3000/test/integration",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"components\": \"{components}\",\n    \"framework\": \"{framework}\",\n    \"environment\": \"{environment}\",\n    \"data\": \"{data}\",\n    \"cleanup\": \"{cleanup}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "components",
+              "description": "Components to test",
+              "type": "array"
+            },
+            {
+              "name": "framework",
+              "description": "Test framework",
+              "type": "string"
+            },
+            {
+              "name": "environment",
+              "description": "Test environment",
+              "type": "object"
+            },
+            {
+              "name": "data",
+              "description": "Test data setup",
+              "type": "object"
+            },
+            {
+              "name": "cleanup",
+              "description": "Cleanup procedures",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        540,
+        900
+      ],
+      "id": "ecec9e3c-ec0b-4d2b-94c4-3a7a1bda1b1c",
+      "name": "IntegrationTest"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Create E2E tests",
+        "method": "POST",
+        "url": "http://localhost:3000/test/e2e",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"flows\": \"{flows}\",\n    \"framework\": \"{framework}\",\n    \"browsers\": \"{browsers}\",\n    \"devices\": \"{devices}\",\n    \"screenshots\": \"{screenshots}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "flows",
+              "description": "User flows to test",
+              "type": "array"
+            },
+            {
+              "name": "framework",
+              "description": "E2E framework",
+              "type": "string"
+            },
+            {
+              "name": "browsers",
+              "description": "Browser configurations",
+              "type": "array"
+            },
+            {
+              "name": "devices",
+              "description": "Device configurations",
+              "type": "array"
+            },
+            {
+              "name": "screenshots",
+              "description": "Screenshot settings",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        320,
+        880
+      ],
+      "id": "611c52ac-6313-4c5e-ba97-3733d7c29754",
+      "name": "E2ETest"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Create performance tests",
+        "method": "POST",
+        "url": "http://localhost:3000/test/performance",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"scenarios\": \"{scenarios}\",\n    \"metrics\": \"{metrics}\",\n    \"thresholds\": \"{thresholds}\",\n    \"environment\": \"{environment}\",\n    \"monitoring\": \"{monitoring}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "scenarios",
+              "description": "Test scenarios",
+              "type": "array"
+            },
+            {
+              "name": "metrics",
+              "description": "Performance metrics",
+              "type": "array"
+            },
+            {
+              "name": "thresholds",
+              "description": "Performance thresholds",
+              "type": "object"
+            },
+            {
+              "name": "environment",
+              "description": "Test environment",
+              "type": "object"
+            },
+            {
+              "name": "monitoring",
+              "description": "Monitoring settings",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        160,
+        880
+      ],
+      "id": "d672455d-a4db-49c3-8764-2bc8dd8a3aa9",
+      "name": "PerformanceTest"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Run test suites",
+        "method": "POST",
+        "url": "http://localhost:3000/test/run",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"suites\": \"{suites}\",\n    \"mode\": \"{mode}\",\n    \"filters\": \"{filters}\",\n    \"reporters\": \"{reporters}\",\n    \"parallel\": \"{parallel}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "suites",
+              "description": "Test suites to run",
+              "type": "array"
+            },
+            {
+              "name": "mode",
+              "description": "Test mode",
+              "type": "string"
+            },
+            {
+              "name": "filters",
+              "description": "Test filters",
+              "type": "object"
+            },
+            {
+              "name": "reporters",
+              "description": "Test reporters",
+              "type": "array"
+            },
+            {
+              "name": "parallel",
+              "description": "Parallel execution",
+              "type": "boolean"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -60,
+        860
+      ],
+      "id": "4c79dcf5-0775-445a-9774-868c43d083f6",
+      "name": "TestRunner"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Generate test reports",
+        "method": "POST",
+        "url": "http://localhost:3000/test/report",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"results\": \"{results}\",\n    \"format\": \"{format}\",\n    \"output\": \"{output}\",\n    \"metrics\": \"{metrics}\",\n    \"trends\": \"{trends}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "results",
+              "description": "Test results",
+              "type": "object"
+            },
+            {
+              "name": "format",
+              "description": "Report format",
+              "type": "string"
+            },
+            {
+              "name": "output",
+              "description": "Output path",
+              "type": "string"
+            },
+            {
+              "name": "metrics",
+              "description": "Include metrics",
+              "type": "boolean"
+            },
+            {
+              "name": "trends",
+              "description": "Include trends",
+              "type": "boolean"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -260,
+        820
+      ],
+      "id": "fe07fbe0-f8a0-47a8-9108-2796d86c19d4",
+      "name": "TestReport"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Analyze code coverage",
+        "method": "POST",
+        "url": "http://localhost:3000/test/coverage",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"source\": \"{source}\",\n    \"tests\": \"{tests}\",\n    \"type\": \"{type}\",\n    \"threshold\": \"{threshold}\",\n    \"report\": \"{report}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "source",
+              "description": "Source files",
+              "type": "array"
+            },
+            {
+              "name": "tests",
+              "description": "Test files",
+              "type": "array"
+            },
+            {
+              "name": "type",
+              "description": "Coverage type",
+              "type": "string"
+            },
+            {
+              "name": "threshold",
+              "description": "Coverage threshold",
+              "type": "object"
+            },
+            {
+              "name": "report",
+              "description": "Report settings",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -440,
+        800
+      ],
+      "id": "3bd90223-f540-4b3d-a7d4-78c7960c2e97",
+      "name": "TestCoverage"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "response-success",
+              "name": "response",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -180,
+        -200
+      ],
+      "id": "3113fc6d-d27a-493c-97da-7cc4c6b81c83",
+      "name": "Response"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "response-error",
+              "name": "response",
+              "value": "Error occurred while processing test operation. Please try again.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -180,
+        -20
+      ],
+      "id": "3568410d-fb3f-4c6d-a0da-235e9f4230d1",
+      "name": "Error Handler"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -920,
+        -120
+      ],
+      "id": "c1a6efad-2677-478b-94ce-8a0ce8ee821b",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "connections": {
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Test Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "UnitTest": {
+      "ai_tool": [
+        [
+          {
+            "node": "Test Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "IntegrationTest": {
+      "ai_tool": [
+        [
+          {
+            "node": "Test Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "E2ETest": {
+      "ai_tool": [
+        [
+          {
+            "node": "Test Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PerformanceTest": {
+      "ai_tool": [
+        [
+          {
+            "node": "Test Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TestRunner": {
+      "ai_tool": [
+        [
+          {
+            "node": "Test Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TestReport": {
+      "ai_tool": [
+        [
+          {
+            "node": "Test Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "TestCoverage": {
+      "ai_tool": [
+        [
+          {
+            "node": "Test Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Test Agent": {
+      "main": [
+        [
+          {
+            "node": "Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Test Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 0,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}

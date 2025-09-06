@@ -1,0 +1,730 @@
+{
+  "name": "assistant-flow-v2 copy",
+  "nodes": [
+    {
+      "parameters": {
+        "chatId": "={{ $('Listen for Incoming Events').first().json.message.from.id }}",
+        "text": "={{ $json.AiResponses }}",
+        "additionalFields": {
+          "appendAttribution": false,
+          "parse_mode": "Markdown"
+        }
+      },
+      "id": "89c50448-6133-4391-aa4e-271897d904d2",
+      "name": "Telegram",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        2176,
+        256
+      ],
+      "typeVersion": 1.1,
+      "webhookId": "616f2628-e544-4ba3-b8a6-90b42794e418",
+      "credentials": {
+        "telegramApi": {
+          "id": "fWSypFy5utgBgI0X",
+          "name": "n8n_email_template_bot"
+        }
+      },
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "version": 2,
+            "leftValue": "",
+            "caseSensitive": true,
+            "typeValidation": "strict"
+          },
+          "combinator": "and",
+          "conditions": [
+            {
+              "id": "a0bf9719-4272-46f6-ab3b-eda6f7b44fd8",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              },
+              "leftValue": "={{ $json.message.text }}",
+              "rightValue": ""
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f66a6f5f-95b3-4e11-8233-625e652db487",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "position": [
+        224,
+        448
+      ],
+      "typeVersion": 2.2
+    },
+    {
+      "parameters": {
+        "fields": {
+          "values": [
+            {
+              "name": "text",
+              "stringValue": "={{ $json?.message?.text || \"\" }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "16e7f207-2f00-4984-91f2-fad0b0746d58",
+      "name": "Voice or Text",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        0,
+        448
+      ],
+      "typeVersion": 3.2
+    },
+    {
+      "parameters": {
+        "endpointUrl": "https://rube.app/mcp",
+        "serverTransport": "httpStreamable",
+        "authentication": "bearerAuth",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
+      "typeVersion": 1.1,
+      "position": [
+        1456,
+        880
+      ],
+      "id": "64e703ae-9bec-40f6-ab17-7108522394db",
+      "name": "MCP Client",
+      "credentials": {
+        "httpBearerAuth": {
+          "id": "CxI5UJOloMMh37Yf",
+          "name": "Bearer Auth account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {
+          "dimensions": 1024
+        }
+      },
+      "id": "5e50c81e-92ed-4484-b492-01f8cd2d6630",
+      "name": "Embeddings OpenAI",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        1680,
+        880
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "5fc3aa96-b579-4500-b04c-9fa4c3b741f6",
+      "name": "Default Data Loader",
+      "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
+      "position": [
+        1808,
+        880
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "chunkSize": 200,
+        "chunkOverlap": 40,
+        "options": {}
+      },
+      "id": "5033bf08-ce76-4227-ac25-971b6b78cef9",
+      "name": "Recursive Character Text Splitter",
+      "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
+      "position": [
+        1888,
+        1088
+      ],
+      "typeVersion": 1
+    },
+    {
+      "parameters": {
+        "options": {
+          "dimensions": 1024
+        }
+      },
+      "id": "fd7cc7e8-6f9c-408b-b484-49996f14d406",
+      "name": "Embeddings for Retrieval",
+      "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
+      "position": [
+        1040,
+        880
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "id": "f7254d19-b93a-4306-b7d7-52a89ed4a55e",
+      "name": "Reranker Cohere",
+      "type": "@n8n/n8n-nodes-langchain.rerankerCohere",
+      "position": [
+        1184,
+        880
+      ],
+      "typeVersion": 1,
+      "credentials": {
+        "cohereApi": {
+          "id": "45I0BOgqIIoZdURW",
+          "name": "CohereApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "mode": "retrieve-as-tool",
+        "toolName": "RAG_MEMORY",
+        "toolDescription": "Long-term memory storage for maintaining context across conversations. Use this to recall previous interactions, user preferences, and historical context.",
+        "qdrantCollection": {
+          "__rl": true,
+          "mode": "list",
+          "value": "ltm",
+          "cachedResultName": "ltm"
+        },
+        "topK": 20,
+        "useReranker": true,
+        "options": {}
+      },
+      "id": "57a80f64-2d12-4d45-b777-03dc2f155737",
+      "name": "RAG_MEMORY",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "position": [
+        1024,
+        672
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "qdrantApi": {
+          "id": "Ue7SrjADwpb4oRLU",
+          "name": "QdrantApi account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "fdd39640-54c5-4ed7-9f37-c8cd4302a212",
+              "name": "output",
+              "type": "string",
+              "value": "={{ $('Personal Assistant').item.json.output }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "95229d1a-163c-45f9-adce-b63d5de591e0",
+      "name": "Format Response",
+      "type": "n8n-nodes-base.set",
+      "position": [
+        -224,
+        16
+      ],
+      "executeOnce": true,
+      "typeVersion": 3.4,
+      "disabled": true
+    },
+    {
+      "parameters": {
+        "mode": "insert",
+        "qdrantCollection": {
+          "__rl": true,
+          "mode": "list",
+          "value": "ltm",
+          "cachedResultName": "ltm"
+        },
+        "options": {}
+      },
+      "id": "b03459e9-acc1-4634-b1e5-4383fe4ccad5",
+      "name": "Store Conversation",
+      "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
+      "position": [
+        1712,
+        656
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "qdrantApi": {
+          "id": "Ue7SrjADwpb4oRLU",
+          "name": "QdrantApi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "*"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -480,
+        480
+      ],
+      "id": "2e493afa-f53a-43af-a868-e0ea81db183c",
+      "name": "Listen for Incoming Events",
+      "webhookId": "2a8fdb22-9aa9-4de2-a90a-e538d14f2587",
+      "credentials": {
+        "telegramApi": {
+          "id": "fWSypFy5utgBgI0X",
+          "name": "n8n_email_template_bot"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "text": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Prompt__User_Message_', ``, 'string') }}",
+        "options": {
+          "returnIntermediateSteps": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('Return_Intermediate_Steps', ``, 'boolean') }}"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agentTool",
+      "typeVersion": 2.2,
+      "position": [
+        1312,
+        672
+      ],
+      "id": "5b94ef6e-a7e8-4e06-ad35-554255a8d31c",
+      "name": "AI Agent Tool"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-opus-4-1-20250805",
+          "mode": "list",
+          "cachedResultName": "Claude Opus 4.1"
+        },
+        "options": {
+          "thinking": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        1312,
+        880
+      ],
+      "id": "f565f57a-66b5-47e9-b6d4-6a6b2080b772",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "y2a5bBpZYLP41Q8y",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.message }}",
+        "options": {
+          "systemMessage": "=Current time and date is {{ $now }}.\n\nProvide general assistance by answering user queries accurately and completely. When a user's query requires the use of external resources, apps, or tools (for example, fetching emails from their Gmail account or accessing any of 300+ integrated applications), clearly recognize this and delegate the relevant task to the AI Agent Tool, which has access to these external applications.\n\nFor each user query:\n- First, analyze and reason step-by-step about what the user is asking.\n- Clearly identify if any part of the user's request requires external tools, app access, or resources not available natively.\n- If a tool is needed, delegate only that portion to the AI Agent Tool, specifying the app and intended action.\n- If possible, continue providing non-tool-based responses natively.\n- Maintain clear separation between your internal reasoning and the final response or actions taken.\n- Always return conclusions and results after the reasoning steps.\n- Continue working until all parts of the user's request are addressed.",
+          "returnIntermediateSteps": true,
+          "enableStreaming": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1024,
+        448
+      ],
+      "id": "09d6887e-3e86-4b45-9f15-7395ea0be95f",
+      "name": "Personal Assistant",
+      "retryOnFail": true,
+      "alwaysOutputData": false,
+      "executeOnce": false,
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "claude-opus-4-1-20250805",
+          "mode": "list",
+          "cachedResultName": "Claude Opus 4.1"
+        },
+        "options": {
+          "thinking": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.3,
+      "position": [
+        896,
+        672
+      ],
+      "id": "12904925-9285-4871-ab24-462629abbad6",
+      "name": "Anthropic Chat Model1",
+      "credentials": {
+        "anthropicApi": {
+          "id": "y2a5bBpZYLP41Q8y",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "fileId": "={{ $('Listen for Incoming Events').item.json.message.voice.file_id }}",
+        "additionalFields": {}
+      },
+      "id": "322350f4-fbb3-4b04-8a31-d28dd73bf937",
+      "name": "Get Voice File",
+      "type": "n8n-nodes-base.telegram",
+      "position": [
+        448,
+        384
+      ],
+      "typeVersion": 1.1,
+      "webhookId": "6286fc57-6f83-424e-8cfb-43b736e9b42f",
+      "credentials": {
+        "telegramApi": {
+          "id": "r9JoTSe5sDnaMwF0",
+          "name": "Telegram account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "audio",
+        "operation": "transcribe",
+        "options": {}
+      },
+      "id": "8eedd5cb-0f23-4998-94dc-67c662dd86f2",
+      "name": "Speech to Text",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "position": [
+        672,
+        384
+      ],
+      "typeVersion": 1.3,
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "instructions": "return the output as a property called AiResponses, update your mapping expression in the jsCode parameter to:\n\n{{ items.map(item => ({ json: { AiResponses: item.json.output } })) }}\n\nThis will ensure each returned item has a json property with an object containing AiResponses, which is the correct format for n8n",
+        "codeGeneratedForPrompt": "return the output as a property called AiResponses, update your mapping expression in the jsCode parameter to:\n\n{{ items.map(item => ({ json: { AiResponses: item.json.output } })) }}\n\nThis will ensure each returned item has a json property with an object containing AiResponses, which is the correct format for n8n",
+        "jsCode": "const items = $input.all();\nconst AiResponses = items.map((item) => ({\n  json: { AiResponses: item.json.output },\n}));\nreturn AiResponses;\n"
+      },
+      "type": "n8n-nodes-base.aiTransform",
+      "typeVersion": 1,
+      "position": [
+        1824,
+        256
+      ],
+      "id": "8ce1dbb8-8407-46c5-8b04-54843f6e19da",
+      "name": "AI Transform"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {
+          "reasoningEffort": "high",
+          "timeout": 6000000000000
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -768,
+        784
+      ],
+      "id": "710ec986-69b4-44c3-b499-1cae1e59d702",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "JSPFLNImx8SGH5aT",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "let sessionID = 0;\nconst items = $input.all();\n\nconst updatedItems = items.map((item) => {\n  if (item?.json?.message?.text === \"/newchat\") {\n    sessionID += 1;\n  }\n  return { sessionID, ...item.json };\n});\n\nreturn updatedItems;\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -224,
+        464
+      ],
+      "id": "106538da-6fb3-44fa-949e-627943a78edc",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "content": "[\n  {\n    \"update_id\": 961084028,\n    \"message\": {\n      \"message_id\": 191,\n      \"from\": {\n        \"id\": 7611790857,\n        \"is_bot\": false,\n        \"first_name\": \"hassan\",\n        \"language_code\": \"en\"\n      },\n      \"chat\": {\n        \"id\": 7611790857,\n        \"first_name\": \"hassan\",\n        \"type\": \"private\"\n      },\n      \"date\": 1757036195,\n      \"text\": \"/newchat\",\n      \"entities\": [\n        {\n          \"offset\": 0,\n          \"length\": 8,\n          \"type\": \"bot_command\"\n        }\n      ]\n    }\n  }\n]",
+        "height": 592,
+        "width": 384
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -976,
+        224
+      ],
+      "typeVersion": 1,
+      "id": "5a5a07a3-304e-41db-8681-c1b98db955ad",
+      "name": "Sticky Note"
+    }
+  ],
+  "connections": {
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Get Voice File",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Personal Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Voice or Text": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MCP Client": {
+      "ai_tool": [
+        [
+          {
+            "node": "AI Agent Tool",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings OpenAI": {
+      "ai_embedding": [
+        [
+          {
+            "node": "Store Conversation",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Default Data Loader": {
+      "ai_document": [
+        [
+          {
+            "node": "Store Conversation",
+            "type": "ai_document",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Recursive Character Text Splitter": {
+      "ai_textSplitter": [
+        [
+          {
+            "node": "Default Data Loader",
+            "type": "ai_textSplitter",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Embeddings for Retrieval": {
+      "ai_embedding": [
+        [
+          {
+            "node": "RAG_MEMORY",
+            "type": "ai_embedding",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Reranker Cohere": {
+      "ai_reranker": [
+        [
+          {
+            "node": "RAG_MEMORY",
+            "type": "ai_reranker",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RAG_MEMORY": {
+      "ai_tool": [
+        [
+          {
+            "node": "Personal Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Listen for Incoming Events": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent Tool": {
+      "ai_tool": [
+        [
+          {
+            "node": "Personal Assistant",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent Tool",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Personal Assistant": {
+      "main": [
+        [
+          {
+            "node": "Store Conversation",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "AI Transform",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Anthropic Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Personal Assistant",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Voice File": {
+      "main": [
+        [
+          {
+            "node": "Speech to Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Speech to Text": {
+      "main": [
+        [
+          {
+            "node": "Personal Assistant",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Transform": {
+      "main": [
+        [
+          {
+            "node": "Telegram",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "Voice or Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveExecutionProgress": true,
+    "callerPolicy": "workflowsFromSameOwner"
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 1,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}

@@ -1,0 +1,361 @@
+{
+  "name": "Coding Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query}}",
+        "options": {
+          "systemMessage": "=You are Cline, a highly skilled software engineer with extensive knowledge in many programming languages, frameworks, design patterns, and best practices.\n\n# Overview\nYou coordinate with specialized agents to accomplish software development tasks efficiently.\n\n# Available Agents\n- FileAgent: Handles all file operations (read, write, search)\n- GitAgent: Manages version control operations\n- TestAgent: Handles test execution and management\n- DependencyAgent: Manages project dependencies\n\n# Task Delegation Guidelines\n1. File Operations\n   - Use FileAgent for reading, writing, and searching files\n   - Delegate file system operations and content management\n\n2. Version Control\n   - Use GitAgent for repository operations\n   - Delegate commits, branches, and synchronization\n\n3. Testing\n   - Use TestAgent for test execution and creation\n   - Delegate test management and coverage reporting\n\n4. Dependencies\n   - Use DependencyAgent for package management\n   - Delegate installation, updates, and security audits\n\n# Best Practices\n1. Analyze tasks to determine required agents\n2. Coordinate between agents effectively\n3. Maintain clear communication flow\n4. Handle errors appropriately\n5. Document agent interactions\n\n# Response Format\n1. Use <thinking> tags to analyze tasks\n2. Clearly indicate which agent handles each part\n3. Provide comprehensive explanations\n4. Include relevant code snippets\n5. Document any setup requirements"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -520,
+        100
+      ],
+      "id": "d10f8a97-fd65-4193-9df6-1ea3064f06ca",
+      "name": "Coding Agent",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        -860,
+        300
+      ],
+      "id": "e6e3f3da-d1d0-442a-9c22-776740a56108",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "y2a5bBpZYLP41Q8y",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "file-agent-id",
+          "mode": "list",
+          "cachedResultName": "🤖File Agent"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        -280,
+        580
+      ],
+      "id": "633f52fd-dbe0-477b-995e-387f32c750e2",
+      "name": "File Agent"
+    },
+    {
+      "parameters": {
+        "workflowId": {
+          "__rl": true,
+          "value": "git-agent-id",
+          "mode": "list",
+          "cachedResultName": "🤖Git Agent"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        160,
+        560
+      ],
+      "id": "7f791342-be64-455a-afcb-3a735a6bb351",
+      "name": "Git Agent"
+    },
+    {
+      "parameters": {
+        "name": "testing",
+        "workflowId": {
+          "__rl": true,
+          "value": "oJVFGvLTuG5o34g6",
+          "mode": "list",
+          "cachedResultName": "Test Agent"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        40,
+        580
+      ],
+      "id": "12d94efd-9f1e-474c-91ad-28ee6647542e",
+      "name": "Test Agent"
+    },
+    {
+      "parameters": {
+        "name": "dependency_agent",
+        "workflowId": {
+          "__rl": true,
+          "value": "LkdF0k8S5j4v0ufp",
+          "mode": "list",
+          "cachedResultName": "Dependency Agent"
+        },
+        "workflowInputs": {
+          "mappingMode": "defineBelow",
+          "value": {},
+          "matchingColumns": [],
+          "schema": [],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
+      "typeVersion": 2,
+      "position": [
+        -140,
+        580
+      ],
+      "id": "354f3665-0bb1-4b82-a84c-08b6beb13a30",
+      "name": "Dependency Agent"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "response-success",
+              "name": "response",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -80,
+        20
+      ],
+      "id": "1fee895c-8de8-4ff3-af3c-eaa942aa0ed6",
+      "name": "Response"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "response-error",
+              "name": "response",
+              "value": "Error occurred while processing your request. Please try again.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -80,
+        200
+      ],
+      "id": "b42144a0-44b9-4547-9c03-03ac4df00eaf",
+      "name": "Error Handler"
+    },
+    {
+      "parameters": {
+        "options": {
+          "allowFileUploads": true,
+          "allowedFilesMimeTypes": "*"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -960,
+        60
+      ],
+      "id": "8c2a00c9-7e57-425b-8ec2-bd4ae1ca12cc",
+      "name": "When chat message received",
+      "webhookId": "2003a530-887f-4096-8a5f-1939fc702686"
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 500
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        -860,
+        680
+      ],
+      "id": "b3461b68-5710-424a-9237-d1407fbcaf4c",
+      "name": "Window Buffer Memory"
+    },
+    {
+      "parameters": {
+        "options": {
+          "groupMessages": true
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.memoryManager",
+      "typeVersion": 1.1,
+      "position": [
+        220,
+        40
+      ],
+      "id": "2b6322da-7c6c-46dc-8b2c-ac740664306c",
+      "name": "Chat Memory Manager",
+      "alwaysOutputData": true,
+      "executeOnce": true,
+      "retryOnFail": true
+    }
+  ],
+  "connections": {
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Coding Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "File Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Coding Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Git Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Coding Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Test Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Coding Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dependency Agent": {
+      "ai_tool": [
+        [
+          {
+            "node": "Coding Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Coding Agent": {
+      "main": [
+        [
+          {
+            "node": "Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "Coding Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Window Buffer Memory": {
+      "ai_memory": [
+        [
+          {
+            "node": "Chat Memory Manager",
+            "type": "ai_memory",
+            "index": 0
+          },
+          {
+            "node": "Coding Agent",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Chat Memory Manager": {
+      "main": [
+        []
+      ]
+    },
+    "Response": {
+      "main": [
+        [
+          {
+            "node": "Chat Memory Manager",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 1,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}

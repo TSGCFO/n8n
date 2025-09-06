@@ -1,0 +1,558 @@
+{
+  "name": "Dependency Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
+      "typeVersion": 1.2,
+      "position": [
+        -1000,
+        140
+      ],
+      "id": "3f923aab-3a7a-478b-ae9d-8050ddbeb1ad",
+      "name": "Anthropic Chat Model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "y2a5bBpZYLP41Q8y",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.query }}",
+        "options": {
+          "systemMessage": "=# Overview\nYou are a dependency management specialist with advanced capabilities in package management, security analysis, and dependency optimization.\n\n## Core Capabilities\n\n1. Package Management\n   - Dependency installation\n   - Version management\n   - Package resolution\n   - Monorepo handling\n\n2. Security Analysis\n   - Vulnerability scanning\n   - License compliance\n   - Security updates\n   - Dependency audits\n\n3. Optimization\n   - Dependency tree analysis\n   - Bundle size optimization\n   - Version consolidation\n   - Duplicate removal\n\n## Available Tools\n\n### Package Operations\n- Install: Smart package installation\n- Update: Version updates\n- Remove: Package removal\n- Clean: Dependency cleanup\n\n### Security Tools\n- Audit: Security scanning\n- License: License checking\n- Fix: Vulnerability fixes\n- Monitor: Continuous monitoring\n\n### Analysis Tools\n- Analyze: Dependency analysis\n- Optimize: Bundle optimization\n- Tree: Dependency tree\n- Impact: Change impact\n\n## Common Scenarios\n\n1. Package Installation\n   - Install dependencies\n   - Update packages\n   - Remove unused\n   - Clean workspace\n\n2. Security Management\n   - Security audits\n   - Fix vulnerabilities\n   - License compliance\n   - Update policies\n\n3. Optimization\n   - Reduce bundle size\n   - Remove duplicates\n   - Update strategies\n   - Performance tuning\n\n4. Maintenance\n   - Regular updates\n   - Security patches\n   - Version control\n   - Documentation\n\n## Best Practices\n1. Regular security audits\n2. Version pinning\n3. Dependency documentation\n4. Update strategies\n5. Performance monitoring\n\n## Guidelines\n1. Verify compatibility\n2. Check security\n3. Monitor performance\n4. Document changes\n5. Test updates"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1.7,
+      "position": [
+        -880,
+        -80
+      ],
+      "id": "580c55a7-2b54-4d78-92f6-41f33b676ead",
+      "name": "Dependency Agent",
+      "onError": "continueErrorOutput"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Smart package installation",
+        "method": "POST",
+        "url": "http://localhost:3000/deps/install",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"project\": \"{project}\",\n    \"packages\": \"{packages}\",\n    \"manager\": \"{manager}\",\n    \"options\": \"{options}\",\n    \"lockfile\": \"{lockfile}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "project",
+              "description": "Project path",
+              "type": "string"
+            },
+            {
+              "name": "packages",
+              "description": "Packages to install",
+              "type": "array"
+            },
+            {
+              "name": "manager",
+              "description": "Package manager",
+              "type": "string"
+            },
+            {
+              "name": "options",
+              "description": "Installation options",
+              "type": "object"
+            },
+            {
+              "name": "lockfile",
+              "description": "Lockfile handling",
+              "type": "object"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        200,
+        760
+      ],
+      "id": "47e69019-a183-45fa-a261-abeeaf3af65e",
+      "name": "Install"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Update dependencies",
+        "method": "POST",
+        "url": "http://localhost:3000/deps/update",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"project\": \"{project}\",\n    \"packages\": \"{packages}\",\n    \"type\": \"{type}\",\n    \"strategy\": \"{strategy}\",\n    \"interactive\": \"{interactive}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "project",
+              "description": "Project path",
+              "type": "string"
+            },
+            {
+              "name": "packages",
+              "description": "Packages to update",
+              "type": "array"
+            },
+            {
+              "name": "type",
+              "description": "Update type",
+              "type": "string"
+            },
+            {
+              "name": "strategy",
+              "description": "Update strategy",
+              "type": "string"
+            },
+            {
+              "name": "interactive",
+              "description": "Interactive mode",
+              "type": "boolean"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -40,
+        740
+      ],
+      "id": "ac2233c4-4be0-4ed2-9eee-211d544503d5",
+      "name": "Update"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Security audit",
+        "method": "POST",
+        "url": "http://localhost:3000/deps/audit",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"project\": \"{project}\",\n    \"level\": \"{level}\",\n    \"fix\": \"{fix}\",\n    \"report\": \"{report}\",\n    \"ignore\": \"{ignore}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "project",
+              "description": "Project path",
+              "type": "string"
+            },
+            {
+              "name": "level",
+              "description": "Security level",
+              "type": "string"
+            },
+            {
+              "name": "fix",
+              "description": "Auto-fix issues",
+              "type": "boolean"
+            },
+            {
+              "name": "report",
+              "description": "Report format",
+              "type": "string"
+            },
+            {
+              "name": "ignore",
+              "description": "Ignored issues",
+              "type": "array"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -260,
+        760
+      ],
+      "id": "f7190dcb-ebd5-461c-9581-a88e0f0449c3",
+      "name": "Audit"
+    },
+    {
+      "parameters": {
+        "toolDescription": "License compliance check",
+        "method": "POST",
+        "url": "http://localhost:3000/deps/license",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"project\": \"{project}\",\n    \"allowed\": \"{allowed}\",\n    \"denied\": \"{denied}\",\n    \"report\": \"{report}\",\n    \"summary\": \"{summary}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "project",
+              "description": "Project path",
+              "type": "string"
+            },
+            {
+              "name": "allowed",
+              "description": "Allowed licenses",
+              "type": "array"
+            },
+            {
+              "name": "denied",
+              "description": "Denied licenses",
+              "type": "array"
+            },
+            {
+              "name": "report",
+              "description": "Report format",
+              "type": "string"
+            },
+            {
+              "name": "summary",
+              "description": "Include summary",
+              "type": "boolean"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -440,
+        780
+      ],
+      "id": "f8246edf-caeb-412a-a1fa-14445f576c54",
+      "name": "License"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Dependency analysis",
+        "method": "POST",
+        "url": "http://localhost:3000/deps/analyze",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"project\": \"{project}\",\n    \"type\": \"{type}\",\n    \"depth\": \"{depth}\",\n    \"details\": \"{details}\",\n    \"graph\": \"{graph}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "project",
+              "description": "Project path",
+              "type": "string"
+            },
+            {
+              "name": "type",
+              "description": "Analysis type",
+              "type": "string"
+            },
+            {
+              "name": "depth",
+              "description": "Analysis depth",
+              "type": "number"
+            },
+            {
+              "name": "details",
+              "description": "Detail level",
+              "type": "string"
+            },
+            {
+              "name": "graph",
+              "description": "Generate graph",
+              "type": "boolean"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -820,
+        800
+      ],
+      "id": "7c09e626-3c6a-40a0-a896-520496d02e1b",
+      "name": "Analyze"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Bundle optimization",
+        "method": "POST",
+        "url": "http://localhost:3000/deps/optimize",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"project\": \"{project}\",\n    \"target\": \"{target}\",\n    \"strategy\": \"{strategy}\",\n    \"report\": \"{report}\",\n    \"apply\": \"{apply}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "project",
+              "description": "Project path",
+              "type": "string"
+            },
+            {
+              "name": "target",
+              "description": "Size target",
+              "type": "object"
+            },
+            {
+              "name": "strategy",
+              "description": "Optimization strategy",
+              "type": "string"
+            },
+            {
+              "name": "report",
+              "description": "Generate report",
+              "type": "boolean"
+            },
+            {
+              "name": "apply",
+              "description": "Apply changes",
+              "type": "boolean"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -1040,
+        820
+      ],
+      "id": "23afb06b-45a7-4296-96c8-60fbf516e9a4",
+      "name": "Optimize"
+    },
+    {
+      "parameters": {
+        "toolDescription": "Impact analysis",
+        "method": "POST",
+        "url": "http://localhost:3000/deps/impact",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "{\n    \"project\": \"{project}\",\n    \"changes\": \"{changes}\",\n    \"scope\": \"{scope}\",\n    \"depth\": \"{depth}\",\n    \"report\": \"{report}\"\n}",
+        "placeholderDefinitions": {
+          "values": [
+            {
+              "name": "project",
+              "description": "Project path",
+              "type": "string"
+            },
+            {
+              "name": "changes",
+              "description": "Proposed changes",
+              "type": "array"
+            },
+            {
+              "name": "scope",
+              "description": "Analysis scope",
+              "type": "string"
+            },
+            {
+              "name": "depth",
+              "description": "Analysis depth",
+              "type": "number"
+            },
+            {
+              "name": "report",
+              "description": "Report format",
+              "type": "string"
+            }
+          ]
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
+      "typeVersion": 1.1,
+      "position": [
+        -620,
+        780
+      ],
+      "id": "82774be7-c907-4706-a895-6e2829a3d31d",
+      "name": "Impact"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "response-success",
+              "name": "response",
+              "value": "={{ $json.output }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -360,
+        -160
+      ],
+      "id": "5d84bbe5-c07a-4d92-9612-ab5a52aca892",
+      "name": "Response"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "response-error",
+              "name": "response",
+              "value": "Error occurred while processing dependency operation. Please try again.",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -360,
+        20
+      ],
+      "id": "e83e30ce-3776-439a-a19c-faeb66530f37",
+      "name": "Error Handler"
+    },
+    {
+      "parameters": {
+        "inputSource": "passthrough"
+      },
+      "type": "n8n-nodes-base.executeWorkflowTrigger",
+      "typeVersion": 1.1,
+      "position": [
+        -1100,
+        -80
+      ],
+      "id": "5a90a6dc-8cfd-4c3f-9ddf-c590a9d8651c",
+      "name": "When Executed by Another Workflow"
+    }
+  ],
+  "connections": {
+    "Anthropic Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Dependency Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Install": {
+      "ai_tool": [
+        [
+          {
+            "node": "Dependency Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update": {
+      "ai_tool": [
+        [
+          {
+            "node": "Dependency Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Audit": {
+      "ai_tool": [
+        [
+          {
+            "node": "Dependency Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "License": {
+      "ai_tool": [
+        [
+          {
+            "node": "Dependency Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Analyze": {
+      "ai_tool": [
+        [
+          {
+            "node": "Dependency Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Optimize": {
+      "ai_tool": [
+        [
+          {
+            "node": "Dependency Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Impact": {
+      "ai_tool": [
+        [
+          {
+            "node": "Dependency Agent",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Dependency Agent": {
+      "main": [
+        [
+          {
+            "node": "Response",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Error Handler",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "When Executed by Another Workflow": {
+      "main": [
+        [
+          {
+            "node": "Dependency Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "pinData": {},
+  "triggerCount": 0,
+  "meta": {
+    "templateCredsSetupCompleted": true
+  }
+}
