@@ -7,7 +7,19 @@ export N8N_BLOCK_ENV_ACCESS_IN_NODE=false
 export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
 export N8N_DATABASE_TYPE=sqlite
 export N8N_DATABASE_SQLITE_DATABASE=./n8n/database.sqlite
-export N8N_EDITOR_BASE_URL=${REPL_SLUG}.${REPL_OWNER}.repl.co
+
+# Get the deployment URL from Replit environment
+if [ -n "$REPL_SLUG" ] && [ -n "$REPL_OWNER" ]; then
+  export N8N_EDITOR_BASE_URL=https://${REPL_SLUG}.${REPL_OWNER}.repl.co
+  export WEBHOOK_URL=https://${REPL_SLUG}.${REPL_OWNER}.repl.co
+else
+  export N8N_EDITOR_BASE_URL=/
+  export WEBHOOK_URL=/
+fi
+
+# Enable editor UI at root path
+export N8N_PATH_PREFIX=/
+export N8N_DISABLE_UI=false
 bash persistent.sh
 
 n8n
