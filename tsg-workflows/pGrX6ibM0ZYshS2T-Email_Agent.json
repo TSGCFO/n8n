@@ -10,10 +10,7 @@
       "name": "OpenAI Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
-      "position": [
-        -1080,
-        360
-      ],
+      "position": [-1080, 360],
       "credentials": {
         "openAiApi": {
           "id": "JSPFLNImx8SGH5aT",
@@ -39,10 +36,7 @@
       "name": "Try Again",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        0,
-        180
-      ]
+      "position": [0, 180]
     },
     {
       "parameters": {
@@ -62,10 +56,7 @@
       "name": "Success",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        0,
-        0
-      ]
+      "position": [0, 0]
     },
     {
       "parameters": {
@@ -79,10 +70,7 @@
       "name": "Email Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.6,
-      "position": [
-        -600,
-        80
-      ],
+      "position": [-600, 80],
       "onError": "continueErrorOutput"
     },
     {
@@ -97,10 +85,7 @@
       },
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
-      "position": [
-        -920,
-        440
-      ],
+      "position": [-920, 440],
       "id": "472cc665-50dc-4313-80cb-5581da84e886",
       "name": "Send Email",
       "webhookId": "86c8c4b1-13bb-4ebe-acb9-30e1d7082d55",
@@ -123,10 +108,7 @@
       },
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
-      "position": [
-        -280,
-        540
-      ],
+      "position": [-280, 540],
       "id": "e918dd82-2136-45f5-be35-dc376b08de0f",
       "name": "Get Emails",
       "webhookId": "af4b3298-9037-44b0-aa12-2acbfbb5e66f",
@@ -149,10 +131,7 @@
       },
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
-      "position": [
-        -440,
-        560
-      ],
+      "position": [-440, 560],
       "id": "f7dc934f-15b5-4900-b912-0a421933fddb",
       "name": "Create Draft",
       "webhookId": "17016bce-d7d7-428a-a56c-f6ea122db8be",
@@ -174,10 +153,7 @@
       },
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
-      "position": [
-        -760,
-        500
-      ],
+      "position": [-760, 500],
       "id": "edbd5e9e-c195-4b01-baf5-c00fa4dad86d",
       "name": "Email Reply",
       "webhookId": "114785e6-a859-432b-81b4-c490c1c35b1c",
@@ -195,10 +171,7 @@
       },
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
-      "position": [
-        -160,
-        480
-      ],
+      "position": [-160, 480],
       "id": "52603584-736c-487e-a156-e172762b7043",
       "name": "Get Labels",
       "webhookId": "9e08b59e-792d-4566-83f1-9263c9ad86ae",
@@ -217,10 +190,7 @@
       },
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
-      "position": [
-        -600,
-        540
-      ],
+      "position": [-600, 540],
       "id": "5bd65dba-319f-4e2b-9e98-9b86a84c2271",
       "name": "Label Emails",
       "webhookId": "0e951529-2e6d-40bf-ac40-fc0947e242e2",
@@ -238,10 +208,7 @@
       },
       "type": "n8n-nodes-base.gmailTool",
       "typeVersion": 2.1,
-      "position": [
-        -20,
-        420
-      ],
+      "position": [-20, 420],
       "id": "da14c5b3-d75c-40bd-8daf-b27421a9527a",
       "name": "Mark Unread",
       "webhookId": "a35af9d8-f67d-4ff9-803f-59ec6356e795",
@@ -258,10 +225,7 @@
       },
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
-      "position": [
-        -840,
-        80
-      ],
+      "position": [-840, 80],
       "id": "e98a2d76-0d8c-42c8-b9b2-f2680233b387",
       "name": "When Executed by Another Workflow"
     }

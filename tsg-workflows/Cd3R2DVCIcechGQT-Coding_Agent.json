@@ -11,10 +11,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
-      "position": [
-        -520,
-        100
-      ],
+      "position": [-520, 100],
       "id": "d10f8a97-fd65-4193-9df6-1ea3064f06ca",
       "name": "Coding Agent",
       "onError": "continueErrorOutput"
@@ -25,10 +22,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.2,
-      "position": [
-        -860,
-        300
-      ],
+      "position": [-860, 300],
       "id": "e6e3f3da-d1d0-442a-9c22-776740a56108",
       "name": "Anthropic Chat Model",
       "credentials": {
@@ -57,10 +51,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
-      "position": [
-        -280,
-        580
-      ],
+      "position": [-280, 580],
       "id": "633f52fd-dbe0-477b-995e-387f32c750e2",
       "name": "File Agent"
     },
@@ -75,10 +66,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
-      "position": [
-        160,
-        560
-      ],
+      "position": [160, 560],
       "id": "7f791342-be64-455a-afcb-3a735a6bb351",
       "name": "Git Agent"
     },
@@ -102,10 +90,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
-      "position": [
-        40,
-        580
-      ],
+      "position": [40, 580],
       "id": "12d94efd-9f1e-474c-91ad-28ee6647542e",
       "name": "Test Agent"
     },
@@ -129,10 +114,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 2,
-      "position": [
-        -140,
-        580
-      ],
+      "position": [-140, 580],
       "id": "354f3665-0bb1-4b82-a84c-08b6beb13a30",
       "name": "Dependency Agent"
     },
@@ -152,10 +134,7 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        -80,
-        20
-      ],
+      "position": [-80, 20],
       "id": "1fee895c-8de8-4ff3-af3c-eaa942aa0ed6",
       "name": "Response"
     },
@@ -175,10 +154,7 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        -80,
-        200
-      ],
+      "position": [-80, 200],
       "id": "b42144a0-44b9-4547-9c03-03ac4df00eaf",
       "name": "Error Handler"
     },
@@ -191,10 +167,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.1,
-      "position": [
-        -960,
-        60
-      ],
+      "position": [-960, 60],
       "id": "8c2a00c9-7e57-425b-8ec2-bd4ae1ca12cc",
       "name": "When chat message received",
       "webhookId": "2003a530-887f-4096-8a5f-1939fc702686"
@@ -205,10 +178,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
-      "position": [
-        -860,
-        680
-      ],
+      "position": [-860, 680],
       "id": "b3461b68-5710-424a-9237-d1407fbcaf4c",
       "name": "Window Buffer Memory"
     },
@@ -220,10 +190,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.memoryManager",
       "typeVersion": 1.1,
-      "position": [
-        220,
-        40
-      ],
+      "position": [220, 40],
       "id": "2b6322da-7c6c-46dc-8b2c-ac740664306c",
       "name": "Chat Memory Manager",
       "alwaysOutputData": true,
@@ -333,9 +300,7 @@
       ]
     },
     "Chat Memory Manager": {
-      "main": [
-        []
-      ]
+      "main": [[]]
     },
     "Response": {
       "main": [

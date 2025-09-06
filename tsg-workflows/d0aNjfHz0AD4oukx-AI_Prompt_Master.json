@@ -11,10 +11,7 @@
       "id": "57c64950-ae56-452f-bbbf-8d292727bed7",
       "name": "Gemini 2.5 Flash",
       "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
-      "position": [
-        1600,
-        928
-      ],
+      "position": [1600, 928],
       "typeVersion": 1,
       "credentials": {
         "googlePalmApi": {
@@ -66,10 +63,7 @@
       "id": "2fa44cc0-9cb3-4824-8418-1d3955aeda2c",
       "name": "Prompt Request",
       "type": "n8n-nodes-base.formTrigger",
-      "position": [
-        1008,
-        480
-      ],
+      "position": [1008, 480],
       "webhookId": "bef818b2-581a-44ad-bd07-a8b26cfb5b8c",
       "typeVersion": 2.2
     },
@@ -89,10 +83,7 @@
       "id": "4c1074b3-56a2-44f2-b23d-d783773ddee6",
       "name": "Generate Prompt",
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
-      "position": [
-        1504,
-        480
-      ],
+      "position": [1504, 480],
       "typeVersion": 1.7
     },
     {
@@ -105,10 +96,7 @@
       "id": "2d635673-29f4-4bed-b181-cf5a8f8a6aa2",
       "name": "Go to Site",
       "type": "n8n-nodes-base.form",
-      "position": [
-        2160,
-        480
-      ],
+      "position": [2160, 480],
       "webhookId": "65b26fc2-22c6-424f-85c9-f91502a02d72",
       "typeVersion": 1
     },
@@ -121,10 +109,7 @@
       "id": "4ec25b4c-04ce-4feb-aff7-e9ede6d16803",
       "name": "Get Prompt Webpage",
       "type": "n8n-nodes-base.webhook",
-      "position": [
-        1008,
-        1488
-      ],
+      "position": [1008, 1488],
       "webhookId": "99651075-3d83-4d67-963f-06c7a5e6a3d3",
       "typeVersion": 2
     },
@@ -146,10 +131,7 @@
       "id": "77d01c54-a164-48a9-b35b-65845e2b31cd",
       "name": "Display Webpage",
       "type": "n8n-nodes-base.respondToWebhook",
-      "position": [
-        1568,
-        1488
-      ],
+      "position": [1568, 1488],
       "typeVersion": 1.1
     },
     {
@@ -161,10 +143,7 @@
       "id": "d1bb429c-66b9-4437-9b10-840e571848c5",
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        0,
-        0
-      ],
+      "position": [0, 0],
       "typeVersion": 1
     },
     {
@@ -177,10 +156,7 @@
       "id": "0496bba2-7e6d-48a4-bf77-9d6bd956d9bf",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        800,
-        0
-      ],
+      "position": [800, 0],
       "typeVersion": 1
     },
     {
@@ -193,10 +169,7 @@
       "id": "6fa7d0d6-562e-497c-bcbf-1de20f5d001b",
       "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1328,
-        144
-      ],
+      "position": [1328, 144],
       "typeVersion": 1
     },
     {
@@ -209,10 +182,7 @@
       "id": "4cba30cd-3514-44c5-81b1-4628d57e405b",
       "name": "Sticky Note3",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1440,
-        672
-      ],
+      "position": [1440, 672],
       "typeVersion": 1
     },
     {
@@ -225,10 +195,7 @@
       "id": "6be864b2-3f76-4ede-90d6-32ce6cbf458f",
       "name": "Sticky Note4",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1968,
-        144
-      ],
+      "position": [1968, 144],
       "typeVersion": 1
     },
     {
@@ -241,10 +208,7 @@
       "id": "c63c5b3b-1ddb-42f7-b0e7-1515c3ad2dc2",
       "name": "Sticky Note5",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        800,
-        1088
-      ],
+      "position": [800, 1088],
       "typeVersion": 1
     },
     {
@@ -257,10 +221,7 @@
       "id": "fc20b377-4d93-4e34-9493-8bb4a808ecd2",
       "name": "Sticky Note6",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1344,
-        1088
-      ],
+      "position": [1344, 1088],
       "typeVersion": 1
     },
     {
@@ -273,10 +234,7 @@
       "id": "95b36de7-a5b0-45bf-9bec-72871423441c",
       "name": "Sticky Note7",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        0,
-        192
-      ],
+      "position": [0, 192],
       "typeVersion": 1
     },
     {
@@ -289,10 +247,7 @@
       "id": "31a1031d-a8be-441f-8893-beff87de3198",
       "name": "Sticky Note8",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        0,
-        880
-      ],
+      "position": [0, 880],
       "typeVersion": 1
     },
     {
@@ -305,10 +260,7 @@
       "id": "41dc3d75-ebf0-4c6f-9fc3-b505183591ed",
       "name": "Sticky Note9",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        0,
-        1408
-      ],
+      "position": [0, 1408],
       "typeVersion": 1
     },
     {
@@ -320,10 +272,7 @@
       "id": "d20a3294-cfd5-44a7-b306-ee0e5212cbc9",
       "name": "Sticky Note10",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1984,
-        848
-      ],
+      "position": [1984, 848],
       "typeVersion": 1
     }
   ],

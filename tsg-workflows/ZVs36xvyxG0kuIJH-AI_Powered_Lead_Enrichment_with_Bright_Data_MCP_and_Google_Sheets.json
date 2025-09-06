@@ -25,18 +25,13 @@
           "cachedResultName": "sampleATcsv"
         },
         "options": {
-          "columnsToWatch": [
-            "status"
-          ]
+          "columnsToWatch": ["status"]
         }
       },
       "id": "80ffc9b5-2a35-46e3-a641-45ae6f9556bd",
       "name": "Google Sheets Trigger",
       "type": "n8n-nodes-base.googleSheetsTrigger",
-      "position": [
-        1168,
-        944
-      ],
+      "position": [1168, 944],
       "typeVersion": 1
     },
     {
@@ -47,10 +42,7 @@
       "id": "06d817c6-f625-495e-bfd3-d019a98f0ebb",
       "name": "Structured Output Parser",
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
-      "position": [
-        3728,
-        1088
-      ],
+      "position": [3728, 1088],
       "typeVersion": 1.2
     },
     {
@@ -63,10 +55,7 @@
       "id": "18ef61dc-5134-4c8b-817b-da162c093b06",
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1120,
-        720
-      ],
+      "position": [1120, 720],
       "typeVersion": 1
     },
     {
@@ -78,10 +67,7 @@
       "id": "e3b79eff-1504-4da3-85ef-4423f5ee71cd",
       "name": "Auto-fixing Output Parser",
       "type": "@n8n/n8n-nodes-langchain.outputParserAutofixing",
-      "position": [
-        3520,
-        880
-      ],
+      "position": [3520, 880],
       "typeVersion": 1
     },
     {
@@ -96,10 +82,7 @@
       "id": "1023e561-8f92-4fe1-8d21-1b6fcd2bbb6e",
       "name": "OpenAI Chat Model1",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "position": [
-        3488,
-        1008
-      ],
+      "position": [3488, 1008],
       "typeVersion": 1.2
     },
     {
@@ -112,10 +95,7 @@
       "id": "ac4f57e8-f7f0-47b8-b039-9a93f198083a",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        368,
-        240
-      ],
+      "position": [368, 240],
       "typeVersion": 1
     },
     {
@@ -125,10 +105,7 @@
       "id": "c46b338f-ccb6-4ce4-a1a3-623a615d19b2",
       "name": "Process each leads one by one",
       "type": "n8n-nodes-base.splitInBatches",
-      "position": [
-        2368,
-        64
-      ],
+      "position": [2368, 64],
       "typeVersion": 3
     },
     {
@@ -168,10 +145,7 @@
       "id": "e6f86e5f-f49f-4781-90d2-78747efd5053",
       "name": "Filter the leads that needs enrichment",
       "type": "n8n-nodes-base.filter",
-      "position": [
-        1392,
-        944
-      ],
+      "position": [1392, 944],
       "typeVersion": 2.2
     },
     {
@@ -184,10 +158,7 @@
       "id": "46203489-bdd1-48ea-a020-8f5e1734cbdb",
       "name": "Remove unneccessary fields for the prompt",
       "type": "n8n-nodes-base.set",
-      "position": [
-        2896,
-        64
-      ],
+      "position": [2896, 64],
       "typeVersion": 3.4
     },
     {
@@ -200,10 +171,7 @@
       "id": "838ba8a6-3f41-4973-b5aa-805b9abc6baa",
       "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        6192,
-        -480
-      ],
+      "position": [6192, -480],
       "typeVersion": 1
     },
     {
@@ -216,10 +184,7 @@
       "id": "1315c393-9cb2-4345-ba01-34faa5673e72",
       "name": "Sticky Note3",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        2736,
-        -160
-      ],
+      "position": [2736, -160],
       "typeVersion": 1
     },
     {
@@ -230,10 +195,7 @@
       "id": "f77f311d-20c4-4e5d-a679-f905a5e1680a",
       "name": "Bright Data MCP Client",
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
-      "position": [
-        3232,
-        352
-      ],
+      "position": [3232, 352],
       "typeVersion": 1
     },
     {
@@ -249,10 +211,7 @@
       "id": "f5d6bf43-d9c0-4272-9d5f-cf1371f0e27a",
       "name": "OpenAI Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "position": [
-        2992,
-        352
-      ],
+      "position": [2992, 352],
       "typeVersion": 1.2
     },
     {
@@ -264,10 +223,7 @@
       "id": "370ea5eb-0abc-418a-836f-f9e28d3f11be",
       "name": "Sticky Note4",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        3632,
-        -160
-      ],
+      "position": [3632, -160],
       "typeVersion": 1
     },
     {
@@ -318,10 +274,7 @@
       "id": "cc8043c0-6306-4808-9caf-0776b9a29553",
       "name": "If",
       "type": "n8n-nodes-base.if",
-      "position": [
-        4016,
-        240
-      ],
+      "position": [4016, 240],
       "typeVersion": 2.2
     },
     {
@@ -410,10 +363,7 @@
       "id": "7cfe0f1d-d2ef-4630-b4d4-5ef155852f4c",
       "name": "Switch",
       "type": "n8n-nodes-base.switch",
-      "position": [
-        3760,
-        80
-      ],
+      "position": [3760, 80],
       "typeVersion": 3.2
     },
     {
@@ -444,10 +394,7 @@
       "id": "f4357d32-0d4f-4131-8367-63ac527bb9e2",
       "name": "If2",
       "type": "n8n-nodes-base.if",
-      "position": [
-        4016,
-        -80
-      ],
+      "position": [4016, -80],
       "typeVersion": 2.2
     },
     {
@@ -458,10 +405,7 @@
       "id": "0efb7c41-869f-4803-b725-7133fe74dfd6",
       "name": "Merge",
       "type": "n8n-nodes-base.merge",
-      "position": [
-        4368,
-        432
-      ],
+      "position": [4368, 432],
       "typeVersion": 3.1
     },
     {
@@ -512,10 +456,7 @@
       "id": "5478a933-3704-4282-a043-b61e7c84c86e",
       "name": "If1",
       "type": "n8n-nodes-base.if",
-      "position": [
-        4016,
-        80
-      ],
+      "position": [4016, 80],
       "typeVersion": 2.2
     },
     {
@@ -523,10 +464,7 @@
       "id": "b96100ab-1edf-46ce-8c1d-c16c7617b327",
       "name": "Not matched route",
       "type": "n8n-nodes-base.noOp",
-      "position": [
-        4592,
-        0
-      ],
+      "position": [4592, 0],
       "typeVersion": 1
     },
     {
@@ -534,10 +472,7 @@
       "id": "896fdbd8-e6b2-4e5e-8cbb-8c347714f541",
       "name": "Space requests by 5 seconds",
       "type": "n8n-nodes-base.wait",
-      "position": [
-        7936,
-        240
-      ],
+      "position": [7936, 240],
       "webhookId": "ca47f66b-d536-4751-ab54-7d1e049ca14a",
       "typeVersion": 1.1
     },
@@ -551,10 +486,7 @@
       "id": "5e4b65b7-30b6-4980-a851-43b8112d6347",
       "name": "Sticky Note5",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        3248,
-        768
-      ],
+      "position": [3248, 768],
       "typeVersion": 1
     },
     {
@@ -571,10 +503,7 @@
       "id": "146b61b9-cd18-4e72-b07f-4f848d909a66",
       "name": "Scraper AI Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
-      "position": [
-        3120,
-        80
-      ],
+      "position": [3120, 80],
       "retryOnFail": true,
       "typeVersion": 1.9,
       "notes": "\nSteps:\n1. Scrape the url and find for the input fields common in the form such as text, radio buttons, checkboxes.  etc. Identify selectors for these input fields. Find the submit button too or the button to proceed to the next section or step."
@@ -588,10 +517,7 @@
       "id": "bfbf1be5-96a7-470e-a3d2-006dbf948c4d",
       "name": "Merge1",
       "type": "n8n-nodes-base.merge",
-      "position": [
-        5440,
-        272
-      ],
+      "position": [5440, 272],
       "typeVersion": 3.1
     },
     {
@@ -618,10 +544,7 @@
       "id": "fa2096a7-56d7-45aa-b10f-4ae7456339b4",
       "name": "Judge the accuracy of scraped data",
       "type": "@n8n/n8n-nodes-langchain.openAi",
-      "position": [
-        4976,
-        80
-      ],
+      "position": [4976, 80],
       "typeVersion": 1.8
     },
     {
@@ -629,10 +552,7 @@
       "id": "32f37490-752b-4ee1-b68f-c56f17615bf4",
       "name": "Just to make the connection neat",
       "type": "n8n-nodes-base.noOp",
-      "position": [
-        8480,
-        1280
-      ],
+      "position": [8480, 1280],
       "typeVersion": 1
     },
     {
@@ -645,10 +565,7 @@
       "id": "01f944b6-e821-4ca3-ba09-bbc33f562ef4",
       "name": "Sticky Note6",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        4912,
-        -176
-      ],
+      "position": [4912, -176],
       "typeVersion": 1
     },
     {
@@ -674,10 +591,7 @@
       "id": "08a34aec-7419-4cb9-b495-dff406c6f61d",
       "name": "Extract the AI results only",
       "type": "n8n-nodes-base.set",
-      "position": [
-        5168,
-        80
-      ],
+      "position": [5168, 80],
       "typeVersion": 3.4
     },
     {
@@ -707,10 +621,7 @@
       "id": "716a21d4-230d-4747-a031-ca8aac1bc3af",
       "name": "Check the confidence score",
       "type": "n8n-nodes-base.if",
-      "position": [
-        6272,
-        384
-      ],
+      "position": [6272, 384],
       "typeVersion": 2.2
     },
     {
@@ -722,10 +633,7 @@
       "id": "a4eb12f7-26b9-4f8f-a51a-ff54c769c06b",
       "name": "Prepare the scraped output for Google Sheets",
       "type": "n8n-nodes-base.set",
-      "position": [
-        5648,
-        368
-      ],
+      "position": [5648, 368],
       "typeVersion": 3.4
     },
     {
@@ -758,10 +666,7 @@
       "id": "06bf86dc-c92f-4540-8963-219015d745fb",
       "name": "Add confidence score to Google Sheet",
       "type": "n8n-nodes-base.set",
-      "position": [
-        5856,
-        384
-      ],
+      "position": [5856, 384],
       "typeVersion": 3.4
     },
     {
@@ -1084,9 +989,7 @@
             }
           ],
           "mappingMode": "autoMapInputData",
-          "matchingColumns": [
-            "row_id"
-          ],
+          "matchingColumns": ["row_id"],
           "attemptToConvertTypes": false,
           "convertFieldsToString": false
         },
@@ -1095,10 +998,7 @@
       "id": "f6ba009f-47f1-428e-95e6-b3d8ca23208d",
       "name": "Add record if the confidence score is below 85%",
       "type": "n8n-nodes-base.googleSheets",
-      "position": [
-        6896,
-        832
-      ],
+      "position": [6896, 832],
       "typeVersion": 4.6
     },
     {
@@ -1433,9 +1333,7 @@
             }
           ],
           "mappingMode": "autoMapInputData",
-          "matchingColumns": [
-            "row_id"
-          ],
+          "matchingColumns": ["row_id"],
           "attemptToConvertTypes": false,
           "convertFieldsToString": false
         },
@@ -1444,10 +1342,7 @@
       "id": "9a5a4808-a8d1-4b49-82b5-b33bc48b56f5",
       "name": "Override the record if the confidence score is equal or greater than 85%",
       "type": "n8n-nodes-base.googleSheets",
-      "position": [
-        6768,
-        208
-      ],
+      "position": [6768, 208],
       "typeVersion": 4.6
     },
     {
@@ -1460,10 +1355,7 @@
       "id": "1eb07d73-aa8f-4cba-a760-5d142eea9734",
       "name": "Sticky Note7",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        6592,
-        64
-      ],
+      "position": [6592, 64],
       "typeVersion": 1
     },
     {
@@ -1802,9 +1694,7 @@
             }
           ],
           "mappingMode": "defineBelow",
-          "matchingColumns": [
-            "row_id"
-          ],
+          "matchingColumns": ["row_id"],
           "attemptToConvertTypes": false,
           "convertFieldsToString": false
         },
@@ -1813,10 +1703,7 @@
       "id": "274d8c92-9094-4b26-8d6e-689e38fe9540",
       "name": "Update the status of the record",
       "type": "n8n-nodes-base.googleSheets",
-      "position": [
-        6768,
-        -176
-      ],
+      "position": [6768, -176],
       "typeVersion": 4.6
     },
     {
@@ -1829,10 +1716,7 @@
       "id": "9958acae-7675-48c2-a400-0ee00267745f",
       "name": "Sticky Note8",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        6592,
-        512
-      ],
+      "position": [6592, 512],
       "typeVersion": 1
     },
     {
@@ -1845,10 +1729,7 @@
       "id": "ae5d281a-31a3-46a0-b5af-8dcf376d2947",
       "name": "Sticky Note9",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        6592,
-        -368
-      ],
+      "position": [6592, -368],
       "typeVersion": 1
     },
     {
@@ -1875,10 +1756,7 @@
       "id": "a5aa4f8f-d7ec-4d28-87a2-c774ba627a95",
       "name": "Update row_id and status",
       "type": "n8n-nodes-base.set",
-      "position": [
-        6688,
-        832
-      ],
+      "position": [6688, 832],
       "typeVersion": 3.4
     },
     {
@@ -2237,9 +2115,7 @@
             }
           ],
           "mappingMode": "defineBelow",
-          "matchingColumns": [
-            "row_id"
-          ],
+          "matchingColumns": ["row_id"],
           "attemptToConvertTypes": false,
           "convertFieldsToString": false
         },
@@ -2248,10 +2124,7 @@
       "id": "2eb2c10a-1ab8-408f-9411-13fa356b4664",
       "name": "Update the status of the original record",
       "type": "n8n-nodes-base.googleSheets",
-      "position": [
-        6752,
-        592
-      ],
+      "position": [6752, 592],
       "typeVersion": 4.6
     },
     {
@@ -2262,10 +2135,7 @@
       "id": "e2cb5ff7-3d0d-4766-bda2-2ea5d1b8cf54",
       "name": "Split Out",
       "type": "n8n-nodes-base.splitOut",
-      "position": [
-        1040,
-        -416
-      ],
+      "position": [1040, -416],
       "typeVersion": 1
     },
     {
@@ -2621,10 +2491,7 @@
       "id": "da05a953-9e66-49b5-8c62-5cd48f439772",
       "name": "Google Sheets",
       "type": "n8n-nodes-base.googleSheets",
-      "position": [
-        1568,
-        -304
-      ],
+      "position": [1568, -304],
       "typeVersion": 4.6
     },
     {
@@ -2641,10 +2508,7 @@
       "id": "48243a45-396f-4610-b97f-808ca39e90a6",
       "name": "HubSpot",
       "type": "n8n-nodes-base.hubspot",
-      "position": [
-        1312,
-        -304
-      ],
+      "position": [1312, -304],
       "typeVersion": 2.1
     },
     {
@@ -2680,10 +2544,7 @@
       "id": "1088136d-5530-47f2-b08f-3c91c28bd383",
       "name": "Google Sheets1",
       "type": "n8n-nodes-base.googleSheets",
-      "position": [
-        720,
-        432
-      ],
+      "position": [720, 432],
       "typeVersion": 4.6
     },
     {
@@ -2691,10 +2552,7 @@
       "id": "16a4e5d7-3d4f-4aa4-b802-5bc61c6767b6",
       "name": "When clicking ‘Execute workflow’",
       "type": "n8n-nodes-base.manualTrigger",
-      "position": [
-        480,
-        432
-      ],
+      "position": [480, 432],
       "typeVersion": 1
     },
     {
@@ -2707,28 +2565,20 @@
       "id": "2cf15cf0-be32-41d8-82f6-78a142e32b4a",
       "name": "Sticky Note11",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        496,
-        -656
-      ],
+      "position": [496, -656],
       "typeVersion": 1
     },
     {
       "parameters": {
         "eventsUi": {
-          "eventValues": [
-            {}
-          ]
+          "eventValues": [{}]
         },
         "additionalFields": {}
       },
       "id": "6a2d33a9-c2f9-412e-a70c-8a64b7da252b",
       "name": "New Contact in Hubpost (OAuth2)",
       "type": "n8n-nodes-base.hubspotTrigger",
-      "position": [
-        656,
-        -176
-      ],
+      "position": [656, -176],
       "webhookId": "dab75ae0-affc-4616-bad6-2e88d1afabc7",
       "typeVersion": 1
     },
@@ -2741,10 +2591,7 @@
       "id": "fd273f08-9d98-4539-bad1-96a1ea6c0fc5",
       "name": "New Contact in Hubpost (Private App)",
       "type": "n8n-nodes-base.webhook",
-      "position": [
-        672,
-        -528
-      ],
+      "position": [672, -528],
       "webhookId": "40d4eddf-4f9f-471f-a029-4a95f5f045b9",
       "typeVersion": 2
     },
@@ -2753,10 +2600,7 @@
       "id": "d348c77a-7782-45c5-9d6d-d7464ff876c6",
       "name": "No Operation, do nothing",
       "type": "n8n-nodes-base.noOp",
-      "position": [
-        7296,
-        368
-      ],
+      "position": [7296, 368],
       "typeVersion": 1
     },
     {
@@ -2769,10 +2613,7 @@
       "id": "6a1149d6-186f-49ce-a8b3-3a97b83b10a7",
       "name": "Sticky Note10",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        7440,
-        640
-      ],
+      "position": [7440, 640],
       "typeVersion": 1
     },
     {
@@ -2822,10 +2663,7 @@
       "id": "2c3f4e27-a1ee-4a0a-8fb8-180b5de97ae6",
       "name": "Update the Hubspot Contact",
       "type": "n8n-nodes-base.hubspot",
-      "position": [
-        7872,
-        880
-      ],
+      "position": [7872, 880],
       "typeVersion": 2.1
     },
     {
@@ -2855,10 +2693,7 @@
       "id": "fdadcb0e-f66e-4755-8939-ab28d51301eb",
       "name": "Set Desired Confidence Score",
       "type": "n8n-nodes-base.if",
-      "position": [
-        7568,
-        912
-      ],
+      "position": [7568, 912],
       "typeVersion": 2.2
     }
   ],

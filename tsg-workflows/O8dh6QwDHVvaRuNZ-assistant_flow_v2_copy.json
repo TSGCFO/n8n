@@ -13,10 +13,7 @@
       "id": "89c50448-6133-4391-aa4e-271897d904d2",
       "name": "Telegram",
       "type": "n8n-nodes-base.telegram",
-      "position": [
-        2176,
-        256
-      ],
+      "position": [2176, 256],
       "typeVersion": 1.1,
       "webhookId": "616f2628-e544-4ba3-b8a6-90b42794e418",
       "credentials": {
@@ -55,10 +52,7 @@
       "id": "f66a6f5f-95b3-4e11-8233-625e652db487",
       "name": "If",
       "type": "n8n-nodes-base.if",
-      "position": [
-        224,
-        448
-      ],
+      "position": [224, 448],
       "typeVersion": 2.2
     },
     {
@@ -76,10 +70,7 @@
       "id": "16e7f207-2f00-4984-91f2-fad0b0746d58",
       "name": "Voice or Text",
       "type": "n8n-nodes-base.set",
-      "position": [
-        0,
-        448
-      ],
+      "position": [0, 448],
       "typeVersion": 3.2
     },
     {
@@ -91,10 +82,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.1,
-      "position": [
-        1456,
-        880
-      ],
+      "position": [1456, 880],
       "id": "64e703ae-9bec-40f6-ab17-7108522394db",
       "name": "MCP Client",
       "credentials": {
@@ -113,10 +101,7 @@
       "id": "5e50c81e-92ed-4484-b492-01f8cd2d6630",
       "name": "Embeddings OpenAI",
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
-      "position": [
-        1680,
-        880
-      ],
+      "position": [1680, 880],
       "typeVersion": 1.2,
       "credentials": {
         "openAiApi": {
@@ -132,10 +117,7 @@
       "id": "5fc3aa96-b579-4500-b04c-9fa4c3b741f6",
       "name": "Default Data Loader",
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
-      "position": [
-        1808,
-        880
-      ],
+      "position": [1808, 880],
       "typeVersion": 1
     },
     {
@@ -147,10 +129,7 @@
       "id": "5033bf08-ce76-4227-ac25-971b6b78cef9",
       "name": "Recursive Character Text Splitter",
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
-      "position": [
-        1888,
-        1088
-      ],
+      "position": [1888, 1088],
       "typeVersion": 1
     },
     {
@@ -162,10 +141,7 @@
       "id": "fd7cc7e8-6f9c-408b-b484-49996f14d406",
       "name": "Embeddings for Retrieval",
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
-      "position": [
-        1040,
-        880
-      ],
+      "position": [1040, 880],
       "typeVersion": 1.2,
       "credentials": {
         "openAiApi": {
@@ -179,10 +155,7 @@
       "id": "f7254d19-b93a-4306-b7d7-52a89ed4a55e",
       "name": "Reranker Cohere",
       "type": "@n8n/n8n-nodes-langchain.rerankerCohere",
-      "position": [
-        1184,
-        880
-      ],
+      "position": [1184, 880],
       "typeVersion": 1,
       "credentials": {
         "cohereApi": {
@@ -209,10 +182,7 @@
       "id": "57a80f64-2d12-4d45-b777-03dc2f155737",
       "name": "RAG_MEMORY",
       "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
-      "position": [
-        1024,
-        672
-      ],
+      "position": [1024, 672],
       "typeVersion": 1.2,
       "credentials": {
         "qdrantApi": {
@@ -239,10 +209,7 @@
       "id": "95229d1a-163c-45f9-adce-b63d5de591e0",
       "name": "Format Response",
       "type": "n8n-nodes-base.set",
-      "position": [
-        -224,
-        16
-      ],
+      "position": [-224, 16],
       "executeOnce": true,
       "typeVersion": 3.4,
       "disabled": true
@@ -261,10 +228,7 @@
       "id": "b03459e9-acc1-4634-b1e5-4383fe4ccad5",
       "name": "Store Conversation",
       "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
-      "position": [
-        1712,
-        656
-      ],
+      "position": [1712, 656],
       "typeVersion": 1.2,
       "credentials": {
         "qdrantApi": {
@@ -275,17 +239,12 @@
     },
     {
       "parameters": {
-        "updates": [
-          "*"
-        ],
+        "updates": ["*"],
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.2,
-      "position": [
-        -480,
-        480
-      ],
+      "position": [-480, 480],
       "id": "2e493afa-f53a-43af-a868-e0ea81db183c",
       "name": "Listen for Incoming Events",
       "webhookId": "2a8fdb22-9aa9-4de2-a90a-e538d14f2587",
@@ -305,10 +264,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.agentTool",
       "typeVersion": 2.2,
-      "position": [
-        1312,
-        672
-      ],
+      "position": [1312, 672],
       "id": "5b94ef6e-a7e8-4e06-ad35-554255a8d31c",
       "name": "AI Agent Tool"
     },
@@ -326,10 +282,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
-      "position": [
-        1312,
-        880
-      ],
+      "position": [1312, 880],
       "id": "f565f57a-66b5-47e9-b6d4-6a6b2080b772",
       "name": "Anthropic Chat Model",
       "credentials": {
@@ -351,10 +304,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
-      "position": [
-        1024,
-        448
-      ],
+      "position": [1024, 448],
       "id": "09d6887e-3e86-4b45-9f15-7395ea0be95f",
       "name": "Personal Assistant",
       "retryOnFail": true,
@@ -376,10 +326,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
-      "position": [
-        896,
-        672
-      ],
+      "position": [896, 672],
       "id": "12904925-9285-4871-ab24-462629abbad6",
       "name": "Anthropic Chat Model1",
       "credentials": {
@@ -398,10 +345,7 @@
       "id": "322350f4-fbb3-4b04-8a31-d28dd73bf937",
       "name": "Get Voice File",
       "type": "n8n-nodes-base.telegram",
-      "position": [
-        448,
-        384
-      ],
+      "position": [448, 384],
       "typeVersion": 1.1,
       "webhookId": "6286fc57-6f83-424e-8cfb-43b736e9b42f",
       "credentials": {
@@ -420,10 +364,7 @@
       "id": "8eedd5cb-0f23-4998-94dc-67c662dd86f2",
       "name": "Speech to Text",
       "type": "@n8n/n8n-nodes-langchain.openAi",
-      "position": [
-        672,
-        384
-      ],
+      "position": [672, 384],
       "typeVersion": 1.3,
       "credentials": {
         "openAiApi": {
@@ -440,10 +381,7 @@
       },
       "type": "n8n-nodes-base.aiTransform",
       "typeVersion": 1,
-      "position": [
-        1824,
-        256
-      ],
+      "position": [1824, 256],
       "id": "8ce1dbb8-8407-46c5-8b04-54843f6e19da",
       "name": "AI Transform"
     },
@@ -462,10 +400,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
-      "position": [
-        -768,
-        784
-      ],
+      "position": [-768, 784],
       "id": "710ec986-69b4-44c3-b499-1cae1e59d702",
       "name": "OpenAI Chat Model",
       "credentials": {
@@ -481,10 +416,7 @@
       },
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        -224,
-        464
-      ],
+      "position": [-224, 464],
       "id": "106538da-6fb3-44fa-949e-627943a78edc",
       "name": "Code"
     },
@@ -495,10 +427,7 @@
         "width": 384
       },
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -976,
-        224
-      ],
+      "position": [-976, 224],
       "typeVersion": 1,
       "id": "5a5a07a3-304e-41db-8681-c1b98db955ad",
       "name": "Sticky Note"

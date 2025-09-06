@@ -23,10 +23,7 @@
       },
       "type": "n8n-nodes-base.googleDriveTrigger",
       "typeVersion": 1,
-      "position": [
-        0,
-        0
-      ],
+      "position": [0, 0],
       "id": "c596e7d7-f9b0-41ff-94c6-d32014e6acbc",
       "name": "Google Drive Trigger",
       "credentials": {
@@ -48,10 +45,7 @@
       },
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
-      "position": [
-        220,
-        0
-      ],
+      "position": [220, 0],
       "id": "4e42bf9f-c55a-4e0b-b245-d68ed5f169b5",
       "name": "Google Drive",
       "credentials": {
@@ -76,10 +70,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.vectorStorePinecone",
       "typeVersion": 1,
-      "position": [
-        440,
-        0
-      ],
+      "position": [440, 0],
       "id": "5eaa857b-48ee-4284-8666-0a4e43313f3b",
       "name": "Pinecone Vector Store",
       "credentials": {
@@ -95,10 +86,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.2,
-      "position": [
-        380,
-        220
-      ],
+      "position": [380, 220],
       "id": "dfd8c868-80b4-4ea2-8b56-77334b7a6230",
       "name": "Embeddings OpenAI",
       "credentials": {
@@ -116,10 +104,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1,
-      "position": [
-        600,
-        220
-      ],
+      "position": [600, 220],
       "id": "629ff496-2db3-438c-b80f-5d957a888198",
       "name": "Default Data Loader"
     },
@@ -131,10 +116,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
-      "position": [
-        680,
-        440
-      ],
+      "position": [680, 440],
       "id": "c720bb67-6fb1-4e46-99d5-4a9f64971e13",
       "name": "Recursive Character Text Splitter"
     }

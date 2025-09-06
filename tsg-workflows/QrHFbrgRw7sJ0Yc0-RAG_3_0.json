@@ -13,10 +13,7 @@
       "name": "Aggregate1",
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
-      "position": [
-        1780,
-        1380
-      ]
+      "position": [1780, 1380]
     },
     {
       "parameters": {
@@ -37,10 +34,7 @@
       "name": "Summarize1",
       "type": "n8n-nodes-base.summarize",
       "typeVersion": 1,
-      "position": [
-        1980,
-        1380
-      ]
+      "position": [1980, 1380]
     },
     {
       "parameters": {
@@ -55,10 +49,7 @@
       "name": "Extract PDF Text",
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
-      "position": [
-        1580,
-        1040
-      ]
+      "position": [1580, 1040]
     },
     {
       "parameters": {
@@ -73,10 +64,7 @@
       "name": "Extract from Excel",
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
-      "position": [
-        1580,
-        1380
-      ]
+      "position": [1580, 1380]
     },
     {
       "parameters": {
@@ -122,10 +110,7 @@
       "name": "Set File ID",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        220,
-        2200
-      ]
+      "position": [220, 2200]
     },
     {
       "parameters": {
@@ -138,10 +123,7 @@
       "name": "Delete Old Doc Rows",
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
-      "position": [
-        600,
-        2200
-      ],
+      "position": [600, 2200],
       "alwaysOutputData": true,
       "credentials": {
         "supabaseApi": {
@@ -170,10 +152,7 @@
       "name": "Download File",
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
-      "position": [
-        1540,
-        2360
-      ],
+      "position": [1540, 2360],
       "executeOnce": true,
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -218,10 +197,7 @@
       "name": "Convert to Google Doc1",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
-      "position": [
-        1580,
-        1560
-      ],
+      "position": [1580, 1560],
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "yO30tw4ZXvRYlhaV",
@@ -269,10 +245,7 @@
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
-      "position": [
-        380,
-        2200
-      ],
+      "position": [380, 2200],
       "id": "60041d8c-f37e-4a23-87be-c02742b3dfdd",
       "name": "If",
       "onError": "continueRegularOutput"
@@ -291,10 +264,7 @@
       },
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
-      "position": [
-        1780,
-        1560
-      ],
+      "position": [1780, 1560],
       "id": "dd02d004-d4ba-4e6a-8adf-0908812e3114",
       "name": "Delete File",
       "credentials": {
@@ -348,10 +318,7 @@
       "name": "Set File ID1",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        280,
-        1340
-      ]
+      "position": [280, 1340]
     },
     {
       "parameters": {
@@ -373,10 +340,7 @@
       "name": "Download File1",
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
-      "position": [
-        600,
-        1500
-      ],
+      "position": [600, 1500],
       "executeOnce": true,
       "credentials": {
         "googleDriveOAuth2Api": {
@@ -397,10 +361,7 @@
       "name": "Aggregate",
       "type": "n8n-nodes-base.aggregate",
       "typeVersion": 1,
-      "position": [
-        2300,
-        2300
-      ]
+      "position": [2300, 2300]
     },
     {
       "parameters": {
@@ -421,10 +382,7 @@
       "name": "Summarize",
       "type": "n8n-nodes-base.summarize",
       "typeVersion": 1,
-      "position": [
-        2500,
-        2300
-      ]
+      "position": [2500, 2300]
     },
     {
       "parameters": {
@@ -439,10 +397,7 @@
       "name": "Extract PDF Text1",
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
-      "position": [
-        2100,
-        1960
-      ]
+      "position": [2100, 1960]
     },
     {
       "parameters": {
@@ -457,10 +412,7 @@
       "name": "Extract from Excel1",
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
-      "position": [
-        2100,
-        2300
-      ]
+      "position": [2100, 2300]
     },
     {
       "parameters": {
@@ -498,10 +450,7 @@
       "name": "Convert to Google Doc2",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
-      "position": [
-        2100,
-        2500
-      ],
+      "position": [2100, 2500],
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "yO30tw4ZXvRYlhaV",
@@ -523,10 +472,7 @@
       },
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
-      "position": [
-        2300,
-        2500
-      ],
+      "position": [2300, 2500],
       "id": "4fe432d8-479e-48e3-92fc-40bbf84bc13c",
       "name": "Delete File1",
       "credentials": {
@@ -543,22 +489,13 @@
         "options": {
           "splitCode": "markdown",
           "keepSeparator": true,
-          "separators": [
-            "\n\n",
-            "\n",
-            ".",
-            ";",
-            ","
-          ],
+          "separators": ["\n\n", "\n", ".", ";", ","],
           "metadataMode": "preserve"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
-      "position": [
-        2440,
-        1420
-      ],
+      "position": [2440, 1420],
       "id": "945ee747-f897-4c3d-bfa6-7ad1db0ba2b5",
       "name": "Recursive Character Text Splitter"
     },
@@ -574,10 +511,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.1,
-      "position": [
-        2200,
-        1360
-      ],
+      "position": [2200, 1360],
       "id": "0125b8f3-77d7-48bf-a6d4-da6961f4c296",
       "name": "Embeddings OpenAI1",
       "credentials": {
@@ -593,22 +527,13 @@
         "chunkOverlap": 200,
         "options": {
           "keepSeparator": true,
-          "separators": [
-            "\n\n",
-            "\n",
-            ".",
-            ";",
-            ","
-          ],
+          "separators": ["\n\n", "\n", ".", ";", ","],
           "metadataMode": "preserve"
         }
       },
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
-      "position": [
-        3080,
-        2420
-      ],
+      "position": [3080, 2420],
       "id": "7b22ccbe-373e-4cc7-98c6-3c9797b9f9ed",
       "name": "Recursive Character Text Splitter1"
     },
@@ -624,10 +549,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.1,
-      "position": [
-        2820,
-        2280
-      ],
+      "position": [2820, 2280],
       "id": "5bf4bf8e-277d-4997-952b-2268585c666b",
       "name": "Embeddings OpenAI2",
       "credentials": {
@@ -645,10 +567,7 @@
         "color": 4
       },
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        0,
-        980
-      ],
+      "position": [0, 980],
       "typeVersion": 1,
       "id": "4e60b1ac-0758-4006-acd5-e6bf0e2d5191",
       "name": "Sticky Note1"
@@ -661,10 +580,7 @@
         "color": 5
       },
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        0,
-        1820
-      ],
+      "position": [0, 1820],
       "typeVersion": 1,
       "id": "4f30ef98-72c3-4c41-88ab-4a01305099cd",
       "name": "Sticky Note3"
@@ -679,10 +595,7 @@
       },
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
-      "position": [
-        440,
-        1340
-      ],
+      "position": [440, 1340],
       "id": "5eb31a8a-28bc-46bd-9acf-85f4656036ed",
       "name": "Loop Over Items"
     },
@@ -747,10 +660,7 @@
       "name": "Enhanced Default Data Loader1",
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1,
-      "position": [
-        2360,
-        1260
-      ]
+      "position": [2360, 1260]
     },
     {
       "parameters": {
@@ -817,10 +727,7 @@
       "name": "Enhanced Default Data Loader2",
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1,
-      "position": [
-        3000,
-        2200
-      ]
+      "position": [3000, 2200]
     },
     {
       "parameters": {
@@ -832,10 +739,7 @@
       },
       "type": "n8n-nodes-base.splitInBatches",
       "typeVersion": 3,
-      "position": [
-        1380,
-        2200
-      ],
+      "position": [1380, 2200],
       "id": "cefc02f0-77e3-418b-bc34-bd57ee92bf6c",
       "name": "Loop Over Items1"
     },
@@ -865,10 +769,7 @@
       "name": "File Created",
       "type": "n8n-nodes-base.googleDriveTrigger",
       "typeVersion": 1,
-      "position": [
-        80,
-        1340
-      ],
+      "position": [80, 1340],
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "yO30tw4ZXvRYlhaV",
@@ -902,10 +803,7 @@
       "name": "File Updated",
       "type": "n8n-nodes-base.googleDriveTrigger",
       "typeVersion": 1,
-      "position": [
-        40,
-        2200
-      ],
+      "position": [40, 2200],
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "yO30tw4ZXvRYlhaV",
@@ -942,10 +840,7 @@
       "name": "Insert into Supabase Vectorstore",
       "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
       "typeVersion": 1,
-      "position": [
-        2780,
-        1960
-      ],
+      "position": [2780, 1960],
       "credentials": {
         "supabaseApi": {
           "id": "R9pmCSMoPAm6cxGW",
@@ -965,10 +860,7 @@
       "name": "Extract from Text File",
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
-      "position": [
-        1580,
-        1200
-      ],
+      "position": [1580, 1200],
       "alwaysOutputData": true
     },
     {
@@ -1135,10 +1027,7 @@
       "name": "Switch",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3,
-      "position": [
-        1800,
-        2180
-      ]
+      "position": [1800, 2180]
     },
     {
       "parameters": {
@@ -1152,10 +1041,7 @@
       "name": "Extract from Text File1",
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
-      "position": [
-        2100,
-        2120
-      ],
+      "position": [2100, 2120],
       "alwaysOutputData": true
     },
     {
@@ -1169,10 +1055,7 @@
       "name": "Limit",
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
-      "position": [
-        760,
-        2200
-      ]
+      "position": [760, 2200]
     },
     {
       "parameters": {
@@ -1183,10 +1066,7 @@
       "name": "When chat message received",
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.1,
-      "position": [
-        100,
-        -180
-      ],
+      "position": [100, -180],
       "webhookId": "4f242cfd-cdad-45db-b1a1-74fb2731af3d"
     },
     {
@@ -1204,10 +1084,7 @@
       "name": "OpenAI Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
-      "position": [
-        420,
-        320
-      ],
+      "position": [420, 320],
       "credentials": {
         "openAiApi": {
           "id": "JSPFLNImx8SGH5aT",
@@ -1225,10 +1102,7 @@
       "name": "Postgres Chat Memory",
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.1,
-      "position": [
-        580,
-        320
-      ],
+      "position": [580, 320],
       "credentials": {
         "postgres": {
           "id": "crRfloEHcMXDoU53",
@@ -1251,10 +1125,7 @@
       "name": "Vector Store Tool",
       "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
       "typeVersion": 1,
-      "position": [
-        740,
-        320
-      ]
+      "position": [740, 320]
     },
     {
       "parameters": {
@@ -1271,10 +1142,7 @@
       "name": "OpenAI Chat Model1",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
-      "position": [
-        880,
-        480
-      ],
+      "position": [880, 480],
       "credentials": {
         "openAiApi": {
           "id": "JSPFLNImx8SGH5aT",
@@ -1296,10 +1164,7 @@
       "name": "Embeddings OpenAI",
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.1,
-      "position": [
-        600,
-        620
-      ],
+      "position": [600, 620],
       "credentials": {
         "openAiApi": {
           "id": "JSPFLNImx8SGH5aT",
@@ -1335,10 +1200,7 @@
       "name": "Supabase Vector Store",
       "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
       "typeVersion": 1,
-      "position": [
-        600,
-        480
-      ],
+      "position": [600, 480],
       "credentials": {
         "supabaseApi": {
           "id": "R9pmCSMoPAm6cxGW",
@@ -1356,10 +1218,7 @@
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        0,
-        0
-      ]
+      "position": [0, 0]
     },
     {
       "parameters": {
@@ -1373,10 +1232,7 @@
       "name": "New RAG Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
-      "position": [
-        540,
-        100
-      ]
+      "position": [540, 100]
     },
     {
       "parameters": {
@@ -1542,10 +1398,7 @@
       "name": "Switch2",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3,
-      "position": [
-        1000,
-        1260
-      ]
+      "position": [1000, 1260]
     },
     {
       "parameters": {
@@ -1576,10 +1429,7 @@
       "name": "Set Version",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.7,
-      "position": [
-        980,
-        2200
-      ],
+      "position": [980, 2200],
       "credentials": {
         "openAiApi": {
           "id": "JSPFLNImx8SGH5aT",
@@ -1616,10 +1466,7 @@
       "name": "Insert into Supabase Vectorstore1",
       "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
       "typeVersion": 1,
-      "position": [
-        2180,
-        1060
-      ],
+      "position": [2180, 1060],
       "credentials": {
         "supabaseApi": {
           "id": "R9pmCSMoPAm6cxGW",
@@ -1629,10 +1476,7 @@
     },
     {
       "parameters": {
-        "updates": [
-          "message",
-          "*"
-        ],
+        "updates": ["message", "*"],
         "additionalFields": {},
         "path": "1e84cc48-274b-4bc6-a9de-970ec8b65fff"
       },
@@ -1640,10 +1484,7 @@
       "name": "Telegram Trigger",
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.1,
-      "position": [
-        -160,
-        180
-      ],
+      "position": [-160, 180],
       "webhookId": "1e84cc48-274b-4bc6-a9de-970ec8b65fff",
       "credentials": {
         "telegramApi": {
@@ -1682,10 +1523,7 @@
       "name": "Set 'Text'",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        180,
-        280
-      ]
+      "position": [180, 280]
     },
     {
       "parameters": {
@@ -1701,10 +1539,7 @@
       "name": "Transcribe",
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.6,
-      "position": [
-        260,
-        100
-      ],
+      "position": [260, 100],
       "credentials": {
         "openAiApi": {
           "id": "JSPFLNImx8SGH5aT",
@@ -1773,10 +1608,7 @@
       "name": "Switch1",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
-      "position": [
-        0,
-        180
-      ]
+      "position": [0, 180]
     },
     {
       "parameters": {
@@ -1788,10 +1620,7 @@
       "name": "Download File2",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [
-        140,
-        100
-      ],
+      "position": [140, 100],
       "webhookId": "c07d9726-ac3e-4afa-8b0b-6ef03d2c7512",
       "credentials": {
         "telegramApi": {
@@ -1816,10 +1645,7 @@
       "name": "Response",
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [
-        1040,
-        120
-      ],
+      "position": [1040, 120],
       "webhookId": "8d9ce549-7dea-48e4-8347-db1f5e77bc35",
       "credentials": {
         "telegramApi": {
@@ -1837,10 +1663,7 @@
       "name": "Query Reformulation",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
-      "position": [
-        360,
-        100
-      ]
+      "position": [360, 100]
     },
     {
       "parameters": {
@@ -1851,10 +1674,7 @@
       "name": "Result Aggregator",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
-      "position": [
-        800,
-        100
-      ]
+      "position": [800, 100]
     },
     {
       "parameters": {
@@ -1865,10 +1685,7 @@
       "name": "Response Validator",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
-      "position": [
-        920,
-        100
-      ]
+      "position": [920, 100]
     }
   ],
   "connections": {
@@ -2449,9 +2266,7 @@
       ]
     },
     "Response": {
-      "main": [
-        []
-      ]
+      "main": [[]]
     },
     "New RAG Agent": {
       "main": [

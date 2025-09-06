@@ -17,10 +17,7 @@
       "id": "9d5415ce-494a-4edd-8f75-80e85fc98535",
       "name": "OpenAI Chat Model1",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "position": [
-        1980,
-        2220
-      ],
+      "position": [1980, 2220],
       "typeVersion": 1.2,
       "credentials": {
         "openAiApi": {
@@ -34,10 +31,7 @@
       "typeVersion": 1.1,
       "name": "Start",
       "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "position": [
-        1760,
-        2220
-      ],
+      "position": [1760, 2220],
       "parameters": {
         "inputSource": "passthrough"
       }

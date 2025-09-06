@@ -13,10 +13,7 @@
       "id": "f88dea45-77e7-46cb-9f70-5475961fd4d7",
       "name": "Telegram",
       "type": "n8n-nodes-base.telegram",
-      "position": [
-        1712,
-        272
-      ],
+      "position": [1712, 272],
       "typeVersion": 1.1,
       "webhookId": "616f2628-e544-4ba3-b8a6-90b42794e418",
       "credentials": {
@@ -55,10 +52,7 @@
       "id": "93ad8dcd-bb02-437b-8b3a-7aafcec7e2d9",
       "name": "If",
       "type": "n8n-nodes-base.if",
-      "position": [
-        -720,
-        416
-      ],
+      "position": [-720, 416],
       "typeVersion": 2.2
     },
     {
@@ -70,10 +64,7 @@
       "id": "be5e8c5f-72bf-49e0-8e3f-e72bb56f668e",
       "name": "Speech to Text",
       "type": "@n8n/n8n-nodes-langchain.openAi",
-      "position": [
-        -464,
-        256
-      ],
+      "position": [-464, 256],
       "typeVersion": 1.3,
       "credentials": {
         "openAiApi": {
@@ -97,10 +88,7 @@
       "id": "f77cb51f-7463-4e33-aa38-3a4d220be5c6",
       "name": "Voice or Text",
       "type": "n8n-nodes-base.set",
-      "position": [
-        -912,
-        416
-      ],
+      "position": [-912, 416],
       "typeVersion": 3.2
     },
     {
@@ -112,10 +100,7 @@
       "id": "c0f08509-8fdf-4eb5-9c5d-de3f85eb600a",
       "name": "Get Voice File",
       "type": "n8n-nodes-base.telegram",
-      "position": [
-        -592,
-        256
-      ],
+      "position": [-592, 256],
       "typeVersion": 1.1,
       "webhookId": "6286fc57-6f83-424e-8cfb-43b736e9b42f",
       "credentials": {
@@ -135,10 +120,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
-      "position": [
-        -176,
-        400
-      ],
+      "position": [-176, 400],
       "id": "db17946a-06a9-4a0d-af1a-8930ed72d77c",
       "name": "Personal Assistant ",
       "retryOnFail": true,
@@ -154,10 +136,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.1,
-      "position": [
-        160,
-        560
-      ],
+      "position": [160, 560],
       "id": "519de0b7-bf02-4efe-9a04-a0991c52b3d2",
       "name": "MCP Client",
       "credentials": {
@@ -182,10 +161,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
-      "position": [
-        -304,
-        608
-      ],
+      "position": [-304, 608],
       "id": "a0a11d4a-3ba7-4b48-87c4-6d455abba4af",
       "name": "OpenAI Chat Model1",
       "credentials": {
@@ -204,10 +180,7 @@
       "id": "5cc217b7-762a-45e2-b9d1-c55e03b49c54",
       "name": "Embeddings OpenAI",
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
-      "position": [
-        944,
-        1040
-      ],
+      "position": [944, 1040],
       "typeVersion": 1.2,
       "credentials": {
         "openAiApi": {
@@ -223,10 +196,7 @@
       "id": "590a755b-4e85-4c95-8007-ba3405922db3",
       "name": "Default Data Loader",
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
-      "position": [
-        1056,
-        800
-      ],
+      "position": [1056, 800],
       "typeVersion": 1
     },
     {
@@ -238,10 +208,7 @@
       "id": "3eccc101-176d-49e6-8968-0cc160c074a0",
       "name": "Recursive Character Text Splitter",
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
-      "position": [
-        1088,
-        1184
-      ],
+      "position": [1088, 1184],
       "typeVersion": 1
     },
     {
@@ -253,10 +220,7 @@
       "id": "2185690b-36bf-4ef2-91fa-1cf8d864dabb",
       "name": "Embeddings for Retrieval",
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
-      "position": [
-        -240,
-        944
-      ],
+      "position": [-240, 944],
       "typeVersion": 1.2,
       "credentials": {
         "openAiApi": {
@@ -270,10 +234,7 @@
       "id": "8200a10a-ac6b-4193-96ec-c9d3b4cd860e",
       "name": "Reranker Cohere",
       "type": "@n8n/n8n-nodes-langchain.rerankerCohere",
-      "position": [
-        -48,
-        1168
-      ],
+      "position": [-48, 1168],
       "typeVersion": 1,
       "credentials": {
         "cohereApi": {
@@ -300,10 +261,7 @@
       "id": "4b834f91-4de9-4e34-8160-9d9d532221ae",
       "name": "RAG_MEMORY",
       "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
-      "position": [
-        -128,
-        688
-      ],
+      "position": [-128, 688],
       "typeVersion": 1.2,
       "credentials": {
         "qdrantApi": {
@@ -329,10 +287,7 @@
       "id": "90df4481-cd66-4cb0-90e4-777af798252c",
       "name": "OpenAI Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "position": [
-        368,
-        1280
-      ],
+      "position": [368, 1280],
       "typeVersion": 1.2,
       "credentials": {
         "openAiApi": {
@@ -349,10 +304,7 @@
       "id": "0c00a29a-1972-4a78-9b33-bccace55fc22",
       "name": "Structured Output Parser",
       "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
-      "position": [
-        176,
-        -48
-      ],
+      "position": [176, -48],
       "typeVersion": 1.3
     },
     {
@@ -372,10 +324,7 @@
       "id": "1ffb0690-2a88-4694-b98f-4f16c2f2c373",
       "name": "Format Response",
       "type": "n8n-nodes-base.set",
-      "position": [
-        1232,
-        272
-      ],
+      "position": [1232, 272],
       "executeOnce": true,
       "typeVersion": 3.4
     },
@@ -393,10 +342,7 @@
       "id": "80c0656c-3837-4e62-8e56-9cf925d8b84e",
       "name": "Store Conversation",
       "type": "@n8n/n8n-nodes-langchain.vectorStoreQdrant",
-      "position": [
-        752,
-        512
-      ],
+      "position": [752, 512],
       "typeVersion": 1.2,
       "credentials": {
         "qdrantApi": {
@@ -421,27 +367,18 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        -720,
-        640
-      ],
+      "position": [-720, 640],
       "id": "40f30b2f-f1df-4f93-99b4-91e77194732e",
       "name": "Set field"
     },
     {
       "parameters": {
-        "updates": [
-          "message",
-          "edited_message"
-        ],
+        "updates": ["message", "edited_message"],
         "additionalFields": {}
       },
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.2,
-      "position": [
-        -1088,
-        416
-      ],
+      "position": [-1088, 416],
       "id": "5b141a90-0966-4f5f-9107-1aa0d1199b78",
       "name": "Listen for Incoming Events",
       "webhookId": "2a8fdb22-9aa9-4de2-a90a-e538d14f2587",

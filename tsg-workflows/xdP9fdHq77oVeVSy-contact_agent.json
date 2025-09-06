@@ -13,10 +13,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
-      "position": [
-        -640,
-        300
-      ],
+      "position": [-640, 300],
       "id": "35cb6a99-948d-4554-a939-99ca25cb05a1",
       "name": "OpenAI Chat Model",
       "credentials": {
@@ -47,10 +44,7 @@
       },
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
-      "position": [
-        -460,
-        300
-      ],
+      "position": [-460, 300],
       "id": "1bd8d179-3555-4d44-a9c7-d2fd54b39a1d",
       "name": "Get Contacts",
       "credentials": {
@@ -84,9 +78,7 @@
             "email": "={{ $fromAI(\"emailAddress\") }}",
             "phoneNumber": "={{ $fromAI(\"phoneNumber\") }}"
           },
-          "matchingColumns": [
-            "name"
-          ],
+          "matchingColumns": ["name"],
           "schema": [
             {
               "id": "name",
@@ -129,10 +121,7 @@
       },
       "type": "n8n-nodes-base.airtableTool",
       "typeVersion": 2.1,
-      "position": [
-        -300,
-        300
-      ],
+      "position": [-300, 300],
       "id": "3a8f1c53-2dbc-4633-b131-3c3e96aed10a",
       "name": "Add or Update Contact",
       "credentials": {
@@ -152,10 +141,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
-      "position": [
-        -520,
-        80
-      ],
+      "position": [-520, 80],
       "id": "20881edb-c16e-46c0-b47d-c5a4fa1b4f98",
       "name": "Contact Agent",
       "onError": "continueErrorOutput"
@@ -176,10 +162,7 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        0,
-        0
-      ],
+      "position": [0, 0],
       "id": "a3fa351a-529f-451c-bbf6-162797f0ac98",
       "name": "Response"
     },
@@ -199,10 +182,7 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        0,
-        180
-      ],
+      "position": [0, 180],
       "id": "6bd46c5c-c712-4f97-b89b-a3ab01bac9c3",
       "name": "Try Again"
     },
@@ -212,10 +192,7 @@
       },
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
-      "position": [
-        -740,
-        80
-      ],
+      "position": [-740, 80],
       "id": "f6399418-f45f-413d-8c9f-fbfcba81a360",
       "name": "When Executed by Another Workflow"
     }

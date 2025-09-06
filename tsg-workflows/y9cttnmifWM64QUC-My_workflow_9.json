@@ -10,10 +10,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.3,
-      "position": [
-        -336,
-        48
-      ],
+      "position": [-336, 48],
       "id": "5c6a0096-aeed-49df-b4be-1551e1ca1519",
       "name": "When chat message received",
       "webhookId": "d8838f02-fd6a-481b-9c94-ec07948af82d"
@@ -27,10 +24,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
-      "position": [
-        208,
-        0
-      ],
+      "position": [208, 0],
       "id": "c394ea00-dd4f-4015-b756-e14b3c42e945",
       "name": "AI Agent",
       "retryOnFail": true,
@@ -50,10 +44,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
-      "position": [
-        864,
-        0
-      ],
+      "position": [864, 0],
       "id": "28091213-3cce-4d02-95f7-0468a9e38722",
       "name": "OpenAI Chat Model",
       "credentials": {
@@ -70,10 +61,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
-      "position": [
-        224,
-        208
-      ],
+      "position": [224, 208],
       "id": "e0f02d9c-0640-46e3-9310-9907a2a69a8b",
       "name": "Simple Memory"
     },
@@ -91,10 +79,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
-      "position": [
-        80,
-        208
-      ],
+      "position": [80, 208],
       "id": "2ed9fc90-80c2-4d1e-94e8-a90391ea0211",
       "name": "Anthropic Chat Model",
       "credentials": {
@@ -111,10 +96,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.agentTool",
       "typeVersion": 2.2,
-      "position": [
-        592,
-        208
-      ],
+      "position": [592, 208],
       "id": "df4af9f2-6df5-494a-a54f-eac58eed22ca",
       "name": "AI Agent Tool"
     },
@@ -127,10 +109,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.1,
-      "position": [
-        1024,
-        368
-      ],
+      "position": [1024, 368],
       "id": "a861583e-6790-4e84-8819-c0d9c5483e01",
       "name": "MCP Client",
       "credentials": {
@@ -154,10 +133,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.3,
-      "position": [
-        464,
-        416
-      ],
+      "position": [464, 416],
       "id": "1fa85f21-9ded-46df-9f6d-be7ea2730ec7",
       "name": "Anthropic Chat Model1",
       "credentials": {
@@ -173,10 +149,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
-      "position": [
-        704,
-        432
-      ],
+      "position": [704, 432],
       "id": "912c4f74-689f-484a-9793-17220f84a5ee",
       "name": "Simple Memory1"
     }
@@ -194,9 +167,7 @@
       ]
     },
     "OpenAI Chat Model": {
-      "ai_languageModel": [
-        []
-      ]
+      "ai_languageModel": [[]]
     },
     "Simple Memory": {
       "ai_memory": [
@@ -265,9 +236,7 @@
       ]
     },
     "AI Agent": {
-      "main": [
-        []
-      ]
+      "main": [[]]
     }
   },
   "settings": {

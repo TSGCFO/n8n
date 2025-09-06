@@ -21,10 +21,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        -320,
-        360
-      ],
+      "position": [-320, 360],
       "id": "240f0b0f-c34e-4c9b-a1ff-b82e2a4fd49b",
       "name": "Tavily"
     },
@@ -38,10 +35,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
-      "position": [
-        -440,
-        80
-      ],
+      "position": [-440, 80],
       "id": "fd5dae3b-54b6-442f-b348-b544ef38d9a4",
       "name": "Content Creator Agent",
       "onError": "continueErrorOutput"
@@ -53,10 +47,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.2,
-      "position": [
-        -600,
-        320
-      ],
+      "position": [-600, 320],
       "id": "a20d7371-3a85-46a8-b9a5-42fe0f6bddb3",
       "name": "Anthropic Chat Model",
       "credentials": {
@@ -82,10 +73,7 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        0,
-        0
-      ],
+      "position": [0, 0],
       "id": "a7c40bc8-8b7d-4354-b020-471a47836650",
       "name": "Response"
     },
@@ -105,10 +93,7 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        0,
-        180
-      ],
+      "position": [0, 180],
       "id": "919c9e04-af8f-4a17-b3eb-16b9a526db35",
       "name": "Try Again"
     },
@@ -118,10 +103,7 @@
       },
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
-      "position": [
-        -700,
-        80
-      ],
+      "position": [-700, 80],
       "id": "45e6bc3a-60a5-448f-8df4-bc851be5ce28",
       "name": "When Executed by Another Workflow"
     }

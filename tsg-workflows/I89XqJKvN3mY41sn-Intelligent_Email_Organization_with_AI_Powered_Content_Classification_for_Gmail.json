@@ -8,10 +8,7 @@
       "id": "61d0e78d-34ea-4266-9d0d-16b917e2e934",
       "name": "Loop Over Items",
       "type": "n8n-nodes-base.splitInBatches",
-      "position": [
-        1232,
-        640
-      ],
+      "position": [1232, 640],
       "typeVersion": 3
     },
     {
@@ -19,10 +16,7 @@
       "id": "ceeb33f9-5edd-4760-ae69-de3f8f7c7fe4",
       "name": "Replace Me",
       "type": "n8n-nodes-base.noOp",
-      "position": [
-        3808,
-        608
-      ],
+      "position": [3808, 608],
       "typeVersion": 1
     },
     {
@@ -53,10 +47,7 @@
       "id": "d9ddec50-7a7c-476b-af88-94d06fc3d2ce",
       "name": "If",
       "type": "n8n-nodes-base.if",
-      "position": [
-        1680,
-        608
-      ],
+      "position": [1680, 608],
       "typeVersion": 2.2
     },
     {
@@ -64,10 +55,7 @@
       "id": "6fdbf75a-182d-4793-b4c7-2a3c29127a4c",
       "name": "Merge",
       "type": "n8n-nodes-base.merge",
-      "position": [
-        1888,
-        512
-      ],
+      "position": [1888, 512],
       "typeVersion": 3.1
     },
     {
@@ -82,10 +70,7 @@
       "id": "65925cff-ae6d-4d01-b04f-09081dda5f6f",
       "name": "Gmail - Get All Messages",
       "type": "n8n-nodes-base.gmail",
-      "position": [
-        688,
-        624
-      ],
+      "position": [688, 624],
       "webhookId": "a501a86b-b2df-45ec-b0d9-178765859a0f",
       "typeVersion": 2.1,
       "credentials": {
@@ -105,10 +90,7 @@
       "id": "7c9da3f9-ab0c-4244-a086-04e36a22e5f2",
       "name": "Gmail - Single Message",
       "type": "n8n-nodes-base.gmail",
-      "position": [
-        1472,
-        560
-      ],
+      "position": [1472, 560],
       "webhookId": "ebc7d7c4-aece-4cd4-a46f-dff18891931e",
       "typeVersion": 2.1,
       "credentials": {
@@ -127,10 +109,7 @@
       "id": "47aabef5-1f4e-4fa3-9fd9-f4ab724fc6d9",
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        368,
-        240
-      ],
+      "position": [368, 240],
       "typeVersion": 1
     },
     {
@@ -147,10 +126,7 @@
       "id": "4635a3bf-7da7-45b7-9767-539831407a1e",
       "name": "Schedule Trigger",
       "type": "n8n-nodes-base.scheduleTrigger",
-      "position": [
-        480,
-        624
-      ],
+      "position": [480, 624],
       "typeVersion": 1.2
     },
     {
@@ -188,10 +164,7 @@
       "id": "92f4c2be-42e7-49fe-a43a-66060495af30",
       "name": "Extract Email Data",
       "type": "n8n-nodes-base.set",
-      "position": [
-        2112,
-        512
-      ],
+      "position": [2112, 512],
       "typeVersion": 3.4
     },
     {
@@ -206,10 +179,7 @@
       "id": "82ea2062-8dc8-4087-82e7-c45047e14d41",
       "name": "Categorize Email with AI",
       "type": "@n8n/n8n-nodes-langchain.agent",
-      "position": [
-        2336,
-        400
-      ],
+      "position": [2336, 400],
       "typeVersion": 1.7
     },
     {
@@ -229,10 +199,7 @@
       "id": "bd3e558c-1e2a-4962-bf65-c92edfaad559",
       "name": "Store AI Category",
       "type": "n8n-nodes-base.set",
-      "position": [
-        2720,
-        512
-      ],
+      "position": [2720, 512],
       "typeVersion": 3.4
     },
     {
@@ -243,10 +210,7 @@
       "id": "b7e2e5a9-772b-4f8b-a018-d59924e80fd5",
       "name": "List All Gmail Labels",
       "type": "n8n-nodes-base.gmail",
-      "position": [
-        2928,
-        608
-      ],
+      "position": [2928, 608],
       "webhookId": "5c3cbc0b-9239-4a17-a8ec-bc8819341e47",
       "typeVersion": 2.1,
       "credentials": {
@@ -274,10 +238,7 @@
       "id": "0361804b-a792-4f12-862e-09b6de749128",
       "name": "Check if Label Exists",
       "type": "n8n-nodes-base.compareDatasets",
-      "position": [
-        3152,
-        480
-      ],
+      "position": [3152, 480],
       "typeVersion": 2.3
     },
     {
@@ -289,10 +250,7 @@
       "id": "65203535-4a68-4b7e-836b-93aba10b5314",
       "name": "Apply Label to Email",
       "type": "n8n-nodes-base.gmail",
-      "position": [
-        3600,
-        608
-      ],
+      "position": [3600, 608],
       "webhookId": "4a35699e-da45-48e9-8e12-d22b2dcca62e",
       "typeVersion": 2.1,
       "credentials": {
@@ -312,10 +270,7 @@
       "id": "c693da56-6238-4c21-bdb6-6e3aceffd4a5",
       "name": "Apply New Label",
       "type": "n8n-nodes-base.gmail",
-      "position": [
-        3376,
-        400
-      ],
+      "position": [3376, 400],
       "webhookId": "a6722fdc-15cb-4796-b82d-53cc23060640",
       "typeVersion": 2.1,
       "credentials": {
@@ -334,10 +289,7 @@
       "id": "86a440fa-b761-4b3f-ae7b-b5fb30a11f9d",
       "name": "Create New Label",
       "type": "n8n-nodes-base.gmail",
-      "position": [
-        3600,
-        400
-      ],
+      "position": [3600, 400],
       "webhookId": "9e401ad8-b89c-4015-a3cf-b1000ac51ae1",
       "typeVersion": 2.1,
       "credentials": {
@@ -362,10 +314,7 @@
       "id": "59b0ed3f-7a2c-44f3-8e7c-ebb91ead16d2",
       "name": "OpenAI Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "position": [
-        2416,
-        624
-      ],
+      "position": [2416, 624],
       "typeVersion": 1.2,
       "credentials": {
         "openAiApi": {
@@ -381,10 +330,7 @@
       "id": "ced7a41e-7df9-4c73-ab00-e24677326652",
       "name": "Filter Emails Without Excluded Labels",
       "type": "n8n-nodes-base.code",
-      "position": [
-        912,
-        624
-      ],
+      "position": [912, 624],
       "typeVersion": 2
     }
   ],

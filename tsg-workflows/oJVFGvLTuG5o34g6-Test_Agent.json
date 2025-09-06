@@ -7,10 +7,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.2,
-      "position": [
-        -920,
-        100
-      ],
+      "position": [-920, 100],
       "id": "974de570-6a27-4cd2-9510-466b948c3a3e",
       "name": "Anthropic Chat Model",
       "credentials": {
@@ -30,10 +27,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
-      "position": [
-        -700,
-        -120
-      ],
+      "position": [-700, -120],
       "id": "76ae0a17-c7e0-43ab-be1c-6a207f3db96c",
       "name": "Test Agent",
       "onError": "continueErrorOutput"
@@ -78,10 +72,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        740,
-        880
-      ],
+      "position": [740, 880],
       "id": "312a0c44-069f-425e-aabe-5ba250106e66",
       "name": "UnitTest"
     },
@@ -125,10 +116,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        540,
-        900
-      ],
+      "position": [540, 900],
       "id": "ecec9e3c-ec0b-4d2b-94c4-3a7a1bda1b1c",
       "name": "IntegrationTest"
     },
@@ -172,10 +160,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        320,
-        880
-      ],
+      "position": [320, 880],
       "id": "611c52ac-6313-4c5e-ba97-3733d7c29754",
       "name": "E2ETest"
     },
@@ -219,10 +204,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        160,
-        880
-      ],
+      "position": [160, 880],
       "id": "d672455d-a4db-49c3-8764-2bc8dd8a3aa9",
       "name": "PerformanceTest"
     },
@@ -266,10 +248,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        -60,
-        860
-      ],
+      "position": [-60, 860],
       "id": "4c79dcf5-0775-445a-9774-868c43d083f6",
       "name": "TestRunner"
     },
@@ -313,10 +292,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        -260,
-        820
-      ],
+      "position": [-260, 820],
       "id": "fe07fbe0-f8a0-47a8-9108-2796d86c19d4",
       "name": "TestReport"
     },
@@ -360,10 +336,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        -440,
-        800
-      ],
+      "position": [-440, 800],
       "id": "3bd90223-f540-4b3d-a7d4-78c7960c2e97",
       "name": "TestCoverage"
     },
@@ -383,10 +356,7 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        -180,
-        -200
-      ],
+      "position": [-180, -200],
       "id": "3113fc6d-d27a-493c-97da-7cc4c6b81c83",
       "name": "Response"
     },
@@ -406,10 +376,7 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        -180,
-        -20
-      ],
+      "position": [-180, -20],
       "id": "3568410d-fb3f-4c6d-a0da-235e9f4230d1",
       "name": "Error Handler"
     },
@@ -419,10 +386,7 @@
       },
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
-      "position": [
-        -920,
-        -120
-      ],
+      "position": [-920, -120],
       "id": "c1a6efad-2677-478b-94ce-8a0ce8ee821b",
       "name": "When Executed by Another Workflow"
     }

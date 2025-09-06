@@ -7,10 +7,7 @@
       "name": "When clicking ‘Test workflow’",
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
-      "position": [
-        420,
-        420
-      ]
+      "position": [420, 420]
     },
     {
       "parameters": {
@@ -21,10 +18,7 @@
       "name": "Extract from File",
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
-      "position": [
-        1000,
-        460
-      ]
+      "position": [1000, 460]
     },
     {
       "parameters": {
@@ -35,10 +29,7 @@
       "name": "Create Chunks From Doc",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        1780,
-        540
-      ]
+      "position": [1780, 540]
     },
     {
       "parameters": {
@@ -59,10 +50,7 @@
       "name": "Default Data Loader",
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1,
-      "position": [
-        3520,
-        740
-      ]
+      "position": [3520, 740]
     },
     {
       "parameters": {
@@ -73,10 +61,7 @@
       "name": "Recursive Character Text Splitter",
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
-      "position": [
-        3520,
-        860
-      ]
+      "position": [3520, 860]
     },
     {
       "parameters": {
@@ -86,10 +71,7 @@
       "name": "When chat message received",
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.1,
-      "position": [
-        860,
-        1380
-      ],
+      "position": [860, 1380],
       "webhookId": "436ca65c-46ca-4f8c-86e2-b8633b428eea"
     },
     {
@@ -100,10 +82,7 @@
       "name": "Anthropic Chat Model1",
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.2,
-      "position": [
-        1060,
-        1560
-      ]
+      "position": [1060, 1560]
     },
     {
       "parameters": {},
@@ -111,10 +90,7 @@
       "name": "Window Buffer Memory",
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.2,
-      "position": [
-        1180,
-        1560
-      ]
+      "position": [1180, 1560]
     },
     {
       "parameters": {
@@ -127,10 +103,7 @@
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        1560,
-        280
-      ]
+      "position": [1560, 280]
     },
     {
       "parameters": {
@@ -143,10 +116,7 @@
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        2160,
-        280
-      ]
+      "position": [2160, 280]
     },
     {
       "parameters": {
@@ -159,10 +129,7 @@
       "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        3200,
-        260
-      ]
+      "position": [3200, 260]
     },
     {
       "parameters": {
@@ -175,10 +142,7 @@
       "name": "Sticky Note3",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        720,
-        1080
-      ]
+      "position": [720, 1080]
     },
     {
       "parameters": {},
@@ -186,10 +150,7 @@
       "name": "Execute Workflow Trigger",
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1,
-      "position": [
-        1800,
-        1880
-      ]
+      "position": [1800, 1880]
     },
     {
       "parameters": {
@@ -213,10 +174,7 @@
       "name": "Get Sparse Vector Tool",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1.2,
-      "position": [
-        1480,
-        1680
-      ]
+      "position": [1480, 1680]
     },
     {
       "parameters": {
@@ -236,10 +194,7 @@
       "name": "Query",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        1900,
-        1360
-      ]
+      "position": [1900, 1360]
     },
     {
       "parameters": {
@@ -255,10 +210,7 @@
       "name": "Get Sparse Vector Tool1",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
       "typeVersion": 1.2,
-      "position": [
-        2280,
-        1520
-      ]
+      "position": [2280, 1520]
     },
     {
       "parameters": {
@@ -271,10 +223,7 @@
       "name": "Sticky Note4",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        1720,
-        1060
-      ]
+      "position": [1720, 1060]
     },
     {
       "parameters": {
@@ -285,10 +234,7 @@
       "name": "Anthropic Chat Model2",
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.2,
-      "position": [
-        2440,
-        800
-      ]
+      "position": [2440, 800]
     },
     {
       "parameters": {
@@ -300,10 +246,7 @@
       "name": "Sticky Note5",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        3920,
-        580
-      ]
+      "position": [3920, 580]
     },
     {
       "parameters": {
@@ -316,10 +259,7 @@
       "name": "Chunks To List",
       "type": "n8n-nodes-base.splitOut",
       "typeVersion": 1,
-      "position": [
-        2260,
-        600
-      ]
+      "position": [2260, 600]
     },
     {
       "parameters": {
@@ -331,10 +271,7 @@
       "name": "Generate TF-IDF Sparse Vectors",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        2780,
-        600
-      ]
+      "position": [2780, 600]
     },
     {
       "parameters": {
@@ -372,10 +309,7 @@
       "name": "Get Values",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        2960,
-        600
-      ]
+      "position": [2960, 600]
     },
     {
       "parameters": {
@@ -387,10 +321,7 @@
       "name": "Generate Sparse Vectors",
       "type": "n8n-nodes-base.code",
       "typeVersion": 2,
-      "position": [
-        2200,
-        1880
-      ]
+      "position": [2200, 1880]
     },
     {
       "parameters": {
@@ -402,10 +333,7 @@
       "name": "Sticky Note6",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        280,
-        0
-      ]
+      "position": [280, 0]
     },
     {
       "parameters": {
@@ -415,10 +343,7 @@
       "name": "Embeddings Cohere",
       "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
       "typeVersion": 1,
-      "position": [
-        3380,
-        740
-      ]
+      "position": [3380, 740]
     },
     {
       "parameters": {
@@ -428,10 +353,7 @@
       "name": "Embeddings Cohere1",
       "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
       "typeVersion": 1,
-      "position": [
-        1300,
-        1700
-      ]
+      "position": [1300, 1700]
     },
     {
       "parameters": {
@@ -441,10 +363,7 @@
       "name": "Embeddings Cohere2",
       "type": "@n8n/n8n-nodes-langchain.embeddingsCohere",
       "typeVersion": 1,
-      "position": [
-        2080,
-        1520
-      ]
+      "position": [2080, 1520]
     },
     {
       "parameters": {
@@ -457,10 +376,7 @@
       "name": "Sticky Note8",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        720,
-        160
-      ]
+      "position": [720, 160]
     },
     {
       "parameters": {
@@ -473,10 +389,7 @@
       "name": "Sticky Note9",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        740,
-        960
-      ]
+      "position": [740, 960]
     },
     {
       "parameters": {
@@ -540,10 +453,7 @@
       "name": "Router",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 3.2,
-      "position": [
-        1960,
-        1880
-      ]
+      "position": [1960, 1880]
     },
     {
       "parameters": {
@@ -554,10 +464,7 @@
       "name": "Generate Contextual Text",
       "type": "@n8n/n8n-nodes-langchain.chainLlm",
       "typeVersion": 1.4,
-      "position": [
-        2440,
-        600
-      ]
+      "position": [2440, 600]
     },
     {
       "parameters": {
@@ -567,10 +474,7 @@
       "name": "AI Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.6,
-      "position": [
-        1060,
-        1380
-      ]
+      "position": [1060, 1380]
     },
     {
       "parameters": {
@@ -583,10 +487,7 @@
       "name": "Sticky Note7",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        1740,
-        1780
-      ]
+      "position": [1740, 1780]
     },
     {
       "parameters": {
@@ -597,10 +498,7 @@
       "name": "Get Document",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.2,
-      "position": [
-        820,
-        460
-      ]
+      "position": [820, 460]
     },
     {
       "parameters": {
@@ -611,10 +509,7 @@
       "name": "Anthropic Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.2,
-      "position": [
-        1180,
-        620
-      ]
+      "position": [1180, 620]
     },
     {
       "parameters": {
@@ -634,10 +529,7 @@
       "name": "Get Doc Attributes",
       "type": "@n8n/n8n-nodes-langchain.informationExtractor",
       "typeVersion": 1,
-      "position": [
-        1180,
-        460
-      ]
+      "position": [1180, 460]
     },
     {
       "parameters": {
@@ -650,10 +542,7 @@
       "name": "Sticky Note10",
       "type": "n8n-nodes-base.stickyNote",
       "typeVersion": 1,
-      "position": [
-        720,
-        280
-      ]
+      "position": [720, 280]
     },
     {
       "parameters": {},
@@ -661,10 +550,7 @@
       "name": "Insert Documents with Sparse Vectors",
       "type": "@n8n/n8n-nodes-langchain.code",
       "typeVersion": 1,
-      "position": [
-        3420,
-        560
-      ]
+      "position": [3420, 560]
     },
     {
       "parameters": {},
@@ -672,10 +558,7 @@
       "name": "Qdrant with Cohere ReRank",
       "type": "@n8n/n8n-nodes-langchain.code",
       "typeVersion": 1,
-      "position": [
-        1300,
-        1560
-      ]
+      "position": [1300, 1560]
     },
     {
       "parameters": {},
@@ -683,10 +566,7 @@
       "name": "Qdrant with Cohere ReRank1",
       "type": "@n8n/n8n-nodes-langchain.code",
       "typeVersion": 1,
-      "position": [
-        2080,
-        1360
-      ]
+      "position": [2080, 1360]
     }
   ],
   "connections": {

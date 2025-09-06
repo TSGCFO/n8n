@@ -6,10 +6,7 @@
       "id": "500304a1-5164-4907-b0a7-e514e455e3dc",
       "name": "Result1",
       "type": "n8n-nodes-base.noOp",
-      "position": [
-        2928,
-        1072
-      ],
+      "position": [2928, 1072],
       "notesInFlow": true,
       "typeVersion": 1,
       "notes": "Look Here to see resulting output"
@@ -19,10 +16,7 @@
       "id": "32808ad1-1a35-497f-b1d3-c935a924c541",
       "name": "Result2",
       "type": "n8n-nodes-base.noOp",
-      "position": [
-        2928,
-        1392
-      ],
+      "position": [2928, 1392],
       "notesInFlow": true,
       "typeVersion": 1,
       "notes": "Look here to see resulting output"
@@ -37,10 +31,7 @@
       "id": "f3c9fa5d-a4c7-4cf0-beb5-774d8483974f",
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        2848,
-        1008
-      ],
+      "position": [2848, 1008],
       "typeVersion": 1
     },
     {
@@ -53,10 +44,7 @@
       "id": "0bb96765-60ce-4618-9b39-7cd203a3cb48",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        2848,
-        1280
-      ],
+      "position": [2848, 1280],
       "typeVersion": 1
     },
     {
@@ -68,10 +56,7 @@
       "id": "b71fcc86-b0cd-4241-b0d6-21abe4c6b68d",
       "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        368,
-        240
-      ],
+      "position": [368, 240],
       "typeVersion": 1
     },
     {
@@ -84,10 +69,7 @@
       "id": "53e7d23a-2a4f-4ada-aeb5-de128acf8625",
       "name": "Split Array of Strings into Array of Objects",
       "type": "n8n-nodes-base.splitOut",
-      "position": [
-        2032,
-        1728
-      ],
+      "position": [2032, 1728],
       "typeVersion": 1
     },
     {
@@ -100,10 +82,7 @@
       "id": "4910fec6-d600-43be-97b2-5050039db416",
       "name": "Sticky Note3",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        2848,
-        2048
-      ],
+      "position": [2848, 2048],
       "typeVersion": 1
     },
     {
@@ -116,10 +95,7 @@
       "id": "f0e68b30-5341-4672-8d8e-7a24d894eb03",
       "name": "Sticky Note4",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        2848,
-        1760
-      ],
+      "position": [2848, 1760],
       "typeVersion": 1
     },
     {
@@ -127,10 +103,7 @@
       "id": "70a987b9-6a4a-49c3-a87c-0dd9cc1879ed",
       "name": "Result3",
       "type": "n8n-nodes-base.noOp",
-      "position": [
-        2960,
-        1840
-      ],
+      "position": [2960, 1840],
       "notesInFlow": true,
       "typeVersion": 1,
       "notes": "Look here to see resulting output"
@@ -140,10 +113,7 @@
       "id": "9de5fac9-e987-4fb1-8f7f-b59af2985e5c",
       "name": "Result4",
       "type": "n8n-nodes-base.noOp",
-      "position": [
-        2960,
-        2128
-      ],
+      "position": [2960, 2128],
       "notesInFlow": true,
       "typeVersion": 1,
       "notes": "Look here to see resulting output"
@@ -158,10 +128,7 @@
       "id": "d5fee847-7758-44ac-a270-6334dd81bb97",
       "name": "Sticky Note5",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        2848,
-        704
-      ],
+      "position": [2848, 704],
       "typeVersion": 1
     },
     {
@@ -169,10 +136,7 @@
       "id": "9a134620-4067-4c7a-8b0f-30e19c93a66c",
       "name": "Result5",
       "type": "n8n-nodes-base.noOp",
-      "position": [
-        2928,
-        800
-      ],
+      "position": [2928, 800],
       "notesInFlow": true,
       "typeVersion": 1,
       "notes": "Look here to see resulting output"
@@ -182,10 +146,7 @@
       "id": "c273cd55-708d-4f86-81f2-3bbe991f59f8",
       "name": "Paste JSON into this node",
       "type": "n8n-nodes-base.manualTrigger",
-      "position": [
-        1648,
-        800
-      ],
+      "position": [1648, 800],
       "typeVersion": 1
     },
     {
@@ -195,10 +156,7 @@
       "id": "8f64b987-05c5-43a9-89c0-201499df0aa6",
       "name": "Add param1 to output5",
       "type": "n8n-nodes-base.code",
-      "position": [
-        2368,
-        800
-      ],
+      "position": [2368, 800],
       "typeVersion": 2,
       "alwaysOutputData": true
     },
@@ -210,10 +168,7 @@
       "id": "4920b4e4-b511-4059-b38a-623d14b6df25",
       "name": "Add param1 to output1",
       "type": "n8n-nodes-base.code",
-      "position": [
-        2560,
-        1168
-      ],
+      "position": [2560, 1168],
       "typeVersion": 2,
       "alwaysOutputData": true
     },
@@ -224,10 +179,7 @@
       "id": "28ce5239-6437-4b7a-9395-3beb162fded6",
       "name": "Loop over Items 2",
       "type": "n8n-nodes-base.splitInBatches",
-      "position": [
-        2368,
-        1408
-      ],
+      "position": [2368, 1408],
       "typeVersion": 3
     },
     {
@@ -239,10 +191,7 @@
       "id": "628edc5e-1b7f-4f50-9c29-8990bd4a5cc0",
       "name": "Loop over Items 1",
       "type": "n8n-nodes-base.splitInBatches",
-      "position": [
-        2368,
-        1088
-      ],
+      "position": [2368, 1088],
       "typeVersion": 3
     },
     {
@@ -253,10 +202,7 @@
       "id": "ffccda97-066d-4c13-b4eb-a13ff849b90a",
       "name": "Add param1 to output2",
       "type": "n8n-nodes-base.code",
-      "position": [
-        2736,
-        1568
-      ],
+      "position": [2736, 1568],
       "typeVersion": 2,
       "alwaysOutputData": true
     },
@@ -268,10 +214,7 @@
       "id": "6fb44840-6365-46db-9c50-eecd420f274f",
       "name": "Add param1 to output3",
       "type": "n8n-nodes-base.code",
-      "position": [
-        2368,
-        1840
-      ],
+      "position": [2368, 1840],
       "typeVersion": 2,
       "alwaysOutputData": true
     },
@@ -282,10 +225,7 @@
       "id": "51b8d766-25ed-407f-a956-693b93bda95f",
       "name": "Add param1 to output4",
       "type": "n8n-nodes-base.code",
-      "position": [
-        2368,
-        2128
-      ],
+      "position": [2368, 2128],
       "typeVersion": 2,
       "alwaysOutputData": true
     },
@@ -296,24 +236,17 @@
       "id": "f8edde34-cf47-42e2-bbd3-552df2509451",
       "name": "Wait one second(just for show)",
       "type": "n8n-nodes-base.wait",
-      "position": [
-        2528,
-        1520
-      ],
+      "position": [2528, 1520],
       "webhookId": "61aef80b-4e9d-43ae-a083-cd87b4fdec11",
       "typeVersion": 1.1
     }
   ],
   "connections": {
     "Result1": {
-      "main": [
-        []
-      ]
+      "main": [[]]
     },
     "Result2": {
-      "main": [
-        []
-      ]
+      "main": [[]]
     },
     "Loop over Items 1": {
       "main": [

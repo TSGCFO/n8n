@@ -5,10 +5,7 @@
       "parameters": {},
       "type": "n8n-nodes-base.manualTrigger",
       "typeVersion": 1,
-      "position": [
-        0,
-        0
-      ],
+      "position": [0, 0],
       "id": "64f540ec-d4b7-4787-af6d-dbdfd60c00b1",
       "name": "When clicking ‘Test workflow’"
     },
@@ -18,10 +15,7 @@
       },
       "type": "n8n-nodes-base.aiTransform",
       "typeVersion": 1,
-      "position": [
-        220,
-        0
-      ],
+      "position": [220, 0],
       "id": "fe3eef25-4468-48f6-ad01-980dc1a2cff7",
       "name": "AI Transform"
     }

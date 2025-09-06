@@ -20,10 +20,7 @@
       "name": "WhatsApp Webhook",
       "type": "n8n-nodes-base.webhook",
       "typeVersion": 1,
-      "position": [
-        -160,
-        160
-      ],
+      "position": [-160, 160],
       "webhookId": "d2f18b40-1da8-4bb2-9c9a-971d2d048381"
     },
     {
@@ -48,10 +45,7 @@
       "name": "Message Type",
       "type": "n8n-nodes-base.switch",
       "typeVersion": 1,
-      "position": [
-        40,
-        160
-      ]
+      "position": [40, 160]
     },
     {
       "parameters": {
@@ -61,10 +55,7 @@
       "name": "Process Text Message",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
-      "position": [
-        240,
-        60
-      ]
+      "position": [240, 60]
     },
     {
       "parameters": {
@@ -74,10 +65,7 @@
       "name": "Process Audio Message",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
-      "position": [
-        240,
-        160
-      ]
+      "position": [240, 160]
     },
     {
       "parameters": {
@@ -87,10 +75,7 @@
       "name": "Handle Unrecognized Format",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
-      "position": [
-        240,
-        260
-      ]
+      "position": [240, 260]
     },
     {
       "parameters": {
@@ -102,10 +87,7 @@
       "name": "Download Audio File",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
-      "position": [
-        440,
-        160
-      ]
+      "position": [440, 160]
     },
     {
       "parameters": {
@@ -115,10 +97,7 @@
       "name": "Prepare Audio Data",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
-      "position": [
-        640,
-        160
-      ]
+      "position": [640, 160]
     },
     {
       "parameters": {
@@ -144,10 +123,7 @@
       "name": "Speech to Text",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
-      "position": [
-        840,
-        160
-      ]
+      "position": [840, 160]
     },
     {
       "parameters": {
@@ -157,10 +133,7 @@
       "name": "Process Transcription",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
-      "position": [
-        1040,
-        160
-      ]
+      "position": [1040, 160]
     },
     {
       "parameters": {
@@ -172,10 +145,7 @@
       "name": "Store Transaction",
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1,
-      "position": [
-        1240,
-        120
-      ]
+      "position": [1240, 120]
     },
     {
       "parameters": {
@@ -205,10 +175,7 @@
       "name": "Store User Context",
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1,
-      "position": [
-        1440,
-        120
-      ]
+      "position": [1440, 120]
     },
     {
       "parameters": {
@@ -230,10 +197,7 @@
       "name": "Get User Transactions",
       "type": "n8n-nodes-base.mongoDb",
       "typeVersion": 1,
-      "position": [
-        1640,
-        120
-      ]
+      "position": [1640, 120]
     },
     {
       "parameters": {
@@ -243,10 +207,7 @@
       "name": "Generate Response",
       "type": "n8n-nodes-base.function",
       "typeVersion": 1,
-      "position": [
-        1840,
-        120
-      ]
+      "position": [1840, 120]
     },
     {
       "parameters": {
@@ -280,10 +241,7 @@
       "name": "Send WhatsApp Response",
       "type": "n8n-nodes-base.httpRequest",
       "typeVersion": 4.1,
-      "position": [
-        2040,
-        120
-      ]
+      "position": [2040, 120]
     },
     {
       "parameters": {
@@ -295,10 +253,7 @@
       "name": "Webhook Response",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1,
-      "position": [
-        2240,
-        120
-      ]
+      "position": [2240, 120]
     }
   ],
   "connections": {

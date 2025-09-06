@@ -7,10 +7,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.lmChatAnthropic",
       "typeVersion": 1.2,
-      "position": [
-        -1000,
-        140
-      ],
+      "position": [-1000, 140],
       "id": "3f923aab-3a7a-478b-ae9d-8050ddbeb1ad",
       "name": "Anthropic Chat Model",
       "credentials": {
@@ -30,10 +27,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
-      "position": [
-        -880,
-        -80
-      ],
+      "position": [-880, -80],
       "id": "580c55a7-2b54-4d78-92f6-41f33b676ead",
       "name": "Dependency Agent",
       "onError": "continueErrorOutput"
@@ -78,10 +72,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        200,
-        760
-      ],
+      "position": [200, 760],
       "id": "47e69019-a183-45fa-a261-abeeaf3af65e",
       "name": "Install"
     },
@@ -125,10 +116,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        -40,
-        740
-      ],
+      "position": [-40, 740],
       "id": "ac2233c4-4be0-4ed2-9eee-211d544503d5",
       "name": "Update"
     },
@@ -172,10 +160,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        -260,
-        760
-      ],
+      "position": [-260, 760],
       "id": "f7190dcb-ebd5-461c-9581-a88e0f0449c3",
       "name": "Audit"
     },
@@ -219,10 +204,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        -440,
-        780
-      ],
+      "position": [-440, 780],
       "id": "f8246edf-caeb-412a-a1fa-14445f576c54",
       "name": "License"
     },
@@ -266,10 +248,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        -820,
-        800
-      ],
+      "position": [-820, 800],
       "id": "7c09e626-3c6a-40a0-a896-520496d02e1b",
       "name": "Analyze"
     },
@@ -313,10 +292,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        -1040,
-        820
-      ],
+      "position": [-1040, 820],
       "id": "23afb06b-45a7-4296-96c8-60fbf516e9a4",
       "name": "Optimize"
     },
@@ -360,10 +336,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
       "typeVersion": 1.1,
-      "position": [
-        -620,
-        780
-      ],
+      "position": [-620, 780],
       "id": "82774be7-c907-4706-a895-6e2829a3d31d",
       "name": "Impact"
     },
@@ -383,10 +356,7 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        -360,
-        -160
-      ],
+      "position": [-360, -160],
       "id": "5d84bbe5-c07a-4d92-9612-ab5a52aca892",
       "name": "Response"
     },
@@ -406,10 +376,7 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        -360,
-        20
-      ],
+      "position": [-360, 20],
       "id": "e83e30ce-3776-439a-a19c-faeb66530f37",
       "name": "Error Handler"
     },
@@ -419,10 +386,7 @@
       },
       "type": "n8n-nodes-base.executeWorkflowTrigger",
       "typeVersion": 1.1,
-      "position": [
-        -1100,
-        -80
-      ],
+      "position": [-1100, -80],
       "id": "5a90a6dc-8cfd-4c3f-9ddf-c590a9d8651c",
       "name": "When Executed by Another Workflow"
     }

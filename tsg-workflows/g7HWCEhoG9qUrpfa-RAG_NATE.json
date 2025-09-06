@@ -9,10 +9,7 @@
       "name": "When chat message received",
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "typeVersion": 1.1,
-      "position": [
-        0,
-        0
-      ],
+      "position": [0, 0],
       "webhookId": "f61e1b9f-0f81-46b8-828e-668bfeeeb3eb"
     },
     {
@@ -24,10 +21,7 @@
       "name": "OpenAI Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
-      "position": [
-        20,
-        180
-      ],
+      "position": [20, 180],
       "credentials": {
         "openAiApi": {
           "id": "JSPFLNImx8SGH5aT",
@@ -43,10 +37,7 @@
       "name": "Postgres Chat Memory",
       "type": "@n8n/n8n-nodes-langchain.memoryPostgresChat",
       "typeVersion": 1.1,
-      "position": [
-        140,
-        180
-      ],
+      "position": [140, 180],
       "credentials": {
         "postgres": {
           "id": "crRfloEHcMXDoU53",
@@ -63,10 +54,7 @@
       "name": "OpenAI Chat Model1",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1,
-      "position": [
-        500,
-        320
-      ],
+      "position": [500, 320],
       "credentials": {
         "openAiApi": {
           "id": "JSPFLNImx8SGH5aT",
@@ -90,10 +78,7 @@
       "name": "Supabase Vector Store",
       "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
       "typeVersion": 1,
-      "position": [
-        240,
-        320
-      ],
+      "position": [240, 320],
       "credentials": {
         "supabaseApi": {
           "id": "R9pmCSMoPAm6cxGW",
@@ -109,10 +94,7 @@
       "name": "Embeddings OpenAI",
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.1,
-      "position": [
-        120,
-        340
-      ],
+      "position": [120, 340],
       "credentials": {
         "openAiApi": {
           "id": "JSPFLNImx8SGH5aT",
@@ -130,10 +112,7 @@
       "name": "Vector Store Tool",
       "type": "@n8n/n8n-nodes-langchain.toolVectorStore",
       "typeVersion": 1,
-      "position": [
-        280,
-        180
-      ]
+      "position": [280, 180]
     },
     {
       "parameters": {
@@ -145,10 +124,7 @@
       "name": "RAG Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 1.7,
-      "position": [
-        180,
-        0
-      ]
+      "position": [180, 0]
     },
     {
       "parameters": {
@@ -168,10 +144,7 @@
       "name": "Set ID",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        740,
-        -900
-      ]
+      "position": [740, -900]
     },
     {
       "parameters": {
@@ -182,10 +155,7 @@
       "name": "Extract from File",
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
-      "position": [
-        1200,
-        -900
-      ]
+      "position": [1200, -900]
     },
     {
       "parameters": {
@@ -204,10 +174,7 @@
       "name": "Default Data Loader",
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1,
-      "position": [
-        1440,
-        -740
-      ]
+      "position": [1440, -740]
     },
     {
       "parameters": {
@@ -218,10 +185,7 @@
       "name": "Recursive Character Text Splitter",
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
-      "position": [
-        1700,
-        -740
-      ]
+      "position": [1700, -740]
     },
     {
       "parameters": {
@@ -247,10 +211,7 @@
       "name": "File Updated",
       "type": "n8n-nodes-base.googleDriveTrigger",
       "typeVersion": 1,
-      "position": [
-        420,
-        -560
-      ],
+      "position": [420, -560],
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "yO30tw4ZXvRYlhaV",
@@ -282,10 +243,7 @@
       "name": "New File",
       "type": "n8n-nodes-base.googleDriveTrigger",
       "typeVersion": 1,
-      "position": [
-        520,
-        -920
-      ],
+      "position": [520, -920],
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "yO30tw4ZXvRYlhaV",
@@ -313,10 +271,7 @@
       "name": "Downloading File",
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
-      "position": [
-        960,
-        -900
-      ],
+      "position": [960, -900],
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "yO30tw4ZXvRYlhaV",
@@ -344,10 +299,7 @@
       "name": "Download File 2",
       "type": "n8n-nodes-base.googleDrive",
       "typeVersion": 3,
-      "position": [
-        1100,
-        -560
-      ],
+      "position": [1100, -560],
       "credentials": {
         "googleDriveOAuth2Api": {
           "id": "yO30tw4ZXvRYlhaV",
@@ -364,10 +316,7 @@
       "name": "Extract from File1",
       "type": "n8n-nodes-base.extractFromFile",
       "typeVersion": 1,
-      "position": [
-        1280,
-        -560
-      ]
+      "position": [1280, -560]
     },
     {
       "parameters": {
@@ -386,10 +335,7 @@
       "name": "Default Data Loader1",
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1,
-      "position": [
-        1640,
-        -320
-      ]
+      "position": [1640, -320]
     },
     {
       "parameters": {
@@ -400,10 +346,7 @@
       "name": "Recursive Character Text Splitter1",
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
-      "position": [
-        1600,
-        -220
-      ]
+      "position": [1600, -220]
     },
     {
       "parameters": {
@@ -423,10 +366,7 @@
       "name": "Set ID 2",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        760,
-        -560
-      ]
+      "position": [760, -560]
     },
     {
       "parameters": {
@@ -439,10 +379,7 @@
       "name": "Delete Row(s)",
       "type": "n8n-nodes-base.supabase",
       "typeVersion": 1,
-      "position": [
-        580,
-        -560
-      ],
+      "position": [580, -560],
       "credentials": {
         "supabaseApi": {
           "id": "R9pmCSMoPAm6cxGW",
@@ -456,10 +393,7 @@
       "name": "Keep First ID",
       "type": "n8n-nodes-base.limit",
       "typeVersion": 1,
-      "position": [
-        940,
-        -560
-      ]
+      "position": [940, -560]
     },
     {
       "parameters": {
@@ -478,10 +412,7 @@
       "name": "Supabase Vector Store2",
       "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
       "typeVersion": 1,
-      "position": [
-        1380,
-        -900
-      ],
+      "position": [1380, -900],
       "credentials": {
         "supabaseApi": {
           "id": "R9pmCSMoPAm6cxGW",
@@ -498,10 +429,7 @@
       "name": "Embeddings OpenAI2",
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.1,
-      "position": [
-        1320,
-        -740
-      ],
+      "position": [1320, -740],
       "credentials": {
         "openAiApi": {
           "id": "JSPFLNImx8SGH5aT",
@@ -526,10 +454,7 @@
       "name": "Default Data Loader2",
       "type": "@n8n/n8n-nodes-langchain.documentDefaultDataLoader",
       "typeVersion": 1,
-      "position": [
-        2040,
-        -640
-      ]
+      "position": [2040, -640]
     },
     {
       "parameters": {
@@ -540,10 +465,7 @@
       "name": "Recursive Character Text Splitter2",
       "type": "@n8n/n8n-nodes-langchain.textSplitterRecursiveCharacterTextSplitter",
       "typeVersion": 1,
-      "position": [
-        2100,
-        -560
-      ]
+      "position": [2100, -560]
     },
     {
       "parameters": {
@@ -562,10 +484,7 @@
       "name": "Supabase Vector Store3",
       "type": "@n8n/n8n-nodes-langchain.vectorStoreSupabase",
       "typeVersion": 1,
-      "position": [
-        1500,
-        -560
-      ],
+      "position": [1500, -560],
       "credentials": {
         "supabaseApi": {
           "id": "R9pmCSMoPAm6cxGW",
@@ -582,10 +501,7 @@
       "name": "Embeddings OpenAI3",
       "type": "@n8n/n8n-nodes-langchain.embeddingsOpenAi",
       "typeVersion": 1.1,
-      "position": [
-        1440,
-        -320
-      ],
+      "position": [1440, -320],
       "credentials": {
         "openAiApi": {
           "id": "JSPFLNImx8SGH5aT",
@@ -838,9 +754,7 @@
       ]
     },
     "Default Data Loader2": {
-      "ai_document": [
-        []
-      ]
+      "ai_document": [[]]
     },
     "Recursive Character Text Splitter2": {
       "ai_textSplitter": [

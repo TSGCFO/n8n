@@ -3,9 +3,7 @@
   "nodes": [
     {
       "parameters": {
-        "updates": [
-          "message"
-        ],
+        "updates": ["message"],
         "additionalFields": {
           "download": false,
           "userIds": "YOUR_USER_ID"
@@ -15,10 +13,7 @@
       "name": "Telegram Message Trigger",
       "type": "n8n-nodes-base.telegramTrigger",
       "typeVersion": 1.2,
-      "position": [
-        -192,
-        0
-      ],
+      "position": [-192, 0],
       "webhookId": "55acc711-c248-4ac9-b6cd-e295c2d33f4b"
     },
     {
@@ -31,10 +26,7 @@
       "name": "Memory",
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
       "typeVersion": 1.3,
-      "position": [
-        752,
-        288
-      ]
+      "position": [752, 288]
     },
     {
       "parameters": {
@@ -44,10 +36,7 @@
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [
-        1056,
-        0
-      ],
+      "position": [1056, 0],
       "id": "7dea5c17-bfdb-4874-918b-a6583298efa2",
       "name": "Reply in Telegram",
       "webhookId": "b96b7a41-9806-455f-b72e-00aa638eda71"
@@ -60,10 +49,7 @@
       },
       "type": "n8n-nodes-base.telegram",
       "typeVersion": 1.2,
-      "position": [
-        256,
-        -96
-      ],
+      "position": [256, -96],
       "id": "66219c83-6371-4cc6-ad43-57cee44f52da",
       "name": "Get a file",
       "webhookId": "e0769871-efe3-49da-81a5-2f88a6fdd33f"
@@ -95,10 +81,7 @@
       },
       "type": "n8n-nodes-base.if",
       "typeVersion": 2.2,
-      "position": [
-        32,
-        0
-      ],
+      "position": [32, 0],
       "id": "3a1a7f7f-f122-438d-a0f2-1e80d1072dba",
       "name": "Check if Audio file"
     },
@@ -110,10 +93,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.openAi",
       "typeVersion": 1.8,
-      "position": [
-        480,
-        -96
-      ],
+      "position": [480, -96],
       "id": "6f314aef-7ff1-4211-8656-e2c1f8fea374",
       "name": "Transcribe audio"
     },
@@ -133,10 +113,7 @@
       },
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [
-        480,
-        196
-      ],
+      "position": [480, 196],
       "id": "2e9b0ca3-2a0f-441d-89a0-28365c5ba3ef",
       "name": "Set field"
     },
@@ -155,10 +132,7 @@
       },
       "type": "n8n-nodes-base.googleCalendarTool",
       "typeVersion": 1.3,
-      "position": [
-        928,
-        288
-      ],
+      "position": [928, 288],
       "id": "a533f343-5bf8-48d7-bc35-b12072e32602",
       "name": "Get events"
     },
@@ -176,10 +150,7 @@
       "name": "Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
       "typeVersion": 1.2,
-      "position": [
-        624,
-        288
-      ],
+      "position": [624, 288],
       "credentials": {
         "openAiApi": {
           "id": "JSPFLNImx8SGH5aT",
@@ -195,10 +166,7 @@
         "color": 5
       },
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -576,
-        -80
-      ],
+      "position": [-576, -80],
       "typeVersion": 1,
       "id": "a4a8f73c-f663-4ee6-b60e-d60722145726",
       "name": "Sticky Note"
@@ -215,10 +183,7 @@
       "name": "Assistant Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
       "typeVersion": 2.2,
-      "position": [
-        704,
-        0
-      ]
+      "position": [704, 0]
     },
     {
       "parameters": {
@@ -227,10 +192,7 @@
       },
       "type": "@n8n/n8n-nodes-langchain.mcpClientTool",
       "typeVersion": 1.1,
-      "position": [
-        848,
-        96
-      ],
+      "position": [848, 96],
       "id": "3ca34931-aba7-47ba-8e8a-b1f5f13c3ee9",
       "name": "MCP Client"
     }

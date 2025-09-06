@@ -5,10 +5,7 @@
       "id": "22c8d63b-ce3c-4aab-b3f6-4bae8c1b9ec5",
       "name": "Window Buffer Memory",
       "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
-      "position": [
-        1220,
-        520
-      ],
+      "position": [1220, 520],
       "parameters": {
         "sessionKey": "={{ $json.sessionId }}",
         "sessionIdType": "customKey",
@@ -20,10 +17,7 @@
       "id": "45403d5c-6e85-424f-b40b-c6214b57457b",
       "name": "Respond to Webhook",
       "type": "n8n-nodes-base.respondToWebhook",
-      "position": [
-        1640,
-        220
-      ],
+      "position": [1640, 220],
       "parameters": {
         "options": {}
       },
@@ -33,10 +27,7 @@
       "id": "1111262a-1743-4bae-abf1-f69d2e1a580c",
       "name": "OpenAI Chat Model",
       "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
-      "position": [
-        1120,
-        400
-      ],
+      "position": [1120, 400],
       "parameters": {
         "model": "gpt-4o-2024-08-06",
         "options": {
@@ -55,10 +46,7 @@
       "id": "df891547-c715-4dc6-bfcc-c0ac5cfcaf02",
       "name": "Make Appointment",
       "type": "@n8n/n8n-nodes-langchain.toolHttpRequest",
-      "position": [
-        1580,
-        480
-      ],
+      "position": [1580, 480],
       "parameters": {
         "url": "https://graph.microsoft.com/v1.0/me/events",
         "method": "POST",
@@ -120,10 +108,7 @@
       "id": "44141c44-de49-4707-b287-24007c84ca21",
       "name": "Execute Workflow Trigger",
       "type": "n8n-nodes-base.executeWorkflowTrigger",
-      "position": [
-        1920,
-        220
-      ],
+      "position": [1920, 220],
       "parameters": {},
       "typeVersion": 1
     },
@@ -131,10 +116,7 @@
       "id": "795e1451-57d8-4563-8b86-5a75df2427b6",
       "name": "varResponse",
       "type": "n8n-nodes-base.set",
-      "position": [
-        2880,
-        100
-      ],
+      "position": [2880, 100],
       "parameters": {
         "options": {},
         "assignments": {
@@ -154,10 +136,7 @@
       "id": "4283635f-649c-4cc7-84b9-37524ddb6ce0",
       "name": "freeTimeSlots",
       "type": "n8n-nodes-base.code",
-      "position": [
-        2660,
-        100
-      ],
+      "position": [2660, 100],
       "parameters": {
         "jsCode": "// Input: An array with objects containing a 'value' array of events.\nconst businessHoursStart = \"08:00:00Z\";  // Business hours start time\nconst businessHoursEnd = \"17:30:00Z\";    // Business hours end time\n\nconst inputData = items[0].json.value;  // Assuming the input data is in the 'value' array of the first item\n\n// Function to convert ISO datetime string to a Date object with specified time\nfunction getDateWithTime(dateString, time) {\n  const datePart = new Date(dateString).toISOString().split(\"T\")[0];  // Extract the date part (YYYY-MM-DD)\n  return new Date(`${datePart}T${time}`);\n}\n\n// Function to get day of the week from a date string\nfunction getDayOfWeek(dateString) {\n  const daysOfWeek = [\"Sunday\", \"Monday\", \"Tuesday\", \"Wednesday\", \"Thursday\", \"Friday\", \"Saturday\"];\n  return daysOfWeek[new Date(dateString).getUTCDay()];\n}\n\n// Function to add days to a date\nfunction addDays(date, days) {\n  const result = new Date(date);\n  result.setDate(result.getDate() + days);\n  return result;\n}\n\n// Function to format date as YYYY-MM-DD\nfunction formatDate(date) {\n  return date.toISOString().split('T')[0];\n}\n\n// Determine the default timezone from input data\nconst defaultTimeZone = inputData.length > 0 && inputData[0].start && inputData[0].start.timeZone \n  ? inputData[0].start.timeZone \n  : \"UTC\";\n\n// Find min and max dates in the input\nlet minDate = null;\nlet maxDate = null;\n\ninputData.forEach(event => {\n  if (event.start && event.start.dateTime) {\n    const eventDate = new Date(event.start.dateTime);\n    if (!minDate || eventDate < minDate) {\n      minDate = eventDate;\n    }\n    if (!maxDate || eventDate > maxDate) {\n      maxDate = eventDate;\n    }\n  }\n});\n\n// If we have valid dates, ensure they're at the start of the day\nif (minDate && maxDate) {\n  minDate = new Date(minDate.toISOString().split('T')[0]);\n  maxDate = new Date(maxDate.toISOString().split('T')[0]);\n}\n\n// Organise events by date\nconst eventsByDate = {};\ninputData.forEach(event => {\n  if (event.start && event.start.dateTime) {\n    const eventDate = new Date(event.start.dateTime).toISOString().split(\"T\")[0];  // Extract the date\n    if (!eventsByDate[eventDate]) {\n      eventsByDate[eventDate] = [];\n    }\n    if (event.showAs === \"busy\") {\n      eventsByDate[eventDate].push({\n        start: new Date(event.start.dateTime),\n        end: new Date(event.end.dateTime),\n        timeZone: event.start.timeZone || defaultTimeZone\n      });\n    }\n  }\n});\n\n// Find free slots within business hours for each date\nconst freeTimeSlots = [];\n\n// Process all dates in the range\nif (minDate && maxDate) {\n  for (let currentDate = new Date(minDate); currentDate <= maxDate; currentDate = addDays(currentDate, 1)) {\n    const dateStr = formatDate(currentDate);\n    const busyEvents = eventsByDate[dateStr] || [];\n    \n    // Define business start and end times for the current date\n    const businessStart = getDateWithTime(dateStr, businessHoursStart);\n    const businessEnd = getDateWithTime(dateStr, businessHoursEnd);\n    \n    // If there are no busy events for this date, add the entire business day as free\n    if (busyEvents.length === 0) {\n      freeTimeSlots.push({\n        date: dateStr,\n        dayOfWeek: getDayOfWeek(dateStr),\n        freeStart: businessStart.toISOString(),\n        freeEnd: businessEnd.toISOString(),\n        timeZone: defaultTimeZone\n      });\n      continue; // Skip to the next date\n    }\n    \n    // Sort events by their start time\n    busyEvents.sort((a, b) => a.start - b.start);\n    \n    // Check if there's free time before the first busy event\n    if (busyEvents[0].start > businessStart) {\n      freeTimeSlots.push({\n        date: dateStr,\n        dayOfWeek: getDayOfWeek(dateStr),\n        freeStart: businessStart.toISOString(),\n        freeEnd: busyEvents[0].start.toISOString(),\n        timeZone: busyEvents[0].timeZone\n      });\n    }\n    \n    // Check for gaps between busy events\n    for (let i = 0; i < busyEvents.length - 1; i++) {\n      if (busyEvents[i].end < busyEvents[i+1].start) {\n        freeTimeSlots.push({\n          date: dateStr,\n          dayOfWeek: getDayOfWeek(dateStr),\n          freeStart: busyEvents[i].end.toISOString(),\n          freeEnd: busyEvents[i+1].start.toISOString(),\n          timeZone: busyEvents[i].timeZone\n        });\n      }\n    }\n    \n    // Check if there's free time after the last busy event\n    if (busyEvents[busyEvents.length - 1].end < businessEnd) {\n      freeTimeSlots.push({\n        date: dateStr,\n        dayOfWeek: getDayOfWeek(dateStr),\n        freeStart: busyEvents[busyEvents.length - 1].end.toISOString(),\n        freeEnd: businessEnd.toISOString(),\n        timeZone: busyEvents[busyEvents.length - 1].timeZone\n      });\n    }\n  }\n}\n\n// Output the free time slots\nreturn [{ json: { freeTimeSlots } }];\n"
       },
@@ -167,10 +146,7 @@
       "id": "0786b561-449e-4c8f-bddb-c2bbd95dc197",
       "name": "Get Events",
       "type": "n8n-nodes-base.httpRequest",
-      "position": [
-        2440,
-        100
-      ],
+      "position": [2440, 100],
       "parameters": {
         "url": "=https://graph.microsoft.com/v1.0/me/calendarView",
         "options": {},
@@ -223,10 +199,7 @@
       "id": "55c4233e-d395-4193-9a1d-1884faed6f1e",
       "name": "Get Availability",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "position": [
-        1520,
-        720
-      ],
+      "position": [1520, 720],
       "parameters": {
         "name": "Get_availability",
         "fields": {
@@ -251,10 +224,7 @@
       "id": "096d1962-31e6-4b3b-ba75-7956f70a6a32",
       "name": "Send Message",
       "type": "@n8n/n8n-nodes-langchain.toolWorkflow",
-      "position": [
-        1380,
-        720
-      ],
+      "position": [1380, 720],
       "parameters": {
         "name": "Send_email",
         "fields": {
@@ -282,10 +252,7 @@
       "name": "Chat Trigger",
       "type": "@n8n/n8n-nodes-langchain.chatTrigger",
       "disabled": true,
-      "position": [
-        380,
-        240
-      ],
+      "position": [380, 240],
       "webhookId": "f406671e-c954-4691-b39a-66c90aa2f103",
       "parameters": {
         "mode": "webhook",
@@ -301,10 +268,7 @@
       "id": "032a26e9-6853-490d-991b-b2af2d845f58",
       "name": "Switch",
       "type": "n8n-nodes-base.switch",
-      "position": [
-        2140,
-        220
-      ],
+      "position": [2140, 220],
       "parameters": {
         "rules": {
           "values": [
@@ -366,10 +330,7 @@
       "id": "c74905ce-4fd9-486c-abc4-b0b1d57d71a8",
       "name": "varMessageResponse",
       "type": "n8n-nodes-base.set",
-      "position": [
-        2660,
-        340
-      ],
+      "position": [2660, 340],
       "parameters": {
         "options": {
           "ignoreConversionErrors": false
@@ -391,10 +352,7 @@
       "id": "04c5d43c-1629-4e11-a6bb-ae73369d7002",
       "name": "Send Message1",
       "type": "n8n-nodes-base.microsoftOutlook",
-      "position": [
-        2440,
-        340
-      ],
+      "position": [2440, 340],
       "webhookId": "d8acc2cb-fcba-4312-a743-e74abe76d071",
       "parameters": {
         "subject": "={{ $('Execute Workflow Trigger').item.json.query.subject }}",
@@ -417,10 +375,7 @@
       "id": "5a2636f1-47d3-4421-840b-56553bf14d82",
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1340,
-        640
-      ],
+      "position": [1340, 640],
       "parameters": {
         "width": 311.6936390497898,
         "height": 205.34013605442183,
@@ -432,10 +387,7 @@
       "id": "a9fe05d4-6b86-4313-9f11-b20e3ce7db89",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        2360,
-        20
-      ],
+      "position": [2360, 20],
       "parameters": {
         "width": 468,
         "height": 238,
@@ -447,10 +399,7 @@
       "id": "5dfda5c9-eeeb-421a-a80d-f42c94602080",
       "name": "AI Agent",
       "type": "@n8n/n8n-nodes-langchain.agent",
-      "position": [
-        1220,
-        220
-      ],
+      "position": [1220, 220],
       "parameters": {
         "text": "={{ $json.chatInput }}",
         "options": {
@@ -464,10 +413,7 @@
       "id": "6156ab7e-d411-46b9-ac44-52ad56ee563d",
       "name": "If",
       "type": "n8n-nodes-base.if",
-      "position": [
-        600,
-        240
-      ],
+      "position": [600, 240],
       "parameters": {
         "options": {},
         "conditions": {
@@ -498,10 +444,7 @@
       "id": "c94171a9-a71d-4f63-bef6-e90361c57abd",
       "name": "Respond With Initial Message",
       "type": "n8n-nodes-base.respondToWebhook",
-      "position": [
-        900,
-        360
-      ],
+      "position": [900, 360],
       "parameters": {
         "options": {},
         "respondWith": "json",
@@ -513,10 +456,7 @@
       "id": "43129771-e976-41af-8adb-88cb5465628d",
       "name": "Sticky Note8",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1100,
-        -600
-      ],
+      "position": [1100, -600],
       "parameters": {
         "color": 6,
         "width": 668,
@@ -529,10 +469,7 @@
       "id": "bb890f44-caf0-4b7d-b95e-0c05c70e8f45",
       "name": "Sticky Note9",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        760,
-        -440
-      ],
+      "position": [760, -440],
       "parameters": {
         "color": 7,
         "width": 667,
@@ -545,10 +482,7 @@
       "id": "f0b054cc-f961-4c48-846c-a80ea5e49924",
       "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1460,
-        -440
-      ],
+      "position": [1460, -440],
       "parameters": {
         "color": 7,
         "width": 600,
@@ -561,10 +495,7 @@
       "id": "210cef85-6fbe-413e-88b6-b0fed76212ac",
       "name": "Sticky Note3",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        2360,
-        280
-      ],
+      "position": [2360, 280],
       "parameters": {
         "color": 4,
         "width": 260,
@@ -577,10 +508,7 @@
       "id": "17abc6bd-06c3-48e7-8380-e10024daa9f5",
       "name": "Sticky Note4",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1520,
-        380
-      ],
+      "position": [1520, 380],
       "parameters": {
         "color": 6,
         "width": 208,

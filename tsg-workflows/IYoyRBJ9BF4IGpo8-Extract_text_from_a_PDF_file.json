@@ -5,10 +5,7 @@
       "parameters": {},
       "name": "On clicking 'execute'",
       "type": "n8n-nodes-base.manualTrigger",
-      "position": [
-        380,
-        240
-      ],
+      "position": [380, 240],
       "typeVersion": 1,
       "id": "b5d0bda4-7ed0-4670-b401-aac90b8ae117"
     },
@@ -18,10 +15,7 @@
       },
       "name": "Read Binary File",
       "type": "n8n-nodes-base.readBinaryFile",
-      "position": [
-        580,
-        240
-      ],
+      "position": [580, 240],
       "typeVersion": 1,
       "id": "f32b33b0-fb71-44b1-9ee6-5672e6385e68"
     },
@@ -29,10 +23,7 @@
       "parameters": {},
       "name": "Read PDF",
       "type": "n8n-nodes-base.readPDF",
-      "position": [
-        800,
-        240
-      ],
+      "position": [800, 240],
       "typeVersion": 1,
       "id": "b65640e1-fb2f-4038-8ef8-8c4ed62e7b36"
     }

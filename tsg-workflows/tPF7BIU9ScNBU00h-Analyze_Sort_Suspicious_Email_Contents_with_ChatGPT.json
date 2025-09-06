@@ -17,10 +17,7 @@
       "id": "94dd7f48-0013-4fb5-89c4-826ecd7f2d66",
       "name": "Gmail Trigger",
       "type": "n8n-nodes-base.gmailTrigger",
-      "position": [
-        460,
-        509.9911098356034
-      ],
+      "position": [460, 509.9911098356034],
       "typeVersion": 1.2,
       "credentials": {
         "gmailOAuth2": {
@@ -39,22 +36,14 @@
           ]
         },
         "output": "fields",
-        "fields": [
-          "body",
-          "toRecipients",
-          "subject",
-          "bodyPreview"
-        ],
+        "fields": ["body", "toRecipients", "subject", "bodyPreview"],
         "filters": {},
         "options": {}
       },
       "id": "ca2023fa-ceca-4923-80e4-a3843803536c",
       "name": "Microsoft Outlook Trigger",
       "type": "n8n-nodes-base.microsoftOutlookTrigger",
-      "position": [
-        480,
-        1069.9911098356033
-      ],
+      "position": [480, 1069.9911098356033],
       "typeVersion": 1,
       "credentials": {
         "microsoftOutlookOAuth2Api": {
@@ -72,9 +61,7 @@
         "genericAuthType": "httpBasicAuth",
         "sendQuery": true,
         "queryParameters": {
-          "parameters": [
-            {}
-          ]
+          "parameters": [{}]
         },
         "sendBody": true,
         "bodyParameters": {
@@ -90,10 +77,7 @@
       "id": "1f011214-91a0-4cfa-9d9e-29864937c0a3",
       "name": "Screenshot HTML",
       "type": "n8n-nodes-base.httpRequest",
-      "position": [
-        1620,
-        809.9911098356034
-      ],
+      "position": [1620, 809.9911098356034],
       "typeVersion": 4.2
     },
     {
@@ -106,10 +90,7 @@
       "id": "64f4789f-9de8-414f-af62-ddc339f0d0ac",
       "name": "Retrieve Screenshot",
       "type": "n8n-nodes-base.httpRequest",
-      "position": [
-        1800,
-        809.9911098356034
-      ],
+      "position": [1800, 809.9911098356034],
       "typeVersion": 4.2
     },
     {
@@ -153,10 +134,7 @@
       "id": "db707bd9-6abc-4ab7-8ffa-ad25c5e8adc4",
       "name": "Set Outlook Variables",
       "type": "n8n-nodes-base.set",
-      "position": [
-        1040,
-        1069.9911098356033
-      ],
+      "position": [1040, 1069.9911098356033],
       "typeVersion": 3.4
     },
     {
@@ -200,10 +178,7 @@
       "id": "7a3622c0-6949-4ea3-ae13-46a1ee26de7b",
       "name": "Set Gmail Variables",
       "type": "n8n-nodes-base.set",
-      "position": [
-        1020,
-        509.9911098356034
-      ],
+      "position": [1020, 509.9911098356034],
       "typeVersion": 3.4
     },
     {
@@ -229,10 +204,7 @@
       "id": "4b4c6b34-f74c-4402-91a1-4d002e02a3bd",
       "name": "Retrieve Headers of Email",
       "type": "n8n-nodes-base.httpRequest",
-      "position": [
-        700,
-        1069.9911098356033
-      ],
+      "position": [700, 1069.9911098356033],
       "typeVersion": 4.2,
       "credentials": {
         "microsoftOutlookOAuth2Api": {
@@ -248,10 +220,7 @@
       "id": "0c9883b5-3eb7-45db-9803-d1b30166a3b5",
       "name": "Format Headers",
       "type": "n8n-nodes-base.code",
-      "position": [
-        880,
-        1069.9911098356033
-      ],
+      "position": [880, 1069.9911098356033],
       "typeVersion": 2
     },
     {
@@ -279,10 +248,7 @@
       "id": "c21a976c-00e5-4823-bd94-4c95a7d60438",
       "name": "Analyze Email with ChatGPT",
       "type": "@n8n/n8n-nodes-langchain.openAi",
-      "position": [
-        2000,
-        809.9911098356034
-      ],
+      "position": [2000, 809.9911098356034],
       "typeVersion": 1.6,
       "credentials": {
         "openAiApi": {
@@ -313,10 +279,7 @@
       "id": "a91f4095-9245-4276-b21f-f415de22df62",
       "name": "Create Potentially Malicious Ticket",
       "type": "n8n-nodes-base.jira",
-      "position": [
-        2640,
-        789.9911098356034
-      ],
+      "position": [2640, 789.9911098356034],
       "typeVersion": 1,
       "credentials": {
         "jiraSoftwareCloudApi": {
@@ -347,10 +310,7 @@
       "id": "a5a66a0e-9d8a-45a9-b1ae-aec78ddfec27",
       "name": "Create Potentially Benign Ticket",
       "type": "n8n-nodes-base.jira",
-      "position": [
-        2640,
-        969.9911098356034
-      ],
+      "position": [2640, 969.9911098356034],
       "typeVersion": 1,
       "credentials": {
         "jiraSoftwareCloudApi": {
@@ -367,10 +327,7 @@
       "id": "5af0d60b-d021-4dd9-98f7-b2842800764a",
       "name": "Rename Screenshot",
       "type": "n8n-nodes-base.code",
-      "position": [
-        3020,
-        869.9911098356034
-      ],
+      "position": [3020, 869.9911098356034],
       "typeVersion": 2
     },
     {
@@ -381,10 +338,7 @@
       "id": "441c4cbb-bd93-4213-bd34-e18f2a49389f",
       "name": "Set Jira ID",
       "type": "n8n-nodes-base.set",
-      "position": [
-        2860,
-        869.9911098356034
-      ],
+      "position": [2860, 869.9911098356034],
       "typeVersion": 3.4
     },
     {
@@ -395,10 +349,7 @@
       "id": "4c71188c-011d-4f8e-a36c-87900bfab59a",
       "name": "Upload Screenshot of Email to Jira",
       "type": "n8n-nodes-base.jira",
-      "position": [
-        3220,
-        869.9911098356034
-      ],
+      "position": [3220, 869.9911098356034],
       "typeVersion": 1,
       "credentials": {
         "jiraSoftwareCloudApi": {
@@ -415,10 +366,7 @@
       "id": "3c031c34-8306-44e1-8e0e-a584c5323112",
       "name": "Upload Email Body to Jira",
       "type": "n8n-nodes-base.jira",
-      "position": [
-        3620,
-        869.9911098356034
-      ],
+      "position": [3620, 869.9911098356034],
       "typeVersion": 1,
       "credentials": {
         "jiraSoftwareCloudApi": {
@@ -438,10 +386,7 @@
       "id": "d033dcbd-7ccb-451f-ab81-cc6d32d2e01f",
       "name": "Convert Email Body to File",
       "type": "n8n-nodes-base.convertToFile",
-      "position": [
-        1420,
-        809.9911098356034
-      ],
+      "position": [1420, 809.9911098356034],
       "typeVersion": 1.1
     },
     {
@@ -452,10 +397,7 @@
       "id": "bda5e2fe-d8c0-456b-975a-35e82ff02816",
       "name": "Set Email Variables",
       "type": "n8n-nodes-base.set",
-      "position": [
-        1240,
-        809.9911098356034
-      ],
+      "position": [1240, 809.9911098356034],
       "typeVersion": 3.4
     },
     {
@@ -466,10 +408,7 @@
       "id": "54ecd8ab-ac4a-4b6b-bd1b-bf8c70082a33",
       "name": "Rename Email Body Screenshot",
       "type": "n8n-nodes-base.code",
-      "position": [
-        3420,
-        869.9911098356034
-      ],
+      "position": [3420, 869.9911098356034],
       "typeVersion": 2
     },
     {
@@ -482,10 +421,7 @@
       "id": "fe5b82cc-b4bb-4c97-9477-075d5a280e9f",
       "name": "Sticky Note2",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1574.536755825029,
-        389.9911098356034
-      ],
+      "position": [1574.536755825029, 389.9911098356034],
       "typeVersion": 1
     },
     {
@@ -498,10 +434,7 @@
       "id": "86b21049-f65e-4c6a-a854-c4376f870da9",
       "name": "Sticky Note",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        380,
-        240
-      ],
+      "position": [380, 240],
       "typeVersion": 1
     },
     {
@@ -514,10 +447,7 @@
       "id": "b1a786cf-7a8d-49e1-90ed-31f3d0e65b13",
       "name": "Sticky Note1",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        380,
-        697.9911098356034
-      ],
+      "position": [380, 697.9911098356034],
       "typeVersion": 1
     },
     {
@@ -530,10 +460,7 @@
       "id": "e7ace035-b5f5-4ef3-a117-22c7c938868d",
       "name": "Sticky Note3",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1958.4325220284563,
-        414.73603395560576
-      ],
+      "position": [1958.4325220284563, 414.73603395560576],
       "typeVersion": 1
     },
     {
@@ -546,10 +473,7 @@
       "id": "02c1ad8e-f952-42d2-ae9f-cf3a77e49e52",
       "name": "Sticky Note4",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        2562.4948140707697,
-        264.1950326425681
-      ],
+      "position": [2562.4948140707697, 264.1950326425681],
       "typeVersion": 1
     },
     {
@@ -580,10 +504,7 @@
       "id": "597ef23e-c61c-4e27-8c14-74ec20079c96",
       "name": "Check if Malicious",
       "type": "n8n-nodes-base.if",
-      "position": [
-        2400,
-        809.9911098356034
-      ],
+      "position": [2400, 809.9911098356034],
       "typeVersion": 2.2
     },
     {
@@ -596,10 +517,7 @@
       "id": "af512af9-924b-4019-bdf9-62aac9cd0dac",
       "name": "Sticky Note5",
       "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        1200,
-        429.0328434398866
-      ],
+      "position": [1200, 429.0328434398866],
       "typeVersion": 1
     }
   ],
