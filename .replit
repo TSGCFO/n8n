@@ -2,7 +2,7 @@ run = ["bash", "main.sh"]
 
 hidden = ["node_modules"]
 entrypoint = "WELCOME.md"
-modules = ["nodejs-22"]
+modules = ["nodejs-22", "postgresql-16"]
 
 [agent]
 expertMode = true

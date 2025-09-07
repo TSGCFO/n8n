@@ -5,24 +5,18 @@ export N8N_RUNNERS_ENABLED=true
 export N8N_BLOCK_ENV_ACCESS_IN_NODE=false
 export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
 
-# PostgreSQL database configuration
-if [ -n "$DATABASE_URL" ]; then
-  # Use DATABASE_URL if available (preferred method)
-  export N8N_DATABASE_TYPE=postgresdb
-  export DATABASE_URL="$DATABASE_URL"
-else
-  # Fallback to individual PostgreSQL variables
-  export N8N_DATABASE_TYPE=postgresdb
-  export N8N_DATABASE_POSTGRESDB_HOST="$PGHOST"
-  export N8N_DATABASE_POSTGRESDB_PORT="$PGPORT"
-  export N8N_DATABASE_POSTGRESDB_DATABASE="$PGDATABASE"
-  export N8N_DATABASE_POSTGRESDB_USER="$PGUSER"
-  export N8N_DATABASE_POSTGRESDB_PASSWORD="$PGPASSWORD"
-fi
+# PostgreSQL database configuration (using correct DB_* variables per n8n docs)
+export DB_TYPE=postgresdb
+export DB_POSTGRESDB_HOST="$PGHOST"
+export DB_POSTGRESDB_PORT="$PGPORT"
+export DB_POSTGRESDB_DATABASE="$PGDATABASE"
+export DB_POSTGRESDB_USER="$PGUSER"
+export DB_POSTGRESDB_PASSWORD="$PGPASSWORD"
+export DB_POSTGRESDB_SCHEMA=public
+export DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED=false
 
-# PostgreSQL connection pool settings
-export N8N_DATABASE_POSTGRESDB_POOL_SIZE=10
-export N8N_DATABASE_LOGGING_ENABLED=false
+# Connection pool settings
+export DB_POSTGRESDB_POOL_SIZE=10
 
 # Session and security configuration to fix browserId errors
 export N8N_SECURE_COOKIE=false
