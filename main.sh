@@ -55,6 +55,11 @@ export N8N_DISABLE_UI=false
 export N8N_PAYLOAD_SIZE_MAX=16
 export N8N_METRICS=false
 export N8N_TEMPLATES_ENABLED=true
-bash persistent.sh
+
+# Skip config folder setup in deployment (using PostgreSQL now)
+if [ "$REPLIT_DEPLOYMENT" != "1" ]; then
+  # Only run persistent.sh in development
+  bash persistent.sh
+fi
 
 n8n
