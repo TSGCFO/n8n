@@ -12,7 +12,6 @@ export N8N_DATABASE_SQLITE_DATABASE=./n8n/database.sqlite
 export N8N_SECURE_COOKIE=false
 export N8N_SESSION_COOKIE_SAME_SITE=lax
 export N8N_SKIP_BROWSER_ID_CHECK=true
-export N8N_PERSISTED_BINARY_DATA_TTL=1440
 
 # Detect deployment mode and set appropriate URLs
 if [ "$REPLIT_DEPLOYMENT" = "1" ]; then
