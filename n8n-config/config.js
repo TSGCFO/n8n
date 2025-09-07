@@ -1,14 +1,16 @@
 module.exports = {
-  // Database configuration for faster startup
+  // Database configuration using PostgreSQL for persistent storage
   database: {
-    type: "sqlite",
-    sqlite: {
-      database: "./n8n/database.sqlite",
-      enableWAL: true,
+    type: "postgresdb",
+    postgresdb: {
+      connectionString: process.env.DATABASE_URL,
       pool: {
-        max: 5,
-        min: 1,
+        max: 10,
+        min: 2,
       },
+      ssl: {
+        rejectUnauthorized: false
+      }
     },
   },
 

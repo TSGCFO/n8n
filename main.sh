@@ -1,14 +1,28 @@
 export PATH=$PATH:$(pwd)/node_modules/.bin
 export N8N_PORT=5000
 export N8N_HOST=0.0.0.0
-export DB_SQLITE_POOL_SIZE=5
 export N8N_RUNNERS_ENABLED=true
 export N8N_BLOCK_ENV_ACCESS_IN_NODE=false
 export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
-export N8N_DATABASE_TYPE=sqlite
-export N8N_DATABASE_SQLITE_DATABASE=$(pwd)/n8n-config/database.sqlite
-export DB_SQLITE_ENABLE_WAL=false
-export DB_SQLITE_VACUUM_ON_STARTUP=true
+
+# PostgreSQL database configuration
+if [ -n "$DATABASE_URL" ]; then
+  # Use DATABASE_URL if available (preferred method)
+  export N8N_DATABASE_TYPE=postgresdb
+  export DATABASE_URL="$DATABASE_URL"
+else
+  # Fallback to individual PostgreSQL variables
+  export N8N_DATABASE_TYPE=postgresdb
+  export N8N_DATABASE_POSTGRESDB_HOST="$PGHOST"
+  export N8N_DATABASE_POSTGRESDB_PORT="$PGPORT"
+  export N8N_DATABASE_POSTGRESDB_DATABASE="$PGDATABASE"
+  export N8N_DATABASE_POSTGRESDB_USER="$PGUSER"
+  export N8N_DATABASE_POSTGRESDB_PASSWORD="$PGPASSWORD"
+fi
+
+# PostgreSQL connection pool settings
+export N8N_DATABASE_POSTGRESDB_POOL_SIZE=10
+export N8N_DATABASE_LOGGING_ENABLED=false
 
 # Session and security configuration to fix browserId errors
 export N8N_SECURE_COOKIE=false
