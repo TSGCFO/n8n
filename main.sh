@@ -8,6 +8,12 @@ export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
 export N8N_DATABASE_TYPE=sqlite
 export N8N_DATABASE_SQLITE_DATABASE=./n8n/database.sqlite
 
+# Session and security configuration to fix browserId errors
+export N8N_SECURE_COOKIE=false
+export N8N_SESSION_COOKIE_SAME_SITE=lax
+export N8N_SKIP_BROWSER_ID_CHECK=true
+export N8N_PERSISTED_BINARY_DATA_TTL=1440
+
 # Detect deployment mode and set appropriate URLs
 if [ "$REPLIT_DEPLOYMENT" = "1" ]; then
   # Production deployment URL
@@ -29,6 +35,11 @@ fi
 # Enable editor UI at root path
 export N8N_PATH_PREFIX=/
 export N8N_DISABLE_UI=false
+
+# CORS and API configuration
+export N8N_PAYLOAD_SIZE_MAX=16
+export N8N_METRICS=false
+export N8N_TEMPLATES_ENABLED=true
 bash persistent.sh
 
 n8n
