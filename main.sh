@@ -6,7 +6,9 @@ export N8N_RUNNERS_ENABLED=true
 export N8N_BLOCK_ENV_ACCESS_IN_NODE=false
 export N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=false
 export N8N_DATABASE_TYPE=sqlite
-export N8N_DATABASE_SQLITE_DATABASE=./n8n/database.sqlite
+export N8N_DATABASE_SQLITE_DATABASE=$(pwd)/n8n-config/database.sqlite
+export DB_SQLITE_ENABLE_WAL=false
+export DB_SQLITE_VACUUM_ON_STARTUP=true
 
 # Session and security configuration to fix browserId errors
 export N8N_SECURE_COOKIE=false
