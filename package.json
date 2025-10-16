@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "n8n": "1.113.3"
+    "n8n": "1.115.3"
   },
   "scripts": {
     "build": "echo 'No build step required for n8n'",

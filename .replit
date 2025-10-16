@@ -36,7 +36,7 @@ waitForPort = 5000
 outputType = "webview"
 
 [deployment]
-deploymentTarget = "autoscale"
+deploymentTarget = "gce"
 run = ["bash", "main.sh"]
 build = ["npm", "run", "build"]
 
